@@ -1,0 +1,10 @@
+[CHIEF]
+Pausa di un secondo |p1.0| fatto
+Pausa di due secondi |p2.0| fatto
+[SPY]
+sono la spia |s4.0| ... |s0.1| |eANGRY| CHE CAZZO VUOI ???
+[CHIEF]
+|s0.3| parlo velocemente
+|s5.0| parlo lentamente
+|s1.0| |eANGRY| sono arrabbiato
+|eNORMAL| sono calmo
