@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
+[RequireComponent(typeof(TalkManager))]
 public class Managers : MonoBehaviour {
 
     /*
@@ -9,14 +10,19 @@ public class Managers : MonoBehaviour {
         All the scripts in the game that need to access a specific manager will request it to this module
     */
 
+    
+    public static TalkManager Talk { get; private set; }
+
     private List<IGameManager> _startSequence;
 
     void Awake() {
         
+        TalkManager Talk = this.GetComponent<TalkManager>();
+        Managers.Talk = Talk;
 
         _startSequence = new List<IGameManager>
         {
-            
+            Talk
         };
 
         StartCoroutine(StartupManagers());

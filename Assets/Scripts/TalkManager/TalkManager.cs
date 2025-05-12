@@ -6,10 +6,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using static DialogueLoader;
 
-[RequireComponent(typeof(AudioSource))]
-public class TalkManager : MonoBehaviour
+public class TalkManager : MonoBehaviour, IGameManager
 {
-    public static TalkManager Instance { get; private set; }
+
+    public ManagerStatus status => ManagerStatus.Started;
 
     [SerializeField]
     private CanvasGroup canvasGroup;
@@ -26,9 +26,6 @@ public class TalkManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI characterNameText;
 
-    private AudioSource audioSource;
-
-
     public float charactersPerSecond = 30f; // Speed of typing
 
     public float minReadTimePerChar = 0.035f; // Used to estimate read time
@@ -41,24 +38,10 @@ public class TalkManager : MonoBehaviour
 
     public Dictionary<string, string> characters = new();
 
-    void Awake()
-    {
-        if (Instance != null && Instance != this) 
-        { 
-            Destroy(this); 
-        } 
-        else 
-        { 
-            Instance = this;
-            this.mugShotAnimator = this.mugShot.GetComponent<Animator>();
-            this.audioSource = this.GetComponent<AudioSource>();
-            DontDestroyOnLoad(this.gameObject);
-        } 
-    }
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.L))
         {
             StartDialogue("intro2");
         }
@@ -140,12 +123,6 @@ public class TalkManager : MonoBehaviour
             mugShotAnimator.runtimeAnimatorController = line.CharacterData.controller;
             yield return StartCoroutine(line.TypeText(this.charactersPerSecond, this.minReadTimePerChar, (c) => {
                 dialogueText.text += c;
-                if(line.CharacterData.talkAudioClip != null && c != ' ')
-                {
-                    this.audioSource.Stop();
-                    this.audioSource.clip = line.CharacterData.talkAudioClip;
-                    this.audioSource.Play();
-                }
             }, UpdateEmotion));
             
         }
@@ -156,5 +133,11 @@ public class TalkManager : MonoBehaviour
     public float EstimateReadingTime(string text)
     {
         return Mathf.Clamp(text.Length * minReadTimePerChar, 1.5f, 10f); // Clamp for practicality
-    } 
+    }
+
+    public void Startup()
+    {
+        this.mugShotAnimator = this.mugShot.GetComponent<Animator>();
+    }
+
 }
