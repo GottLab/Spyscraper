@@ -36,9 +36,6 @@ public class TalkManager : MonoBehaviour, IGameManager
 
     private Coroutine currentDialogueCoroutine = null;
 
-    public Dictionary<string, string> characters = new();
-
-
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.L))
@@ -74,7 +71,7 @@ public class TalkManager : MonoBehaviour, IGameManager
         if(this.mugShotAnimator.runtimeAnimatorController != null)
         {
             UpdateEmotion(this.emotion);
-            this.mugShotAnimator.Play("Base Layer.NORMAL", 0, 0f);  //this is used to avoid blending when switching characters
+            this.mugShotAnimator.Play("BASE.NORMAL", 0, 0f);  //this is used to avoid blending when switching characters
         }
     }
 
