@@ -10,7 +10,6 @@ public class Managers : MonoBehaviour {
         All the scripts in the game that need to access a specific manager will request it to this module
     */
 
-    
     public static TalkManager Talk { get; private set; }
 
     private List<IGameManager> _startSequence;
@@ -27,18 +26,11 @@ public class Managers : MonoBehaviour {
 
         StartCoroutine(StartupManagers());
     }
-
-    void Update()
+    
+    private IEnumerator StartupManagers()
     {
-        foreach (IGameManager manager in _startSequence) {
-            if(manager is IUpdatableManager updatableManager) {
-                updatableManager.Update();
-            }
-        }
-    }
-
-    private IEnumerator StartupManagers() {
-        foreach (IGameManager manager in _startSequence) {
+        foreach (IGameManager manager in _startSequence)
+        {
             manager.Startup();
         }
 
@@ -47,16 +39,20 @@ public class Managers : MonoBehaviour {
         int numModules = _startSequence.Count;
         int numReady = 0;
 
-        while (numReady < numModules) {
+        while (numReady < numModules)
+        {
             int lastReady = numReady;
             numReady = 0;
 
-            foreach (IGameManager manager in _startSequence) {
-                if (manager.status == ManagerStatus.Started) {
+            foreach (IGameManager manager in _startSequence)
+            {
+                if (manager.status == ManagerStatus.Started)
+                {
                     numReady++;
                 }
             }
-            if (numReady > lastReady) {
+            if (numReady > lastReady)
+            {
                 Debug.Log("Progress: " + numReady + "/" + numModules);
             }
             yield return null;

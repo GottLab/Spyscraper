@@ -1,30 +1,11 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
-using static DialogueLoader;
 
 public class TalkManager : MonoBehaviour, IGameManager
 {
 
     public ManagerStatus status => ManagerStatus.Started;
-
-    [SerializeField]
-    private CanvasGroup canvasGroup;
-
-
-    [SerializeField]
-    private Image mugShot;
-
-    private Animator mugShotAnimator;
-
-    [SerializeField]
-    private TextMeshProUGUI dialogueText;
-
-    [SerializeField]
-    private TextMeshProUGUI characterNameText;
 
     public float charactersPerSecond = 30f; // Speed of typing
 
@@ -32,15 +13,23 @@ public class TalkManager : MonoBehaviour, IGameManager
 
     public float fadeDuration = 0.7f; // Used to estimate read time
 
-    private Emotion emotion = Emotion.NORMAL;
-
     private Coroutine currentDialogueCoroutine = null;
+
+
+    public delegate void DialogueFade(float fadeValue, bool fadeIn);
+    public static DialogueFade OnDialogueFade;
+
+
+    public static Action<Dialogue> OnDialogueStart;
+    public static Action<CharacterDialogue> OnCharacterDialogueStart;
+    public delegate void CharacterType(CharacterDialogue dialogueLine, DialogueInfo info, char character);
+    public static CharacterType OnCharacterType;
 
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.L))
         {
-            StartDialogue("intro2");
+            StartDialogue("intro");
         }
     }
 
@@ -50,81 +39,76 @@ public class TalkManager : MonoBehaviour, IGameManager
         float targetAlpha = 1 - startAlpha;
         float timeElapsed = 0f;
 
-        if(Mathf.Approximately(canvasGroup.alpha, targetAlpha))
-            yield break;
-        
-
         while (timeElapsed < fadeDuration)
         {
             timeElapsed += Time.deltaTime;
-            canvasGroup.alpha = Mathf.Lerp(startAlpha, targetAlpha, timeElapsed / fadeDuration);
+            OnDialogueFade?.Invoke(Mathf.Lerp(startAlpha, targetAlpha, timeElapsed / fadeDuration), fadeIn);
             yield return null;
         }
-
-        canvasGroup.alpha = targetAlpha;
+        OnDialogueFade?.Invoke(targetAlpha, fadeIn);
     }
-
-    void ResetDialogueData()
-    {
-        this.dialogueText.text = "";
-        this.emotion = Emotion.NORMAL;
-        if(this.mugShotAnimator.runtimeAnimatorController != null)
-        {
-            UpdateEmotion(this.emotion);
-            this.mugShotAnimator.Play("BASE.NORMAL", 0, 0f);  //this is used to avoid blending when switching characters
-        }
-    }
-
 
     public void StartDialogue(string dialogueFile, Action OnDialogueEnd = null)
     {
-        this.ResetDialogueData();
-        if(currentDialogueCoroutine != null)
+        if (currentDialogueCoroutine != null)
         {
             StopAllCoroutines();
             this.currentDialogueCoroutine = null;
         }
         Dialogue dialogue = DialogueLoader.ReadDialogue(dialogueFile);
-        if(dialogue != null)
+        if (dialogue != null)
         {
             this.currentDialogueCoroutine = StartCoroutine(StartDialogue(dialogue, OnDialogueEnd));
         }
     }
-
-    private void UpdateEmotion(Emotion emotion)
+    
+    private IEnumerator TypeText(CharacterDialogue characterDialogue, string line, DialogueInfo dialogueInfo)
     {
-        //mugShotAnimator.Play("Base Layer." + emotion.ToString());
-        mugShotAnimator.SetInteger("Emotion", (int)emotion);
+
+        float totalDelay = 0;
+        int totalCharacters = 0;
+        for (int i = 0; i < line.Length; i++)
+        {
+            DialogueModifier.ApplyModifier(line, dialogueInfo, ref i);
+            yield return new WaitForSeconds(dialogueInfo.pauseTime);
+            dialogueInfo.pauseTime = 0.0F;
+           
+            float delay = 1f / charactersPerSecond;
+            delay *= dialogueInfo.charactersPerSecondMultiplier;
+            totalDelay += delay;
+            yield return new WaitForSeconds(delay);
+
+            if (i < line.Length)
+                OnCharacterType?.Invoke(characterDialogue, dialogueInfo, line[i]);
+            totalCharacters++;
+        }
+
+        yield return new WaitForSeconds(Mathf.Max(totalCharacters * minReadTimePerChar - totalDelay, 1.0f));
     }
 
 
     private IEnumerator StartDialogue(Dialogue dialogue, Action OnDialogueEnd = null)
     {
+        OnDialogueStart?.Invoke(dialogue);
+        yield return StartCoroutine(FadeTextBox(true));
 
-        yield return StartCoroutine(FadeTextBox(true)); 
+        DialogueInfo dialogueInfo = new();
         
-        CharacterData prevCharacterData = null;
-        
-        for (int i = 0; i < dialogue.Lines.Count; i++)
-        {   
-            dialogueText.text = "";
-            DialogueLine line = dialogue.Lines[i];
-            
-            if(prevCharacterData != line.CharacterData)
+        foreach (CharacterDialogue dialogueLine in dialogue.dialogueLines)
+        {
+            dialogueInfo.Reset();
+            OnCharacterDialogueStart?.Invoke(dialogueLine);
+
+            foreach (string line in dialogueLine.lines)
             {
-                this.characterNameText.text = line.CharacterData.characterName;
-                ResetDialogueData();
+                OnCharacterDialogueStart?.Invoke(dialogueLine);
+                yield return StartCoroutine(TypeText(dialogueLine, line, dialogueInfo));
             }
-            prevCharacterData = line.CharacterData;
-
-            mugShotAnimator.runtimeAnimatorController = line.CharacterData.controller;
-            yield return StartCoroutine(line.TypeText(this.charactersPerSecond, this.minReadTimePerChar, (c) => {
-                dialogueText.text += c;
-            }, UpdateEmotion));
-            
         }
+
+
         OnDialogueEnd?.Invoke();
-        yield return StartCoroutine(FadeTextBox(false)); 
+        yield return StartCoroutine(FadeTextBox(false));
     }
 
     public float EstimateReadingTime(string text)
@@ -134,7 +118,5 @@ public class TalkManager : MonoBehaviour, IGameManager
 
     public void Startup()
     {
-        this.mugShotAnimator = this.mugShot.GetComponent<Animator>();
     }
-
 }
