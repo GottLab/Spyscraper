@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
@@ -6,7 +7,7 @@ using UnityEngine.UI;
 /// <summary>
 /// This Component handles the update of all UI regarding the dialogue
 /// </summary>
-public class DialogueTextUpdate : MonoBehaviour
+public class DialogueTextUpdate : MonoBehaviour, IAnimationClipSource
 {
     [SerializeField]
     private TextMeshProUGUI dialogueText;
@@ -17,10 +18,11 @@ public class DialogueTextUpdate : MonoBehaviour
     [SerializeField]
     private Image mugShot;
 
-    [SerializeField]
-    private CanvasGroup textBoxCanvas;
-
     private Animator mugShotAnimator;
+
+    [SerializeField]
+    private AnimationClip textBoxAnimation;
+
 
     void Start()
     {
@@ -57,7 +59,7 @@ public class DialogueTextUpdate : MonoBehaviour
         this.UpdateEmotion(Emotion.NORMAL);
         //this is used for forcing the current emotion animation without transitions.
         this.mugShotAnimator.Play("BASE.NORMAL", 0, 0f);
-        
+
     }
 
     private void StartDialogue(Dialogue dialogue)
@@ -72,7 +74,7 @@ public class DialogueTextUpdate : MonoBehaviour
 
     private void FadeCanvas(float fade, bool fadeIn)
     {
-        textBoxCanvas.alpha = fade;
+        textBoxAnimation.SampleAnimation(this.gameObject, fade);
     }
 
     //This method update the current animation based on the Emotion enum
@@ -81,4 +83,10 @@ public class DialogueTextUpdate : MonoBehaviour
         mugShotAnimator.SetInteger("Emotion", (int)emotion);
     }
 
+    public void GetAnimationClips(List<AnimationClip> results)
+    {
+        results.Add(this.textBoxAnimation);
+    }
+
+    
 }
