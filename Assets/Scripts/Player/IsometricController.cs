@@ -12,21 +12,22 @@ public class IsometricController : MonoBehaviour
     [SerializeField]
     private float gravity = -9.8f;
 
-    [SerializeField]
-    private float lookRotationSpeed = 15.0f;
 
     [SerializeField]
     private Camera cam;
-
-
-    [SerializeField, Tooltip("Mask used for cursor looking")]
-    private LayerMask lookLayerMask;
 
     
     [SerializeField]
     private Transform playerModel;
 
     private Vector3 lookingPoint;
+
+    public Animator animator;
+
+
+    private readonly int WalkingProperty = Animator.StringToHash("walking");
+    private readonly int SpeedXProperty = Animator.StringToHash("speedX");
+    private readonly int SpeedYProperty = Animator.StringToHash("speedY");
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -38,7 +39,7 @@ public class IsometricController : MonoBehaviour
     void Update()
     {
 
-        if(this._charController.isGrounded)
+        if (this._charController.isGrounded)
             this.vSpeed = 0;
 
         this.vSpeed += this.gravity * Time.deltaTime;
@@ -49,41 +50,19 @@ public class IsometricController : MonoBehaviour
         float vertical = Input.GetAxisRaw("Vertical");
 
         Vector3 forward = Quaternion.Euler(0, cameraTransform.eulerAngles.y, 0) * Vector3.forward * vertical;
-    
         Vector3 right = Quaternion.Euler(0, cameraTransform.eulerAngles.y, 0) * Vector3.right * horizontal;
-
         Vector3 moveDirection = (forward + right).normalized;
-
         Vector3 movement = moveDirection *= speed;
 
         movement.y = this.vSpeed;
         movement *= Time.deltaTime;
         movement = transform.TransformDirection(movement);
         _charController.Move(movement);
-
-        //this.playerModel.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(transform.TransformDirection(moveDirection)), Time.deltaTime * 5F);
+        
 
         
-        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
-
-        RaycastHit hit;
-        if (Physics.Raycast(ray,out hit, Mathf.Infinity, lookLayerMask)) // Check if we hit something
-        {
-            Vector3 lookDirection = (hit.point - playerModel.position).normalized;
-            
-            Quaternion lookRotation = Quaternion.LookRotation(lookDirection);
-            Vector3 euler = lookRotation.eulerAngles;
-
-            // Remove Z axis (roll)
-            euler.x = 0f;
-            euler.z = 0f;
-
-            this.playerModel.rotation = Quaternion.Slerp(this.playerModel.rotation, Quaternion.Euler(euler), Time.deltaTime * lookRotationSpeed);
-            this.lookingPoint = hit.point;
-        }
-
-
+        
     }
 
     public Vector3 LookingPoint
