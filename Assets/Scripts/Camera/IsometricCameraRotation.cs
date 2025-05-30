@@ -15,27 +15,27 @@ public class IsometricCameraRotation : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        float targetYRotation =  45F + currentRotation * 90F;
+        float targetYRotation = 45F + currentRotation * 90F;
 
         currentYRotation = Mathf.SmoothDampAngle(currentYRotation, targetYRotation, ref velocity, 1f / rotationSpeed);
-        
+
         // Apply the rotation while keeping other axes unchanged
         transform.rotation = Quaternion.Euler(transform.eulerAngles.x, currentYRotation, transform.eulerAngles.z);
 
 
-        if(Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             RotateRight();
         }
 
-        if(Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             RotateLeft();
         }

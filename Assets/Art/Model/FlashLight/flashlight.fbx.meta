@@ -3,7 +3,17 @@ guid: 5395088ca03793e4192df99ea98b445a
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: flashlight_body
+    second: {fileID: 2100000, guid: 02a63540a03e0274fbb6c992daaea5f8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: flashlight_bulb
+    second: {fileID: 2100000, guid: 5e1327ca755e7da4b8cdb04d1c140d5f, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -76,7 +86,7 @@ ModelImporter:
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
   referencedClips: []
-  importAnimation: 1
+  importAnimation: 0
   humanDescription:
     serializedVersion: 3
     human: []

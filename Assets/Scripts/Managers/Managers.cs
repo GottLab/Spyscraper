@@ -18,12 +18,12 @@ public class Managers : MonoBehaviour
     void Awake()
     {
 
-        PointerManager pointManager = this.GetComponent<PointerManager>();
+        pointerManager = this.GetComponent<PointerManager>();
 
 
         _startSequence = new List<IGameManager>
         {
-            pointManager
+            pointerManager
         };
 
         StartCoroutine(StartupManagers());
