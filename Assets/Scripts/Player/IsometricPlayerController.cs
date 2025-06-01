@@ -39,6 +39,8 @@ public class IsometricPlayerController : MonoBehaviour
 
     public float speed = 4.0f;
 
+    private float lastMovementTime = 0.0f;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -95,7 +97,17 @@ public class IsometricPlayerController : MonoBehaviour
         Vector3 moveDirection = (forward + right).normalized;
 
 
-        _characterController.Move(moveDirection * speed * Time.deltaTime);
+        Vector3 movement = moveDirection * speed;
+        if (!this._characterController.isGrounded)
+        {
+            verticalVelocity += gravity * Time.deltaTime;
+        }
+        else
+        {
+            verticalVelocity = 0;
+        }
+        movement.y = verticalVelocity;
+        _characterController.Move(movement * Time.deltaTime);
 
         Vector3 localDirection = transform.InverseTransformDirection(moveDirection).normalized;
 
@@ -104,8 +116,16 @@ public class IsometricPlayerController : MonoBehaviour
         //we divide by 2.0 since the animation author said that the speed of the walking animation is 2.0 m/s
         animator.SetFloat(speedProperty, this.speed / 2.0f);
 
+        bool inputActive = horizontal != 0.0f || vertical != 0.0f;
 
-        _isWalking = horizontal != 0.0f || vertical != 0.0f;
+        if (inputActive)
+        {
+            lastMovementTime = Time.time;
+        }
+
+        //the player is still walking event after some time, this is to avoid jarring state transition when quickly going left or right
+        _isWalking = Time.time - lastMovementTime < 0.1f;
+
         if (animator.GetBool(WalkingProperty) != _isWalking)
         {
             animator.SetBool(WalkingProperty, _isWalking);

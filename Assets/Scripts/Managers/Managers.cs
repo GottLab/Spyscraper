@@ -29,6 +29,11 @@ public class Managers : MonoBehaviour
         StartCoroutine(StartupManagers());
     }
 
+    void OnEnable()
+    {
+        this.Awake();
+    }
+
     private IEnumerator StartupManagers()
     {
         foreach (IGameManager manager in _startSequence)
