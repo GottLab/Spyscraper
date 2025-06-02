@@ -157,12 +157,12 @@ public class IsometricPlayerController : MonoBehaviour
             else
             {
                 //When walking we use the turn animation itself to rotate the player since it is a root animation
-                animator.SetFloat(turnProperty, -turnDirection);
+                animator.SetFloat(turnProperty, turnDirection, 0.1f, Time.deltaTime);
             }
         }
         else if (animator.GetFloat(turnProperty) != 0.0)
         {
-            animator.SetFloat(turnProperty, 0.0f);
+            animator.SetFloat(turnProperty, 0.0f, 0.1f, Time.deltaTime);
         }
     }
 

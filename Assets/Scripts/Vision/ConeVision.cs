@@ -21,11 +21,7 @@ public class ConeVision : MonoBehaviour
 
 
     [SerializeField]
-    public MeshRenderer meshRenderer;
-
-    [SerializeField]
-    private Collider[] Colliders;
-
+    private ConeVisionObject coneVisionObject;
 
     public float coneAngle = 45;
 
@@ -94,17 +90,17 @@ public class ConeVision : MonoBehaviour
 
     }
 
-    public bool CheckVision<T>(Bounds bounds, T[] colliders) where T : Collider
+    public bool CheckVision(ConeVisionObject coneVisionObject)
     {
         Vector3 coneApex = this.transform.position;
         Vector3 coneDirection = this.transform.forward;
-        if (!ConeAABBIntersection.ConeIntersectsAABB(this.transform.position, this.transform.forward, this.coneAngle, this.coneHeight, bounds))
+        if (!ConeAABBIntersection.ConeIntersectsAABB(this.transform.position, this.transform.forward, this.coneAngle, this.coneHeight, coneVisionObject.Bounds))
         {
             Debug.DrawRay(coneApex, coneDirection, Color.red);
             return false;
         }
 
-        foreach (var collider in colliders)
+        foreach (var collider in coneVisionObject.Colliders)
         {
             if (ConeIntersectBoxCollider(collider))
             {
@@ -123,10 +119,10 @@ public class ConeVision : MonoBehaviour
 
     public void Update()
     {
-        if (this.Colliders == null || this.Colliders.Length == 0)
+        if (this.coneVisionObject == null)
             return;
 
-        CheckVision(meshRenderer.bounds, this.Colliders);
-        
+        CheckVision(this.coneVisionObject);
+
     }
 }
