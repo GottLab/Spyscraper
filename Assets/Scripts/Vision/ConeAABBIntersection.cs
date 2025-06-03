@@ -4,6 +4,7 @@ public static class ConeAABBIntersection
 {
     /// <summary>
     /// Checks if a cone intersects with an AABB (Bounds).
+    /// It may miss some edge cases where the cone intersects the box but no corner is inside and the axis ray misses.
     /// </summary>
     public static bool ConeIntersectsAABB(Vector3 coneApex, Vector3 coneDir, float angleDeg, float height, Bounds aabb)
     {
@@ -16,6 +17,8 @@ public static class ConeAABBIntersection
             if (IsPointInCone(corner, coneApex, coneDir, angleDeg, height))
                 return true;
         }
+        // It's possible for the cone to be partially inside the AABB without intersecting any corners.
+        // Therefore, we also check if the cone's direction ray collides with the AABB.
         if (LineIntersectsAABB(coneApex, coneDir, aabb, angleDeg, height))
             return true;
 
@@ -32,7 +35,7 @@ public static class ConeAABBIntersection
 
         float cosAngle = Mathf.Cos(Mathf.Deg2Rad * angleDeg);
         float cosToPoint = Vector3.Dot(toPoint.normalized, dir.normalized);
-
+        
         return cosToPoint >= cosAngle;
     }
 

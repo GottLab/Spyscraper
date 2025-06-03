@@ -6,21 +6,16 @@ public class ConeVisionObject : MonoBehaviour
     [SerializeField, Tooltip("AABB used to check if it intersects with a vision cone before raycasting")]
     private Bounds bounds = new Bounds(Vector3.zero, Vector3.zero);
 
-    [SerializeField, Tooltip("Colliders used to check if the cone vision sees this object")]
-    private Collider[] colliders;
+    [SerializeReference, Tooltip("Colliders used to check if the cone vision sees this object")]
+    private AbstractVisionCollider[] visionColliders;
 
     [SerializeField, Tooltip("Use this collider bounds")]
     private Collider boundsFromCollider;
 
-    [SerializeField, Tooltip("Get colliders by iterating this object child")]
-    private bool GetCollidersInChild = true;
 
-    void OnValidate()
+    public void Start()
     {
-        if (GetCollidersInChild)
-        {
-            this.colliders = GetComponentsInChildren<Collider>(true);
-        }
+        this.visionColliders = GetComponentsInChildren<AbstractVisionCollider>(true);
     }
 
 
@@ -31,9 +26,9 @@ public class ConeVisionObject : MonoBehaviour
         Gizmos.DrawWireCube(this.Bounds.center, Bounds.extents * 2);
     }
 
-    public Collider[] Colliders
+    public AbstractVisionCollider[] Colliders
     {
-        get => this.colliders;
+        get => this.visionColliders;
     }
 
     public Bounds Bounds

@@ -9,9 +9,6 @@ using UnityEngine;
 public class IsometricPlayerController : MonoBehaviour
 {
 
-    [SerializeField, Tooltip("Transform which rotation is used to move relative to it")]
-    private Transform cam;
-
     [SerializeField]
     private float gravity = -9.8f;
 
@@ -47,47 +44,48 @@ public class IsometricPlayerController : MonoBehaviour
     {
         _characterController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
+
+        Managers.playerManager.OnStatusChange += OnStatusChange;
+    }
+
+    void OnDestroy()
+    {
+        Managers.playerManager.OnStatusChange -= OnStatusChange;
+    }
+
+    private void OnStatusChange(PlayerManager.PlayerState playerState)
+    {
+        if (playerState != PlayerManager.PlayerState.NORMAL)
+        {
+            animator.SetBool(WalkingProperty, false);
+            animator.SetFloat(turnProperty, 0.0f);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Do not move or rotate player if not in torch state
+        if (!Managers.playerManager.IsState(PlayerManager.PlayerState.NORMAL))
+        {
+            return;
+        }
+
 
         UpdateRotation();
         UpdateMovement();
-        
-        
     }
-
-    void LateUpdate()
-    {
-        
-    }
-
-    /*
-    void OnAnimatorMove()
-    {
-        Vector3 rootMotion = animator.deltaPosition;
-
-        // Apply gravity
-        if (_characterController.isGrounded)
-        {
-            verticalVelocity = 0f; // Reset when grounded
-        }
-        else
-        {
-            verticalVelocity += gravity * Time.deltaTime;
-        }
-        rootMotion.y = verticalVelocity * Time.deltaTime;
-        _characterController.Move(rootMotion);
-        transform.rotation *= animator.deltaRotation;
-    }
-    */
-
 
     private void UpdateMovement()
     {
-        Transform cameraTransform = this.cam.transform;
+        Camera mainCamera = Camera.main;
+        if (mainCamera == null)
+        {
+            Debug.LogWarning("Missing Main Camera in scene", this);
+            return;
+        }
+
+        Transform cameraTransform = mainCamera.transform;
 
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");

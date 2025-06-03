@@ -30,14 +30,17 @@ public class IsometricCameraRotation : MonoBehaviour
         transform.rotation = Quaternion.Euler(transform.eulerAngles.x, currentYRotation, transform.eulerAngles.z);
 
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Managers.playerManager.IsState(PlayerManager.PlayerState.NORMAL))
         {
-            RotateRight();
-        }
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                RotateRight();
+            }
 
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            RotateLeft();
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                RotateLeft();
+            }
         }
 
     }

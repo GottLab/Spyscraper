@@ -29,11 +29,28 @@ public class IsometricCameraZoom : MonoBehaviour
     {
         this._CinemachineCamera = GetComponent<CinemachineCamera>();
         this._CinemachinePositionComposer = GetComponent<CinemachinePositionComposer>();
+        Managers.playerManager.OnStatusChange += OnStateChange;
+    }
+
+    void OnDestroy()
+    {
+        Managers.playerManager.OnStatusChange -= OnStateChange;
+    }
+
+    private void OnStateChange(PlayerManager.PlayerState playerState)
+    {
+        _CinemachinePositionComposer.Composition.ScreenPosition = Vector3.zero;
     }
 
     // Update is called once per frame
     void Update()
     {
+        
+        if (!Managers.playerManager.IsState(PlayerManager.PlayerState.NORMAL))
+        {
+            return;
+        }
+
         this.targetSize += -Input.mouseScrollDelta.y * zoomSensitivity * Time.deltaTime;
         this.targetSize = Mathf.Clamp(this.targetSize, this.minSize, this.maxSize);
         this._CinemachineCamera.Lens.OrthographicSize = Mathf.Lerp(this._CinemachineCamera.Lens.OrthographicSize, this.targetSize, Time.deltaTime * 10.0F);
@@ -52,11 +69,6 @@ public class IsometricCameraZoom : MonoBehaviour
             cameraTarget.y = mousePercentage.y * this.maxPanning.y;
         }
 
-
-
-        Vector3 newPosition = transform.localPosition;
-        //newPosition.x = Mathf.Lerp(newPosition.x, cameraTarget.x, Time.deltaTime * panResetSpeed);
-        //newPosition.y = Mathf.Lerp(newPosition.y, cameraTarget.y, Time.deltaTime * panResetSpeed);
         _CinemachinePositionComposer.Composition.ScreenPosition = cameraTarget;
     }
 }

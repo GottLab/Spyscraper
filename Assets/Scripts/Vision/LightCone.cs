@@ -1,7 +1,11 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.Collections;
 using Unity.Jobs;
+using Unity.Mathematics;
+using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class LightCone : MonoBehaviour
@@ -16,6 +20,8 @@ public class LightCone : MonoBehaviour
 
     private Bounds foundBounds = new Bounds();
 
+    public ConeVisionObject target;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -25,7 +31,8 @@ public class LightCone : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ShootConeRaycastCommands();
+        //ShootConeRaycastCommands();
+        FocusLightCone();
     }
 
     void GenerateLocalConeDirections()
@@ -58,7 +65,7 @@ public class LightCone : MonoBehaviour
 
         Debug.Log($"Total number of rays {localDirections.Count()}", this);
     }
-    
+
     void ShootConeRaycastCommands()
     {
         int count = localDirections.Length;
@@ -104,5 +111,48 @@ public class LightCone : MonoBehaviour
 
         rayCommands.Dispose();
         rayResults.Dispose();
+    }
+
+    void FocusLightCone()
+    {
+        if (this.target == null)
+            return;
+
+        if (!ConeAABBIntersection.ConeIntersectsAABB(this.transform.position, this.transform.forward, this.coneAngle, this.rayDistance, this.target.Bounds))
+            return;
+
+        Vector3 dif = this.target.Bounds.center - this.transform.position;
+        float distance = dif.magnitude;
+
+        Quaternion rotateQuaternion = Quaternion.FromToRotation(Vector3.forward,dif.normalized);
+        
+
+        Debug.DrawRay(this.transform.position, rotateQuaternion * Vector3.forward * 5.0f , Color.magenta);
+
+        float size = Mathf.Max(this.target.Bounds.size.x, this.target.Bounds.size.y, this.target.Bounds.size.z);
+
+        Vector3 point = Vector3.zero;
+        point.z = distance;
+        // Grid on a plane in front of the origin (e.g., X-Z plane at distance `d`)
+        for (int y = 0; y < raysPerAxis; y++)
+        {
+            for (int x = 0; x < raysPerAxis; x++)
+            {
+                float u = (x + 0.5f) / raysPerAxis - 0.5f;
+                float v = (y + 0.5f) / raysPerAxis - 0.5f;
+
+                point.x = u * size;
+                point.y = v * size;
+
+                Vector3 finalDirection = rotateQuaternion * point;
+                Vector3 finalPoint = this.transform.position + finalDirection;
+                if (this.target.Bounds.Contains(finalPoint) && ConeAABBIntersection.IsPointInCone(finalPoint, this.transform.position, this.transform.forward, this.coneAngle, distance))
+                {
+                    Debug.DrawRay(this.transform.position, finalDirection, Color.yellow);
+                }
+
+            }
+        }
+        
     }
 }

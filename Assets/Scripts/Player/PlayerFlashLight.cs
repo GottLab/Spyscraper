@@ -1,7 +1,5 @@
 
 using System.Collections;
-using Unity.VisualScripting;
-using UnityEditor.EditorTools;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
 
@@ -29,25 +27,55 @@ public class PlayerFlashLight : MonoBehaviour
 
     private bool usingFlashlight = false;
 
-    public void Awake()
+    public void Start()
     {
-        SwitchFlashLight(false);
+        Managers.playerManager.OnStatusChange += OnStatusChange;
+        this.SwitchFlashLight(this.usingFlashlight);
+
+    }
+
+    public void OnDestroy()
+    {
+        Managers.playerManager.OnStatusChange -= OnStatusChange;
+    }
+
+    private void OnStatusChange(PlayerManager.PlayerState playerState)
+    {
+        if (playerState == PlayerManager.PlayerState.NORMAL)
+        {
+            SwitchFlashLight(this.usingFlashlight);
+        }
+        else
+        {
+            ResetWeights();
+        }
     }
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && Managers.playerManager.IsState(PlayerManager.PlayerState.NORMAL))
         {
             this.usingFlashlight = !this.usingFlashlight;
             SwitchFlashLight(this.usingFlashlight);
         }
     }
 
-    public void SwitchFlashLight(bool on)
+    private void SwitchFlashLight(bool on)
     {
         StopAllCoroutines();
         StartCoroutine(SwitchFlashLightPose(on));
         this.usingFlashlight = on;
+    }
+
+    private void ResetWeights()
+    {
+        var sourceObjects = multiParentConstraint.data.sourceObjects;
+        sourceObjects.SetWeight(0, 1.0f);
+        sourceObjects.SetWeight(1, 0.0f);
+        sourceObjects.SetWeight(2, 0.0f);
+        multiParentConstraint.data.sourceObjects = sourceObjects;
+        this.flashlightRig.weight = 0.0f;
+        this.flashlight.Turn(false);
     }
     
 
