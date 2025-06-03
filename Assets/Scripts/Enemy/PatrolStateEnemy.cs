@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Enemy
 {
@@ -10,16 +12,23 @@ namespace Enemy
             Sequential,
             Random
         }
+        
+        [Serializable]
+        public struct PatrolData
+        {
+            public Vector3[] patrolTargets;
+            public PatrolStateEnemy.PatrolType patrolType;
+        }
 
         private readonly StateEnemyAI stateAI;
         private int destPoint;
-        private readonly PatrolType patrolType;
+        private readonly PatrolData patrolData;
         private bool isMovingForward = true;
         
-        public PatrolStateEnemy(StateEnemyAI stateEnemyAI, PatrolType type)
+        public PatrolStateEnemy(StateEnemyAI stateEnemyAI)
         {
             stateAI = stateEnemyAI;
-            patrolType = type;
+            patrolData = stateEnemyAI.PatrolData;
         }
         
         public void Start()
@@ -30,25 +39,25 @@ namespace Enemy
         
         private void GotoNextPoint() {
             // Returns if no points have been set up
-            if (stateAI.PatrolTargets.Length == 0)
+            if (patrolData.patrolTargets.Length == 0)
                 return;
 
             // Set the agent to go to the currently selected destination.
-            stateAI.NavMeshAgent.destination = stateAI.PatrolTargets[destPoint];
+            stateAI.NavMeshAgent.destination = patrolData.patrolTargets[destPoint];
 
             // Choose the next point in the array as the destination,
             // cycling to the start if necessary.
 
-            switch (patrolType)
+            switch (patrolData.patrolType)
             {
                 case PatrolType.Circle:
-                    destPoint = (destPoint + 1) % stateAI.PatrolTargets.Length;
+                    destPoint = (destPoint + 1) % patrolData.patrolTargets.Length;
                     break;
                 
                 case PatrolType.Sequential:
                     var forward = isMovingForward ? 1 : -1; 
                     destPoint = (destPoint + forward);
-                    if (destPoint >= stateAI.PatrolTargets.Length || destPoint < 0)
+                    if (destPoint >= patrolData.patrolTargets.Length || destPoint < 0)
                     {
                         isMovingForward = !isMovingForward;
                         destPoint -= forward * 2;
@@ -56,7 +65,7 @@ namespace Enemy
                     break;
                 
                 case PatrolType.Random:
-                    destPoint = Random.Range(0, stateAI.PatrolTargets.Length);
+                    destPoint = Random.Range(0, patrolData.patrolTargets.Length);
                     break;
             }
         }

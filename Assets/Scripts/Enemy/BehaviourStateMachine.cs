@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Runtime.CompilerServices;
+using UnityEngine;
 
 namespace Enemy
 {
@@ -6,10 +7,16 @@ namespace Enemy
     {
         private IBehaviourState currentState;
 
-        public void SetState(IBehaviourState state)
+        public IBehaviourState CurrentState
         {
+            get => currentState;
+        } 
+        
+        public void SetState(IBehaviourState state)
+        {   
             currentState?.End();
             currentState = state;
+            
             currentState.Start();
         }
 

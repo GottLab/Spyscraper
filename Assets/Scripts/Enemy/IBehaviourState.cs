@@ -1,4 +1,5 @@
 ﻿using Unity.VisualScripting;
+using UnityEngine;
 
 namespace Enemy
 {
@@ -8,6 +9,7 @@ namespace Enemy
         void Start();
         void End();
         void Update();
+        void OnCollide(Collision collision){}
 
     }
 }
