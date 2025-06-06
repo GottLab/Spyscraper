@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using Palmmedia.ReportGenerator.Core.Parser.Analysis;
 using UnityEngine;
 
 
@@ -11,6 +12,31 @@ public class Flashlight : MonoBehaviour
     private Material _FlashlightBulbMaterial;
 
 
+    private Transform originalParent;
+    private Quaternion originalRotation;
+    private Vector3 originalPosition;
+
+    void Start()
+    {
+        this.originalParent = this.transform.parent;
+        this.originalRotation = this.transform.localRotation;
+        this.originalPosition = this.transform.localPosition;
+    }
+
+    //Makes the flashlight interact with the world as a rigid body
+    //when deattach is false, it returns to the original parent
+    public void Deattach(bool deattach)
+    {   
+        if(originalParent != null)
+            this.transform.parent = deattach ? null : this.originalParent;
+
+        if (!deattach)
+        {
+            this.transform.SetLocalPositionAndRotation(this.originalPosition, this.originalRotation);
+        }
+
+        this.GetComponent<Rigidbody>().isKinematic = !deattach;
+    }
 
     public void Turn(bool on)
     {
@@ -26,6 +52,7 @@ public class Flashlight : MonoBehaviour
             this.FlashlightBulbMaterial.DisableKeyword("_EMISSION");
         }
     }
+
 
     private Light FlashLightSpotlight
     {

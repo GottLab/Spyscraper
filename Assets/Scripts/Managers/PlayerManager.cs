@@ -12,13 +12,23 @@ public class PlayerManager : MonoBehaviour, IGameManager
 
 
     public ManagerStatus status => ManagerStatus.Started;
-    public Action<PlayerState> OnStatusChange;
+    public event Action<PlayerState> OnStatusChange;
 
-    private PlayerState currentState;
+    [SerializeField]
+    private PlayerState currentState = PlayerState.NORMAL;
 
     public void Startup()
     {
-        this.SetStatus(PlayerState.NORMAL);
+    }
+
+    void Start()
+    {
+        this.SetStatus(this.currentState);
+    }
+
+    void OnValidate()
+    {
+        this.SetStatus(this.currentState);
     }
 
     public void SetStatus(PlayerState playerState)

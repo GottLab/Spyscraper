@@ -12,7 +12,6 @@ public class ConeVisionObject : MonoBehaviour
     [SerializeField, Tooltip("Use this collider bounds")]
     private Collider boundsFromCollider;
 
-
     public void Start()
     {
         this.visionColliders = GetComponentsInChildren<AbstractVisionCollider>(true);

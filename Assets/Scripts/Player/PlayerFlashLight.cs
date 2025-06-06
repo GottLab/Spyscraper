@@ -41,6 +41,10 @@ public class PlayerFlashLight : MonoBehaviour
 
     private void OnStatusChange(PlayerManager.PlayerState playerState)
     {
+
+        bool isDead = playerState == PlayerManager.PlayerState.DIED;
+        this.flashlight.Deattach(isDead);
+
         if (playerState == PlayerManager.PlayerState.NORMAL)
         {
             SwitchFlashLight(this.usingFlashlight);
@@ -48,7 +52,14 @@ public class PlayerFlashLight : MonoBehaviour
         else
         {
             ResetWeights();
+            
+            //obviously a dead person cannot turn the flashlight off
+            if (!isDead)
+            {
+                this.flashlight.Turn(false);
+            }
         }
+        
     }
 
     public void Update()
@@ -75,7 +86,6 @@ public class PlayerFlashLight : MonoBehaviour
         sourceObjects.SetWeight(2, 0.0f);
         multiParentConstraint.data.sourceObjects = sourceObjects;
         this.flashlightRig.weight = 0.0f;
-        this.flashlight.Turn(false);
     }
     
 

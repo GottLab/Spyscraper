@@ -1,25 +1,22 @@
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
 
-[RequireComponent(typeof(Rig))]
 public class PlayerLookTarget : MonoBehaviour
 {
+    [SerializeField, Tooltip("Rig Used to aim body and head towards the target")]
     private Rig lookAtTargetRig;
 
-    private MultiAimConstraint[] multiAimConstraints;
-
-
-    public RigBuilder rigBuilder;
+    [SerializeField, Tooltip("Rig Builder is needed to rebuild rigs after updating look constraint")]
+    private RigBuilder rigBuilder;
 
     void Start()
     {
-        this.lookAtTargetRig = this.GetComponent<Rig>();
-        this.multiAimConstraints = this.GetComponentsInChildren<MultiAimConstraint>();
+        var multiAimConstraints = this.GetComponentsInChildren<MultiAimConstraint>();
 
         Managers.playerManager.OnStatusChange += OnStatusChange;
 
 
-        foreach (MultiAimConstraint multiAimConstraint in this.multiAimConstraints)
+        foreach (MultiAimConstraint multiAimConstraint in multiAimConstraints)
         {
             WeightedTransformArray weightedTransforms = multiAimConstraint.data.sourceObjects;
             weightedTransforms.SetTransform(0, Managers.pointerManager.pointer);

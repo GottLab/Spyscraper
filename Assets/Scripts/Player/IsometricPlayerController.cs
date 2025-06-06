@@ -163,5 +163,5 @@ public class IsometricPlayerController : MonoBehaviour
             animator.SetFloat(turnProperty, 0.0f, 0.1f, Time.deltaTime);
         }
     }
-
+    
 }

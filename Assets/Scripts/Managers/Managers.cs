@@ -16,7 +16,7 @@ public class Managers : MonoBehaviour
 
     private List<IGameManager> _startSequence;
 
-    void Awake()
+    void OnEnable()
     {
 
         pointerManager = this.GetComponent<PointerManager>();
@@ -32,11 +32,6 @@ public class Managers : MonoBehaviour
 
         StopAllCoroutines();
         StartCoroutine(StartupManagers());
-    }
-
-    void OnEnable()
-    {
-        this.Awake();
     }
 
     private IEnumerator StartupManagers()
