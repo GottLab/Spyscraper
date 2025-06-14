@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour, IGameManager
@@ -12,20 +13,15 @@ public class PlayerManager : MonoBehaviour, IGameManager
 
 
     public ManagerStatus status => ManagerStatus.Started;
-    public event Action<PlayerState> OnStatusChange;
+    public static event Action<PlayerState> OnStatusChange;
 
     [SerializeField]
     private PlayerState currentState = PlayerState.NORMAL;
 
     public void Startup()
     {
+        StartCoroutine(StartupState());
     }
-
-    void Start()
-    {
-        this.SetStatus(this.currentState);
-    }
-
     void OnValidate()
     {
         this.SetStatus(this.currentState);
@@ -34,7 +30,14 @@ public class PlayerManager : MonoBehaviour, IGameManager
     public void SetStatus(PlayerState playerState)
     {
         this.currentState = playerState;
-        this.OnStatusChange?.Invoke(playerState);
+        OnStatusChange?.Invoke(playerState);
+    }
+
+    //this is to ensure at startup of this manager all listeners will receive the initial state
+    private IEnumerator StartupState()
+    {
+        yield return new WaitForEndOfFrame();
+        SetStatus(this.currentState);
     }
 
     public bool IsState(PlayerState playerState)

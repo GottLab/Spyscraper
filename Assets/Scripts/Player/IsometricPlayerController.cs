@@ -44,13 +44,16 @@ public class IsometricPlayerController : MonoBehaviour
     {
         _characterController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
-
-        Managers.playerManager.OnStatusChange += OnStatusChange;
     }
 
-    void OnDestroy()
+    void OnEnable()
     {
-        Managers.playerManager.OnStatusChange -= OnStatusChange;
+        PlayerManager.OnStatusChange += OnStatusChange;
+    }
+
+    void OnDisable()
+    {
+        PlayerManager.OnStatusChange -= OnStatusChange;
     }
 
     private void OnStatusChange(PlayerManager.PlayerState playerState)

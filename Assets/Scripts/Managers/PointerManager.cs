@@ -11,8 +11,6 @@ public class PointerManager : MonoBehaviour, IGameManager
     [SerializeField, Tooltip("The cursor transform")]
     private Transform targetTransform;
 
-    [SerializeField]
-    private Camera currentCamera;
 
     public void Startup()
     {
@@ -21,6 +19,8 @@ public class PointerManager : MonoBehaviour, IGameManager
 
     void Update()
     {
+        Camera currentCamera = Camera.main;
+
         if (this.targetTransform == null || currentCamera == null)
         {
             return;

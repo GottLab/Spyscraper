@@ -16,14 +16,16 @@ public class PlayerAnimator : MonoBehaviour
     void Start()
     {
         this.animator = GetComponent<Animator>();
-
-        Managers.playerManager.OnStatusChange += OnPlayerStateChange;
-
     }
 
-    void OnDestroy()
+    void OnEnable()
     {
-        Managers.playerManager.OnStatusChange -= OnPlayerStateChange;
+        PlayerManager.OnStatusChange += OnPlayerStateChange;
+    }
+
+    void OnDisable()
+    {
+        PlayerManager.OnStatusChange -= OnPlayerStateChange;
     }
 
     // Update Current Player Animation Based on his State

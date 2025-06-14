@@ -13,9 +13,6 @@ public class PlayerLookTarget : MonoBehaviour
     {
         var multiAimConstraints = this.GetComponentsInChildren<MultiAimConstraint>();
 
-        Managers.playerManager.OnStatusChange += OnStatusChange;
-
-
         foreach (MultiAimConstraint multiAimConstraint in multiAimConstraints)
         {
             WeightedTransformArray weightedTransforms = multiAimConstraint.data.sourceObjects;
@@ -26,9 +23,14 @@ public class PlayerLookTarget : MonoBehaviour
         this.rigBuilder.Build();
     }
 
-    void OnDestroy()
+    void OnEnable()
     {
-        Managers.playerManager.OnStatusChange -= OnStatusChange;
+        PlayerManager.OnStatusChange += OnStatusChange;
+    }
+
+    void OnDisable()
+    {
+        PlayerManager.OnStatusChange -= OnStatusChange;
     }
     
 

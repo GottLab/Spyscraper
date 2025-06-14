@@ -29,12 +29,15 @@ public class IsometricCameraZoom : MonoBehaviour
     {
         this._CinemachineCamera = GetComponent<CinemachineCamera>();
         this._CinemachinePositionComposer = GetComponent<CinemachinePositionComposer>();
-        Managers.playerManager.OnStatusChange += OnStateChange;
+    }
+    void OnEnable()
+    {
+        PlayerManager.OnStatusChange += OnStateChange;
     }
 
-    void OnDestroy()
+    void OnDisable()
     {
-        Managers.playerManager.OnStatusChange -= OnStateChange;
+        PlayerManager.OnStatusChange -= OnStateChange;
     }
 
     private void OnStateChange(PlayerManager.PlayerState playerState)

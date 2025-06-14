@@ -29,14 +29,17 @@ public class PlayerFlashLight : MonoBehaviour
 
     public void Start()
     {
-        Managers.playerManager.OnStatusChange += OnStatusChange;
         this.SwitchFlashLight(this.usingFlashlight);
-
+    }
+    
+    void OnEnable()
+    {
+        PlayerManager.OnStatusChange += OnStatusChange;
     }
 
-    public void OnDestroy()
+    void OnDisable()
     {
-        Managers.playerManager.OnStatusChange -= OnStatusChange;
+        PlayerManager.OnStatusChange -= OnStatusChange;
     }
 
     private void OnStatusChange(PlayerManager.PlayerState playerState)
@@ -52,14 +55,14 @@ public class PlayerFlashLight : MonoBehaviour
         else
         {
             ResetWeights();
-            
+
             //obviously a dead person cannot turn the flashlight off
             if (!isDead)
             {
                 this.flashlight.Turn(false);
             }
         }
-        
+
     }
 
     public void Update()

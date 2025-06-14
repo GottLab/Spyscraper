@@ -16,20 +16,20 @@ public class PlayerStateCamera : MonoBehaviour
     private CinemachineVirtualCameraBase currentCamera;
 
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void OnEnable()
     {
-        Managers.playerManager.OnStatusChange += OnPlayerStataChange;
+        PlayerManager.OnStatusChange += OnPlayerStateChange;
     }
 
-    void OnDestroy()
+    void OnDisable()
     {
-        Managers.playerManager.OnStatusChange -= OnPlayerStataChange;
+        PlayerManager.OnStatusChange -= OnPlayerStateChange;
     }
 
-    void OnPlayerStataChange(PlayerManager.PlayerState playerState)
-    {
-        CinemachineVirtualCameraBase previousCamera = this.currentCamera;
+    void OnPlayerStateChange(PlayerManager.PlayerState playerState)
+    {   
+        
+        currentCamera?.gameObject.SetActive(false);
 
         switch (playerState)
         {
@@ -44,9 +44,7 @@ public class PlayerStateCamera : MonoBehaviour
                 break;
         }
 
-
         currentCamera.gameObject.SetActive(true);
-        previousCamera?.gameObject.SetActive(false);
 
     }
 }
