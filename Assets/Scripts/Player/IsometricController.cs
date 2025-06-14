@@ -1,12 +1,12 @@
 using System;
+using Enemy;
 using UnityEngine;
 
 public class IsometricController : MonoBehaviour
 {
     private CharacterController _charController;
     public float speed = 1.0f;
-
-
+    
     private float vSpeed = 0;
 
     [SerializeField]
@@ -37,7 +37,7 @@ public class IsometricController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
         if(this._charController.isGrounded)
             this.vSpeed = 0;
 
@@ -62,10 +62,8 @@ public class IsometricController : MonoBehaviour
         _charController.Move(movement);
 
         //this.playerModel.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(transform.TransformDirection(moveDirection)), Time.deltaTime * 5F);
-
         
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-
 
         RaycastHit hit;
         if (Physics.Raycast(ray,out hit, Mathf.Infinity, lookLayerMask)) // Check if we hit something
@@ -89,5 +87,13 @@ public class IsometricController : MonoBehaviour
     public Vector3 LookingPoint
     {
         get { return this.lookingPoint; }
+    }
+
+    void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.collider.gameObject.CompareTag("Enemy"))
+        {
+            hit.gameObject.GetComponent<StateEnemyAI>().OnPlayerCollide();
+        }
     }
 }

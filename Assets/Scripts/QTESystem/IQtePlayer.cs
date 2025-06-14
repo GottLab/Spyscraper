@@ -1,10 +1,13 @@
-﻿namespace QTESystem
+﻿using System.Collections;
+
+namespace QTESystem
 {
     public interface IQtePlayer
     {
         void QteStart();
         
-        void QteStop();
+        //attacchiamo il nemico e si mette in guardia
+        IEnumerator QteAttack();
 
         void QteSuccess();
         

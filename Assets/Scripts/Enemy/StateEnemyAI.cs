@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
 namespace Enemy
@@ -9,9 +8,11 @@ namespace Enemy
     {
         private BehaviourStateMachine stateMachine;
         public BehaviourStateMachine StateMachine => stateMachine;
-        
+        [SerializeField]
+        private QteSequence qteSequence;
         [SerializeField]
         private PatrolStateEnemy.PatrolData patrolData;
+        public QteSequence QteSequence => qteSequence;
         public PatrolStateEnemy.PatrolData PatrolData => patrolData;
         private NavMeshAgent navMeshAgent;
         
@@ -38,10 +39,15 @@ namespace Enemy
             }
         }
 
-        void OnCollisionEnter(Collision collision)
+        void OnTriggerEnter(Collider collider)
         {
-            this.stateMachine.CurrentState.OnCollide(collision);
-            if (collision.gameObject.CompareTag("Player"))
+            
+        }
+
+        public void OnPlayerCollide()
+        {
+            //this.stateMachine.CurrentState.OnCollide(collision);
+            if (stateMachine.CurrentState.CanAttackPlayer())
             {
                 this.stateMachine.SetState(new QteStateEnemy(this));
             }

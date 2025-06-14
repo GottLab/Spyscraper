@@ -1,4 +1,5 @@
-﻿using QTESystem;
+﻿using System.Collections;
+using QTESystem;
 using UnityEngine;
 
 namespace Enemy
@@ -15,7 +16,7 @@ namespace Enemy
         
         public void Start()
         {
-            QTEManager.Instance.StartQteEvent(this);
+            QTEManager.Instance.StartQteEvent(this, stateAI.QteSequence);
         }
 
         public void Update()
@@ -33,18 +34,31 @@ namespace Enemy
 
         public void QteFail()
         {
+            Debug.Log("Nemico faila");
+
         }
 
         public void QteOnHit()
         {
+            Debug.Log("Nemico hittato");
+
         }
 
-        public void QteStop()
+        public IEnumerator QteAttack()
         {
+            Debug.Log("Nemico attacca");
+            yield return new WaitForSeconds(3f);
         }
 
         public void QteStart()
         {
+            Debug.Log("Nemico starta");
+
+        }
+
+        public bool CanAttackPlayer()
+        {
+            return false;
         }
     }
 }

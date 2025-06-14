@@ -22,6 +22,7 @@ public class PlayerLight : MonoBehaviour
         //this.spotLight.range = Vector3.Distance(isometricPlayer.LookingPoint, this.transform.position);
 
         Vector3 lightDirection = this.targetLookingLight - this.transform.position;
+        //Debug.Log(lightDirection);
 
         Quaternion lookRotation = Quaternion.LookRotation(lightDirection);
         this.transform.rotation = lookRotation;

@@ -1,3 +1,4 @@
+using System.Collections;
 using QTESystem;
 using UnityEngine;
 
@@ -17,22 +18,29 @@ public class PlayerAnimator : MonoBehaviour, IQtePlayer
 
     public void QteSuccess()
     {
-        Debug.Log("AFFANCULO");
+        Debug.Log("Player bene");
     }
 
     public void QteFail()
     {
+        Debug.Log("Player faila");
     }
 
     public void QteOnHit()
     {
+        Debug.Log("Player hittato");
+
     }
 
-    public void QteStop()
-    {
+    public IEnumerator QteAttack()
+    {   
+        Debug.Log("Player attacca");
+        yield return new WaitForSeconds(1f);
     }
 
     public void QteStart()
     {
+        Debug.Log("Player partito");
+
     }
 }

@@ -9,7 +9,10 @@ namespace Enemy
         void Start();
         void End();
         void Update();
-        void OnCollide(Collision collision){}
-
+        //void OnCollide(Collision collision){}
+        bool CanAttackPlayer()
+        {
+            return true;
+        }
     }
 }
