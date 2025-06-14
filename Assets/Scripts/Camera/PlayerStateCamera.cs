@@ -17,7 +17,7 @@ public class PlayerStateCamera : MonoBehaviour
     private CinemachineVirtualCameraBase currentCamera;
 
 
-    void Start()
+    void Awake()
     {
         SetupCameras();
     }
@@ -64,7 +64,8 @@ public class PlayerStateCamera : MonoBehaviour
             return;
         }
 
-        var cameras = this.GetComponentsInChildren<CinemachineCamera>();
+
+        var cameras = this.GetComponentsInChildren<CinemachineCamera>(true);
 
         foreach (var camera in cameras)
         {
@@ -72,12 +73,11 @@ public class PlayerStateCamera : MonoBehaviour
             {
                 camera.Target.TrackingTarget = player.transform;
             }
-
         }
 
-        var qteTargetGroup = this.GetComponentInChildren<CinemachineTargetGroup>();
+        var qteTargetGroup = this.GetComponentInChildren<CinemachineTargetGroup>(true);
 
         qteTargetGroup.Targets.Clear();
-        qteTargetGroup.AddMember(player.transform, 1.0f, 0.0f);
+        qteTargetGroup.AddMember(player.transform, 1.0f, 1.0f);
     }
 }
