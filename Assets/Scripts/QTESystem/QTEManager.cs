@@ -40,6 +40,10 @@ public class QTEManager : MonoBehaviour
     public event QteElementStart OnQteElementStart;
     public delegate void QteElementEnd(bool success);
     public event QteElementEnd OnQteElementEnd;
+
+    public delegate void QteEvent(IQtePlayer target);
+    public static event QteEvent OnQteSequenceStart;
+    public static event QteEvent OnQteSequenceEnd;
     
     private bool isQtetting = false;
     
@@ -57,9 +61,6 @@ public class QTEManager : MonoBehaviour
     {   
         
         Time.timeScale = slowMoScale;
-        
-        mainPlayer.QteStart();
-        enemy.QteStart();
         
         float timer = 0;
         bool success = false;
@@ -79,9 +80,9 @@ public class QTEManager : MonoBehaviour
             timer += Time.unscaledDeltaTime;
             yield return null;
         }
-        
-        OnQteElementEnd?.Invoke(success);
         Time.timeScale = 1f;
+        OnQteElementEnd?.Invoke(success);
+        
         
         if (success)
         {
@@ -106,9 +107,10 @@ public class QTEManager : MonoBehaviour
     private IEnumerator StartQteSequenceEventCoroutine(IQtePlayer enemy, QteSequence qteSequence)
     {
         isQtetting = true;
-        
-        mainPlayer.QteStart();
-        enemy.QteStart();
+
+        OnQteSequenceStart?.Invoke(enemy);
+        mainPlayer.QteStart(enemy);
+        enemy.QteStart(mainPlayer);
         
         bool sequenceSuccess = true;
 
@@ -129,6 +131,7 @@ public class QTEManager : MonoBehaviour
             mainPlayer.QteFail();
             enemy.QteSuccess();
         }
+        OnQteSequenceEnd?.Invoke(enemy);
         
         isQtetting = false;
             

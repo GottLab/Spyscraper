@@ -1,9 +1,9 @@
 using System.Collections;
-<<<<<<< HEAD
+using QTESystem;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
-public class PlayerAnimator : MonoBehaviour
+public class PlayerAnimator : MonoBehaviour, IQtePlayer
 {
 
     private Animator animator;
@@ -50,57 +50,36 @@ public class PlayerAnimator : MonoBehaviour
 
         float currentTime = Time.time;
 
-        yield return new WaitUntil(() => this.didPunchHit || currentTime > 3.0f);
+        yield return new WaitUntil(() => this.didPunchHit);
     }
 
     //this is called by the player punch event, this is why this method is public
     public void OnPunchHit()
     {
         didPunchHit = true;
-=======
-using QTESystem;
-using UnityEngine;
-
-public class PlayerAnimator : MonoBehaviour, IQtePlayer
-{
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
     }
 
-    // Update is called once per frame
-    void Update()
+    public void QteStart(IQtePlayer enemy)
     {
-        
+        Managers.playerManager.SetStatus(PlayerManager.PlayerState.QTE);
+
+
+        Vector3 lookDirection = enemy.GetTransform().position - this.transform.position;
+        lookDirection.y = 0.0f;
+        this.transform.rotation = Quaternion.LookRotation(lookDirection);
     }
 
     public void QteSuccess()
     {
-        Debug.Log("Player bene");
+        Managers.playerManager.SetStatus(PlayerManager.PlayerState.NORMAL);
     }
 
     public void QteFail()
     {
-        Debug.Log("Player faila");
+        Managers.playerManager.SetStatus(PlayerManager.PlayerState.DIED);
     }
 
     public void QteOnHit()
     {
-        Debug.Log("Player hittato");
-
-    }
-
-    public IEnumerator QteAttack()
-    {   
-        Debug.Log("Player attacca");
-        yield return new WaitForSeconds(1f);
-    }
-
-    public void QteStart()
-    {
-        Debug.Log("Player partito");
-
->>>>>>> origin/enemy-+-qte
     }
 }

@@ -6,14 +6,14 @@ namespace Enemy
 {
     public class QteStateEnemy : IBehaviourState, IQtePlayer
     {
-        
+
         private readonly StateEnemyAI stateAI;
-        
+
         public QteStateEnemy(StateEnemyAI stateEnemyAI)
         {
             stateAI = stateEnemyAI;
         }
-        
+
         public void Start()
         {
             QTEManager.Instance.StartQteEvent(this, stateAI.QteSequence);
@@ -26,7 +26,7 @@ namespace Enemy
         public void End()
         {
         }
-        
+
         public void QteSuccess()
         {
             stateAI.StateMachine.SetState(new PatrolStateEnemy(this.stateAI));
@@ -50,7 +50,7 @@ namespace Enemy
             yield return new WaitForSeconds(3f);
         }
 
-        public void QteStart()
+        public void QteStart(IQtePlayer enemy)
         {
             Debug.Log("Nemico starta");
 
@@ -59,6 +59,11 @@ namespace Enemy
         public bool CanAttackPlayer()
         {
             return false;
+        }
+
+        public Transform GetTransform()
+        {
+            return this.stateAI.transform;
         }
     }
 }

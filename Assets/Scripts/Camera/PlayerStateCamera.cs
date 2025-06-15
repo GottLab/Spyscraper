@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using QTESystem;
 using Unity.Cinemachine;
 using UnityEngine;
 
@@ -25,11 +26,13 @@ public class PlayerStateCamera : MonoBehaviour
     void OnEnable()
     {
         PlayerManager.OnStatusChange += OnPlayerStateChange;
+        QTEManager.OnQteSequenceStart += OnQteSequenceStart;
     }
 
     void OnDisable()
     {
         PlayerManager.OnStatusChange -= OnPlayerStateChange;
+        QTEManager.OnQteSequenceStart -= OnQteSequenceStart;
     }
 
     void OnPlayerStateChange(PlayerManager.PlayerState playerState)
@@ -79,5 +82,13 @@ public class PlayerStateCamera : MonoBehaviour
 
         qteTargetGroup.Targets.Clear();
         qteTargetGroup.AddMember(player.transform, 1.0f, 1.0f);
+    }
+
+    void OnQteSequenceStart(IQtePlayer target)
+    {
+        if (this.qteCamera is CinemachineCamera cinemachineCamera)
+        {
+            cinemachineCamera.Target.LookAtTarget = target.GetTransform();
+        }
     }
 }

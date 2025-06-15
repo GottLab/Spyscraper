@@ -81,6 +81,7 @@ namespace Enemy
         public void End()
         {
             stateAI.NavMeshAgent.ResetPath();
+            stateAI.NavMeshAgent.velocity = Vector3.zero;
         }
     }
 }

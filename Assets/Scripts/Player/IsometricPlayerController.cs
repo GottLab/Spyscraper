@@ -1,7 +1,5 @@
-using Unity.Cinemachine;
+using Enemy;
 using UnityEngine;
-
-
 [
     RequireComponent(typeof(CharacterController)),
     RequireComponent(typeof(Animator))
@@ -164,6 +162,14 @@ public class IsometricPlayerController : MonoBehaviour
         else if (animator.GetFloat(turnProperty) != 0.0)
         {
             animator.SetFloat(turnProperty, 0.0f, 0.1f, Time.deltaTime);
+        }
+    }
+
+    void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.collider.gameObject.CompareTag("Enemy"))
+        {
+            hit.gameObject.GetComponent<StateEnemyAI>().OnPlayerCollide();
         }
     }
     

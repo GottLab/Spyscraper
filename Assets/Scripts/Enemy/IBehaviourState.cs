@@ -12,7 +12,7 @@ namespace Enemy
         //void OnCollide(Collision collision){}
         bool CanAttackPlayer()
         {
-            return true;
+            return Managers.playerManager.IsState(PlayerManager.PlayerState.NORMAL);
         }
     }
 }
