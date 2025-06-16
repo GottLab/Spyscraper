@@ -4,9 +4,6 @@ using UnityEngine;
 public class ConeVision : MonoBehaviour
 {
 
-    [SerializeField]
-    private ConeVisionObject coneVisionObject;
-
     [SerializeField, Tooltip("LayerMask for raycast vision check")]
     private LayerMask layerMask = 0;
 
@@ -81,25 +78,6 @@ public class ConeVision : MonoBehaviour
         return false;
     }
 
-
-    public void Update()
-    {
-        if (this.coneVisionObject == null)
-            return;
-
-
-
-        if (CheckVision(this.coneVisionObject))
-        {
-            this.coneVisionObject.GetComponent<MeshRenderer>().material.color = Color.red;
-        }
-        else
-        {
-            this.coneVisionObject.GetComponent<MeshRenderer>().material.color = Color.green;
-        }
-
-
-    }
 
     public float ConeAngle
     {

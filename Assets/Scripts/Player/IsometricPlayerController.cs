@@ -167,10 +167,12 @@ public class IsometricPlayerController : MonoBehaviour
 
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
+        /*
         if (hit.collider.gameObject.CompareTag("Enemy"))
         {
             hit.gameObject.GetComponent<StateEnemyAI>().OnPlayerCollide();
         }
+        */
     }
     
 }

@@ -46,6 +46,9 @@ public class QTEManager : MonoBehaviour
     public static event QteEvent OnQteSequenceEnd;
     
     private bool isQtetting = false;
+
+    //this variable is used to avoid the situation when qte starts while already holding a key resulting in instant loss.
+    private bool canTakeInput = false;
     
     public static QTEManager Instance { get; private set; }
 
@@ -58,8 +61,9 @@ public class QTEManager : MonoBehaviour
     }
     
     private IEnumerator StartSingleQteEventCoroutine(IQtePlayer enemy, QteSequence.QteSequenceElement element, Action<bool> callback)
-    {   
-        
+    {
+
+        canTakeInput = false;
         Time.timeScale = slowMoScale;
         
         float timer = 0;
@@ -68,10 +72,12 @@ public class QTEManager : MonoBehaviour
         KeyCode inputKey = possibleQteKeys[Random.Range(0, possibleQteKeys.Count)];
 
         OnQteElementStart?.Invoke(inputKey, element.time);
-        
+
         while (timer < element.time)
         {
-            if (Input.anyKeyDown)
+
+
+            if (Input.anyKeyDown && canTakeInput)
             {
                 success = Input.GetKeyDown(inputKey);
                 break;
@@ -79,6 +85,9 @@ public class QTEManager : MonoBehaviour
 
             timer += Time.unscaledDeltaTime;
             yield return null;
+            
+            if (!Input.anyKeyDown)
+                canTakeInput = true;
         }
         Time.timeScale = 1f;
         OnQteElementEnd?.Invoke(success);

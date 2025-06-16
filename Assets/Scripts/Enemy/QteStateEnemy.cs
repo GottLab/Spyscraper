@@ -34,25 +34,24 @@ namespace Enemy
 
         public void QteFail()
         {
-            Debug.Log("Nemico faila");
-
+            stateAI.StateMachine.SetState(new DedStateEnemy(this.stateAI));
         }
 
         public void QteOnHit()
         {
-            Debug.Log("Nemico hittato");
-
+            this.stateAI.enemyAnimation.StartHit();
         }
 
         public IEnumerator QteAttack()
         {
-            Debug.Log("Nemico attacca");
-            yield return new WaitForSeconds(3f);
+            yield return this.stateAI.enemyAnimation.Attack();
         }
 
         public void QteStart(IQtePlayer enemy)
         {
-            Debug.Log("Nemico starta");
+            Vector3 lookDir = enemy.GetTransform().position - this.stateAI.transform.position;
+            lookDir.y = 0.0f;
+            this.stateAI.transform.rotation = Quaternion.LookRotation(lookDir);
 
         }
 
