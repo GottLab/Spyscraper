@@ -151,7 +151,7 @@ Light:
       e32: 0
       e33: 1
     m_UseCullingMatrixOverride: 0
-  m_Cookie: {fileID: 0}
+  m_Cookie: {fileID: 2800000, guid: 6f4c574e7b8c9174ab02736b6f2542db, type: 3}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
   m_RenderMode: 0
@@ -531,6 +531,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 4964078622249796762}
   m_SourcePrefab: {fileID: 100100000, guid: cc573509973499e4e813ac9f2e6e3782, type: 3}
+--- !u!137 &2580513040405499241 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 5981474623675201281, guid: cc573509973499e4e813ac9f2e6e3782, type: 3}
+  m_PrefabInstance: {fileID: 8128334916855167592}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8594870265206480259 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: cc573509973499e4e813ac9f2e6e3782, type: 3}
@@ -670,6 +675,7 @@ MonoBehaviour:
     turnWaitTime: 0
   enemyVision: {fileID: 1892324335062005563}
   visionTarget: {fileID: 0}
+  enemyRenderer: {fileID: 2580513040405499241}
   suspitionIncreaseTime: 1
   suspitionDecreaseTime: 1
   suspitionAvoidanceTime: 1

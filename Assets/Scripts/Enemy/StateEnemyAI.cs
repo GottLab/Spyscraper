@@ -30,6 +30,9 @@ namespace Enemy
         [SerializeField, Tooltip("Target of enemy vision that raises its suspition")]
         private ConeVisionObject visionTarget;
 
+        [SerializeField, Tooltip("Renderer used to render enemy, this is used to retrieve lens material to change its color")]
+        private Renderer enemyRenderer;
+
 
         //SUSPITION VARIABLES
 
@@ -103,7 +106,26 @@ namespace Enemy
             }
         }
 
+        //update enemy vision and lens with a color
+        public void UpdateVisionColor(Color? color)
+        {
+            Material lensMaterial = this.enemyRenderer.materials[1];
 
+            if (color.HasValue)
+            {
+                this.enemyVision.VisionLight.color = color.Value;
+                //enable lens emission
+                lensMaterial.EnableKeyword("_EMISSION");
+                //we assume that the lens material is at index 1
+                lensMaterial.SetColor("_EmissionColor", color.Value);
+                this.enemyVision.VisionLight.enabled = true;
+            }
+            else
+            {
+                lensMaterial.DisableKeyword("_EMISSION");
+                this.enemyVision.VisionLight.enabled = false;
+            }
+        }
 
         private void OnDrawGizmos()
         {

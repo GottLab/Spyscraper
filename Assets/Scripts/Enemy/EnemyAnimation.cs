@@ -1,13 +1,14 @@
 using System.Collections;
+using Enemy;
 using UnityEngine;
 using UnityEngine.AI;
 
-[RequireComponent(typeof(Animator)), RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(Animator)), RequireComponent(typeof(StateEnemyAI))]
 public class EnemyAnimation : MonoBehaviour
 {
 
     private Animator animator;
-    private NavMeshAgent navMeshAgent;
+    private StateEnemyAI stateEnemyAI;
     private Light agentLight;
 
 
@@ -26,19 +27,21 @@ public class EnemyAnimation : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        navMeshAgent = GetComponent<NavMeshAgent>();
+        stateEnemyAI = GetComponent<StateEnemyAI>();
         agentLight = GetComponentInChildren<Light>();
         SpeedProperty = Animator.StringToHash("Speed");
         AttackProperty = Animator.StringToHash("Attack");
         DeathProperty = Animator.StringToHash("Death");
         HurtProperty = Animator.StringToHash("Hurt");
         TurnProperty = Animator.StringToHash("Turn");
+
+        this.stateEnemyAI.UpdateVisionColor(Color.red);
     }
 
     // Update is called once per frame
     void Update()
     {
-        this.animator.SetFloat(SpeedProperty, this.navMeshAgent.velocity.magnitude, 0.1f, Time.deltaTime);
+        this.animator.SetFloat(SpeedProperty, this.stateEnemyAI.NavMeshAgent.velocity.magnitude, 0.1f, Time.deltaTime);
     }
 
     public IEnumerator Attack()
@@ -60,6 +63,7 @@ public class EnemyAnimation : MonoBehaviour
         this.agentLight.enabled = false;
         this.animator.ResetTrigger(HurtProperty);
         this.animator.SetTrigger(DeathProperty);
+        this.stateEnemyAI.UpdateVisionColor(null);
     }
 
     public void StartHit()
