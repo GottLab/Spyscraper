@@ -24,6 +24,21 @@ public class SuspitionMeter : MonoBehaviour
         this.canvas.worldCamera = Camera.main;
     }
 
+    void OnEnable()
+    {
+        this.stateEnemyAI.OnSuspitionReset += ResetMeter;
+    }
+
+    void OnDisable()
+    {
+        this.stateEnemyAI.OnSuspitionReset -= ResetMeter;
+    }
+
+    void ResetMeter()
+    {
+        this.suspitionMeterImage.fillAmount = 0.0f;
+    }
+
     // Update is called once per frame
     void Update()
     {

@@ -19,6 +19,7 @@ public class QTEManager : MonoBehaviour
     private List<KeyCode> possibleQteKeys = new List<KeyCode>
     {
         KeyCode.Q,
+        KeyCode.E,
         KeyCode.Z,
         KeyCode.X,
         KeyCode.R,

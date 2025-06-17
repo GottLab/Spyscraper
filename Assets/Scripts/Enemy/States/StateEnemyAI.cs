@@ -68,6 +68,7 @@ namespace Enemy
 
         //called when suspition level increases or decreases
         public event Action<bool> OnSuspitionChange;
+        public event Action OnSuspitionReset;
 
 
         void Start()
@@ -158,6 +159,12 @@ namespace Enemy
             {
                 this.stateMachine.SetState(new QteStateEnemy(this));
             }
+        }
+
+        public void ResetSuspition()
+        {
+            this.currentSuspition = 0;
+            OnSuspitionReset?.Invoke();
         }
 
         //level of suspition from 0 to 1

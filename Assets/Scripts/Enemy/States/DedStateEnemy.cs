@@ -20,6 +20,7 @@ public class DedStateEnemy : IBehaviourState
         //random rotation on y axis on death
         stateAI.transform.rotation = Quaternion.Euler(0, Random.Range(0f, 360f), 0);
 
+        stateAI.ResetSuspition();
 
         colliders = stateAI.GetComponents<Collider>();
         SetCollider(false);

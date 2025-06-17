@@ -18,6 +18,7 @@ namespace Enemy
         {
             this.stateAI.NavMeshAgent.velocity = Vector3.zero;
             QTEManager.Instance.StartQteEvent(this, stateAI.QteSequence);
+            stateAI.ResetSuspition();
         }
 
         public void Update()
@@ -31,6 +32,7 @@ namespace Enemy
         public void QteSuccess()
         {
             stateAI.StateMachine.SetState(new PatrolStateEnemy(this.stateAI));
+            stateAI.ResetSuspition();
         }
 
         public void QteFail()
