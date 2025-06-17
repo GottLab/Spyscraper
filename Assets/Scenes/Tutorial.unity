@@ -13041,7 +13041,7 @@ MonoBehaviour:
   IgnoreTag: 
   TransparentLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   MinimumDistanceFromTarget: 0.01
   AvoidObstacles:
     Enabled: 1
@@ -14041,7 +14041,7 @@ MonoBehaviour:
   IgnoreTag: 
   TransparentLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   MinimumDistanceFromTarget: 0.01
   AvoidObstacles:
     Enabled: 1

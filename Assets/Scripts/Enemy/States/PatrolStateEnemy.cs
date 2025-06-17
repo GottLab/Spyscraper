@@ -37,16 +37,16 @@ namespace Enemy
 
         //index used to tell the enemy to turn left (-1) or right (1) or stay still (0)
         private int turnDirection = 0;
-        
+
         public PatrolStateEnemy(StateEnemyAI stateEnemyAI)
         {
             stateAI = stateEnemyAI;
             patrolData = stateEnemyAI.PatrolData;
+            stateEnemyAI.NavMeshAgent.ResetPath();
         }
         
         public void Start()
         {
-            stateAI.NavMeshAgent.autoBraking = false;
             GotoNextPoint();
         }
         
@@ -60,7 +60,6 @@ namespace Enemy
 
             // Choose the next point in the array as the destination,
             // cycling to the start if necessary.
-
             switch (patrolData.patrolType)
             {
                 case PatrolType.Circle:
@@ -120,12 +119,14 @@ namespace Enemy
 
             if (this.stateAI.SuspitionLevel >= 1.0f)
                 this.stateAI.StateMachine.SetState(new AttackStateEnemy(this.stateAI, this.stateAI.TargetTransform));
+            else if(this.stateAI.SuspitionLevel > 0.0f)
+                this.stateAI.StateMachine.SetState(new InspectStateEnemy(this.stateAI, this.stateAI.TargetTransform));
 
         }
 
         public void End()
         {   
-            if(this.turningCoroutine != null)
+            if (this.turningCoroutine != null)
                 this.stateAI.StopCoroutine(this.turningCoroutine);
             stateAI.NavMeshAgent.ResetPath();
             stateAI.NavMeshAgent.velocity = Vector3.zero;

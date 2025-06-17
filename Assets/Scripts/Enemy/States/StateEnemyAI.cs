@@ -67,7 +67,7 @@ namespace Enemy
         private float suspitionAvoidanceTime = 1.0f;
 
         //called when suspition level increases or decreases
-        public event Action<float> OnSuspitionChange;
+        public event Action<bool> OnSuspitionChange;
 
 
         void Start()
@@ -112,16 +112,14 @@ namespace Enemy
             if (increaseSuspition)
             {
                 this.currentSuspition += speed * Time.deltaTime;
+                OnSuspitionChange?.Invoke(true);
             }
             else
             {
                 this.currentSuspition -= speed * Time.deltaTime;
+                 OnSuspitionChange?.Invoke(false);
             }
             this.currentSuspition = Mathf.Clamp(this.currentSuspition, 0.0f, 100.0f);
-            if (previousSuspition != this.currentSuspition)
-            {
-                OnSuspitionChange?.Invoke(this.currentSuspition);
-            }
         }
 
         //update enemy vision and lens with a color
