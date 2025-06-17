@@ -10,29 +10,44 @@ namespace Enemy
         private BehaviourStateMachine stateMachine;
         public BehaviourStateMachine StateMachine => stateMachine;
 
+
+        [Header("Behaviour Settings")]
+
         [SerializeField]
         private QteSequence qteSequence;
         public QteSequence QteSequence => qteSequence;
+
+        
+        public float defaultSpeed = 2.0f;
 
         [SerializeField]
         private PatrolStateEnemy.PatrolData patrolData;
         public PatrolStateEnemy.PatrolData PatrolData => patrolData;
 
+
+        [SerializeField]
+        private AttackStateEnemy.AttackData attackData;
+        public AttackStateEnemy.AttackData AttackData => attackData;
+
         private NavMeshAgent navMeshAgent;
         public NavMeshAgent NavMeshAgent => navMeshAgent;
-
-        [NonSerialized]
-        public EnemyAnimation enemyAnimation;
-
+        
         [SerializeField, Tooltip("Cone vision used by the enemy")]
         private ConeVision enemyVision;
 
         [SerializeField, Tooltip("Target of enemy vision that raises its suspition")]
         private ConeVisionObject visionTarget;
 
+        [Header("Rendering")]
+
+        [NonSerialized]
+        public EnemyAnimation enemyAnimation;
+
+
         [SerializeField, Tooltip("Renderer used to render enemy, this is used to retrieve lens material to change its color")]
         private Renderer enemyRenderer;
 
+        [Header("Suspition")]
 
         //SUSPITION VARIABLES
 
@@ -61,6 +76,9 @@ namespace Enemy
             navMeshAgent = GetComponent<NavMeshAgent>();
             stateMachine.SetState(new PatrolStateEnemy(this));
             enemyAnimation = GetComponent<EnemyAnimation>();
+            this.UpdateVisionColor(Color.yellow);
+
+            this.NavMeshAgent.speed = this.defaultSpeed;
         }
 
         void Update()
@@ -73,7 +91,7 @@ namespace Enemy
 
         void UpdateSuspition()
         {
-            
+
             double timePassedFromPastSuspition = Time.timeAsDouble - this.lastTimeIncrease;
             if (this.visionTarget != null && this.stateMachine.CurrentState.CanAttackPlayer() && this.enemyVision.CheckVision(this.visionTarget))
             {
@@ -84,7 +102,7 @@ namespace Enemy
             {
                 UpdateSuspitionValue(false);
             }
-            
+
         }
 
         void UpdateSuspitionValue(bool increaseSuspition)
@@ -148,6 +166,11 @@ namespace Enemy
         public float SuspitionLevel
         {
             get => this.currentSuspition / 100.0f;
+        }
+        
+        public Transform TargetTransform
+        {
+            get => this.visionTarget.transform;
         }
     }
 }

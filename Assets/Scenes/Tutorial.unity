@@ -13794,6 +13794,22 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1504124430}
     - target: {fileID: 5157257970997367096, guid: aef033096b1aece4cbd3d5130799eebd, type: 3}
+      propertyPath: attackData.speed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157257970997367096, guid: aef033096b1aece4cbd3d5130799eebd, type: 3}
+      propertyPath: attackData.color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157257970997367096, guid: aef033096b1aece4cbd3d5130799eebd, type: 3}
+      propertyPath: attackData.color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157257970997367096, guid: aef033096b1aece4cbd3d5130799eebd, type: 3}
+      propertyPath: attackData.color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157257970997367096, guid: aef033096b1aece4cbd3d5130799eebd, type: 3}
       propertyPath: patrolData.turnAngle
       value: 90
       objectReference: {fileID: 0}

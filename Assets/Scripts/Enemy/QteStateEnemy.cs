@@ -16,6 +16,7 @@ namespace Enemy
 
         public void Start()
         {
+            this.stateAI.NavMeshAgent.velocity = Vector3.zero;
             QTEManager.Instance.StartQteEvent(this, stateAI.QteSequence);
         }
 

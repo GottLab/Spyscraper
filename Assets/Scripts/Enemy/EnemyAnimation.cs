@@ -34,8 +34,6 @@ public class EnemyAnimation : MonoBehaviour
         DeathProperty = Animator.StringToHash("Death");
         HurtProperty = Animator.StringToHash("Hurt");
         TurnProperty = Animator.StringToHash("Turn");
-
-        this.stateEnemyAI.UpdateVisionColor(Color.red);
     }
 
     // Update is called once per frame

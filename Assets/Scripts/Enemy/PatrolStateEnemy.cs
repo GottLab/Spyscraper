@@ -113,12 +113,13 @@ namespace Enemy
         {
             // Choose the next destination point when the agent gets
             // close to the current one.
-            //
             if (turningCoroutine == null && !stateAI.NavMeshAgent.pathPending && stateAI.NavMeshAgent.remainingDistance < 0.5f)
                 turningCoroutine = this.stateAI.StartCoroutine(RotateAndGotoNextPoint());
 
             this.stateAI.enemyAnimation.SetTurn(this.turnDirection);
-                
+
+            if (this.stateAI.SuspitionLevel >= 1.0f)
+                this.stateAI.StateMachine.SetState(new AttackStateEnemy(this.stateAI, this.stateAI.TargetTransform));
 
         }
 
