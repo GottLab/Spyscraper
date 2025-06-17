@@ -9152,6 +9152,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: spy
       objectReference: {fileID: 0}
+    - target: {fileID: 9206251752061054214, guid: e748544b503bec6478bdeac504930abe, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

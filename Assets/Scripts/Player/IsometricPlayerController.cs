@@ -61,6 +61,8 @@ public class IsometricPlayerController : MonoBehaviour
             animator.SetBool(WalkingProperty, false);
             animator.SetFloat(turnProperty, 0.0f);
         }
+
+        SetCollideWithEnemies(playerState != PlayerManager.PlayerState.DIED);
     }
 
     // Update is called once per frame
@@ -165,14 +167,18 @@ public class IsometricPlayerController : MonoBehaviour
         }
     }
 
-    void OnControllerColliderHit(ControllerColliderHit hit)
+    void SetCollideWithEnemies(bool collide)
     {
-        /*
-        if (hit.collider.gameObject.CompareTag("Enemy"))
+        int enemyMask = 1 << LayerMask.NameToLayer("Enemy");
+        
+        if (!collide)
         {
-            hit.gameObject.GetComponent<StateEnemyAI>().OnPlayerCollide();
+            this._characterController.excludeLayers |= enemyMask;
         }
-        */
+        else
+        {
+            this._characterController.excludeLayers &= ~enemyMask;
+        }
     }
     
 }

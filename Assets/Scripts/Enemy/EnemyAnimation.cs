@@ -13,12 +13,11 @@ public class EnemyAnimation : MonoBehaviour
 
 
     //ANIMATOR PROPERTIES    
-    private int SpeedProperty;
-    private int AttackProperty;
-    private int DeathProperty;
-    private int HurtProperty;
-
-    private int TurnProperty;
+    private static readonly int SpeedProperty = Animator.StringToHash("Speed");
+    private static readonly int AttackProperty = Animator.StringToHash("Attack");
+    private static readonly int DeathProperty =  Animator.StringToHash("Death");
+    private static readonly int HurtProperty = Animator.StringToHash("Hurt");
+    private static readonly int TurnProperty = Animator.StringToHash("Turn");
 
 
     private bool hitPunch = false;
@@ -29,11 +28,6 @@ public class EnemyAnimation : MonoBehaviour
         animator = GetComponent<Animator>();
         stateEnemyAI = GetComponent<StateEnemyAI>();
         agentLight = GetComponentInChildren<Light>();
-        SpeedProperty = Animator.StringToHash("Speed");
-        AttackProperty = Animator.StringToHash("Attack");
-        DeathProperty = Animator.StringToHash("Death");
-        HurtProperty = Animator.StringToHash("Hurt");
-        TurnProperty = Animator.StringToHash("Turn");
     }
 
     // Update is called once per frame

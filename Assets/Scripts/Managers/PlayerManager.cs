@@ -22,9 +22,11 @@ public class PlayerManager : MonoBehaviour, IGameManager
     {
         StartCoroutine(StartupState());
     }
+
     void OnValidate()
     {
-        this.SetStatus(this.currentState);
+        if(this.isActiveAndEnabled)
+            StartCoroutine(StartupState());
     }
 
     public void SetStatus(PlayerState playerState)
