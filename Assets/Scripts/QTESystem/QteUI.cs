@@ -8,14 +8,10 @@ public class QteUI : MonoBehaviour
 
     private QteButton qteButton;
 
-    [SerializeField]
-    private CanvasGroup background;
-
     private void OnQteElementEnd(bool success)
     {
         qteButton.OnQteElementEnd(success);
         Destroy(qteButton.gameObject);
-        background.gameObject.SetActive(false);
     }
 
     private void OnQteElementStart(KeyCode keyCode, float time)
@@ -23,20 +19,18 @@ public class QteUI : MonoBehaviour
         qteButton = Instantiate(qteButtonPrefab, this.transform).GetComponent<QteButton>();
 
         qteButton.StartTimer(keyCode, time);
-        background.gameObject.SetActive(true);
     }
 
     public void Start()
     {
         Debug.Log(QTEManager.Instance);
-        QTEManager.Instance.OnQteElementStart += OnQteElementStart;
-        QTEManager.Instance.OnQteElementEnd += OnQteElementEnd;
-        background.gameObject.SetActive(false);
+        QTEManager.OnQteElementStart += OnQteElementStart;
+        QTEManager.OnQteElementEnd += OnQteElementEnd;
     }
 
     public void OnDestroy()
     {
-        QTEManager.Instance.OnQteElementStart -= OnQteElementStart;
-        QTEManager.Instance.OnQteElementEnd -= OnQteElementEnd;
+        QTEManager.OnQteElementStart -= OnQteElementStart;
+        QTEManager.OnQteElementEnd -= OnQteElementEnd;
     }
 }

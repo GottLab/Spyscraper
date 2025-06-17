@@ -38,9 +38,9 @@ public class QTEManager : MonoBehaviour
     private PlayerAnimator mainPlayer;
 
     public delegate void QteElementStart(KeyCode keyCode, float time);
-    public event QteElementStart OnQteElementStart;
+    public static event QteElementStart OnQteElementStart;
     public delegate void QteElementEnd(bool success);
-    public event QteElementEnd OnQteElementEnd;
+    public static event QteElementEnd OnQteElementEnd;
 
     public delegate void QteEvent(IQtePlayer target);
     public static event QteEvent OnQteSequenceStart;
