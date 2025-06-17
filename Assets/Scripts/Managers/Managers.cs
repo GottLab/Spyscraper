@@ -14,16 +14,20 @@ public class Managers : MonoBehaviour {
     public static PlayerManager Player {get; private set;}
     public static InventoryManager Inventory {get; private set;}
 
+    public static InventoryUIManager InventoryUI {get; private set;}
+
     private List<IGameManager> _startSequence;
 
     void Awake() {
         Player = GetComponent<PlayerManager>();
         Inventory = GetComponent<InventoryManager>();
+        InventoryUI = GetComponent<InventoryUIManager>();
 
         _startSequence = new List<IGameManager>
         {
             Player,
-            Inventory
+            Inventory,
+            InventoryUI
         };
 
         StartCoroutine(StartupManagers());

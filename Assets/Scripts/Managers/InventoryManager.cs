@@ -10,74 +10,71 @@ public class InventoryManager : MonoBehaviour, IGameManager {
     */
 
     public ManagerStatus status {get; private set;}
-    private Dictionary<string, int> _items;
+    private Dictionary<ItemData, int> _items;
 
-    // try for the ui (can carry max 4 item)
-    [SerializeField] private Image item_1;
-    [SerializeField] private Text quantity_1;
-    [SerializeField] private Sprite gold;
-
-    public void Startup() {
+    public void Startup()
+    {
         Debug.Log("Inventory manager starting ...");
-        _items = new Dictionary<string, int>();
+        _items = new Dictionary<ItemData, int>();
         status = ManagerStatus.Started;
     }
 
-    public bool AddItem(string name) {
-        if (_items.ContainsKey(name)) {
-            _items[name] += 1;
+    public bool AddItem(ItemData data) {
+        if (_items.ContainsKey(data)) {
+            Debug.Log("secondo item");
+            _items[data] += 1;
+            Debug.Log(_items[data]);
+            Managers.InventoryUI.AddExistingItem(data, _items[data]);
         } else {
-            _items[name] = 1;
+            Debug.Log("primo item");
+            _items[data] = 1;
+            Managers.InventoryUI.AddNewItem(data, 1);
         }
-        UpdateItemUI(name);
         DisplayItems();
         return true;
     }
-
-    private void UpdateItemUI(string name) {
-        if (_items.ContainsKey(name)) {
-            if (_items[name] == 1) {
-                item_1.sprite = gold;
-                quantity_1.text = _items[name].ToString();
-
-                item_1.gameObject.SetActive(true);
-                quantity_1.gameObject.SetActive(true);
+    
+    public void ConsumeItem(string name) {
+        foreach (ItemData item in _items.Keys) {
+            if (name.Equals(item.itemName)) {
+                _items[item]--;
+                if (_items[item] == 0) {
+                    _items.Remove(item);
+                    Managers.InventoryUI.RemoveItem(item);
+                }
             } else {
-                quantity_1.text = _items[name].ToString();
+                Debug.Log("cannot consume " + name);
             }
+            break;
         }
+        DisplayItems();
     }
+
 
     private void DisplayItems() {
         string itemDisplay = "List of Items: ";
-        foreach (KeyValuePair<string, int> item in _items) {
+        foreach (KeyValuePair<ItemData, int> item in _items) {
             itemDisplay += item.Key + "(" + item.Value + ") ";
         }
         Debug.Log(itemDisplay);
     }
 
     public List<string> GetItemList() {
-        List<string> list = new List<string>(_items.Keys);
+        List<string> list = new List<string>();
+        foreach (ItemData item in _items.Keys)
+        {
+            list.Add(item.itemName);
+        }
         return list;
     }
 
     public int GetItemCount(string name) {
-        if (_items.ContainsKey(name)) {
-            return _items[name];
+        foreach (ItemData item in _items.Keys) {
+            if (name.Equals(item.itemName)) {
+                return _items[item];
+            }
+            break;
         }
         return 0;
-    }
-
-    public void ConsumeItem(string name) {
-        if (_items.ContainsKey(name)) {
-            _items[name]--;
-            if (_items[name] == 0) {
-                _items.Remove(name);
-            }
-        } else {
-            Debug.Log("cannot consume " + name);
-        }
-        UpdateItemUI(name);
-        DisplayItems();
     }
 }
