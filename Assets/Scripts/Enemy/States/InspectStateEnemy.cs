@@ -32,13 +32,13 @@ public class InspectStateEnemy : IBehaviourState
 
     public void Update()
     {
-        if (this.stateAI.SuspitionLevel >= 1.0f)
-            this.stateAI.StateMachine.SetState(new AttackStateEnemy(this.stateAI, this.stateAI.TargetTransform));
-
         if (this.inspectingCoroutine == null && !stateAI.NavMeshAgent.pathPending && stateAI.NavMeshAgent.remainingDistance < 0.5f)
         {
             this.inspectingCoroutine = this.stateAI.StartCoroutine(InspectAround());
         }
+
+        if (this.stateAI.SuspitionLevel >= 1.0f)
+            this.stateAI.StateMachine.SetState(new AttackStateEnemy(this.stateAI, this.stateAI.TargetTransform));
 
     }
 
