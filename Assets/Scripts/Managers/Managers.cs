@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-[RequireComponent(typeof(PointerManager)), RequireComponent(typeof(PlayerManager))]
+[RequireComponent(typeof(PointerManager)), RequireComponent(typeof(PlayerManager)), RequireComponent(typeof(AudioManager))]
 public class Managers : MonoBehaviour
 {
 
@@ -14,19 +14,28 @@ public class Managers : MonoBehaviour
     public static PointerManager pointerManager;
     public static PlayerManager playerManager;
 
+    public static AudioManager audioManager;
+
     private List<IGameManager> _startSequence;
+
+    void Awake()
+    {
+        DontDestroyOnLoad(this.gameObject);
+    }
 
     void OnEnable()
     {
 
         pointerManager = this.GetComponent<PointerManager>();
         playerManager = this.GetComponent<PlayerManager>();
+        audioManager = this.GetComponent<AudioManager>();
 
 
         _startSequence = new List<IGameManager>
         {
             pointerManager,
-            playerManager
+            playerManager,
+            audioManager
 
         };
 
