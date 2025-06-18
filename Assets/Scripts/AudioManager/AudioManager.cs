@@ -79,6 +79,7 @@ public class AudioManager : MonoBehaviour, IGameManager
             audioSource.Source.spatialize = true;
             audioSource.Source.spatialBlend = 1.0f;
             audioSource.Source.loop = false;
+            audioSource.gameObject.hideFlags = HideFlags.HideInHierarchy;
         }
         audioSource.gameObject.SetActive(true);
         audioSource.Source.clip = audioClip;
