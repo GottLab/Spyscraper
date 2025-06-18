@@ -30,7 +30,7 @@ public class FootstepScript : MonoBehaviour
         {
 
             AudioClip step = stepClips[Random.Range(0, stepClips.Length)];
-            Managers.audioManager.PlayUISound(step, AudioType.SoundFx, 0.1f);
+            Managers.audioManager.PlayUISound(step, audioType: AudioType.SoundFx, volume: 0.1f);
         }
 
 

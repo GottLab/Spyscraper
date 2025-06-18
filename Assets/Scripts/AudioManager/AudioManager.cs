@@ -59,7 +59,7 @@ public class AudioManager : MonoBehaviour, IGameManager
     }
 
 
-    public void PlayUISound(AudioClip audioClip, AudioType audioType, float volume)
+    public void PlayUISound(AudioClip audioClip, float volume = 1.0f, AudioType audioType = AudioType.Master)
     {
         this.uiAudioSouce.Volume = volume;
         this.uiAudioSouce.Source.PlayOneShot(audioClip, this.audioVolume[audioType]);
