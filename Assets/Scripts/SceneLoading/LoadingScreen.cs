@@ -12,6 +12,7 @@ public class LoadingScreen : MonoBehaviour
     [SerializeField]
     private Image panelImage;
 
+
     [SerializeField]
     private AnimationCurve animationCurve = AnimationCurve.Linear(0.0f, 0.0f, 1.0f, 1.0f);
 
@@ -25,6 +26,8 @@ public class LoadingScreen : MonoBehaviour
         _loadingProgress = _loadingBehavior.Progress;
 
         StartCoroutine(StartTransition());
+
+
     }
 
     IEnumerator StartTransition()
@@ -32,7 +35,7 @@ public class LoadingScreen : MonoBehaviour
         yield return StartCoroutine(AnimateBlackCover(1.0f, 0.0f));
         this._loadingProgress.StartTransition();
 
-        yield return StartCoroutine(AnimateBlackCover(0.0f, 1.0f));
+        yield return StartCoroutine(AnimateBlackCover(0.0f, -1.0f));
         this._loadingProgress.EndTransition();
     }
 
@@ -40,19 +43,27 @@ public class LoadingScreen : MonoBehaviour
     {
         float elapsed = 0f;
 
-        Vector2 deltaSize = panelImage.rectTransform.anchorMin;
+        Vector2 offsetMin = panelImage.rectTransform.offsetMin;
+        Vector2 offsetMax = panelImage.rectTransform.offsetMax;
+
+
+        RectTransform canvaRect = panelImage.canvas.GetComponent<RectTransform>();
+
 
         while (elapsed < panelAnimationTime)
         {
             float t = animationCurve.Evaluate(elapsed / panelAnimationTime);
             float value = Mathf.Lerp(fromHeight, toHeight, t);
-            panelImage.rectTransform.anchorMin = new Vector2(deltaSize.x, value);
+
+            panelImage.rectTransform.offsetMin = new Vector2(offsetMin.x, value * canvaRect.rect.size.y);
+            panelImage.rectTransform.offsetMax = new Vector2(offsetMax.x, value * canvaRect.rect.size.y);
 
             elapsed += Time.deltaTime;
             yield return null;
         }
 
-        panelImage.rectTransform.anchorMin = new Vector2(deltaSize.x, toHeight);
+        panelImage.rectTransform.offsetMin = new Vector2(offsetMin.x, -canvaRect.rect.size.y);
+        panelImage.rectTransform.offsetMax = new Vector2(offsetMax.x, -canvaRect.rect.size.y);
 
     }
 
