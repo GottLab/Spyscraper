@@ -1,11 +1,32 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour, IGameManager
 {
+    private class Settings : ISaveData
+    {
+        public readonly bool isMuted = false;
+        public readonly Dictionary<AudioType, float> audioVolume = new();
+
+        public Settings()
+        {
+            foreach (AudioType audioType in Enum.GetValues(typeof(AudioType)))
+            {
+                audioVolume[audioType] = 1.0f;
+            }
+        }
+
+        public string Name()
+        {
+            return "audio_settings";
+        }
+    }
+
+
     public ManagerStatus status => ManagerStatus.Started;
 
 
@@ -18,15 +39,17 @@ public class AudioManager : MonoBehaviour, IGameManager
     [SerializeField, Tooltip("Audio Source used to play non-spatial ui sounds")]
     private TypeAudioSource uiAudioSouce;
 
-    private Dictionary<AudioType, float> audioVolume = new();
+    private Settings audioSettings = new();
 
     private Queue<TypeAudioSource> audioSources = new();
 
     public void Startup()
     {
+        SaveManager.saveManager.Load(this.audioSettings);
+
         foreach (AudioType audioType in Enum.GetValues(typeof(AudioType)))
         {
-            SetVolume(audioType, 1.0f);
+            OnVolumeChange?.Invoke(audioType, this.audioSettings.audioVolume[audioType]);
         }
     }
 
@@ -38,18 +61,20 @@ public class AudioManager : MonoBehaviour, IGameManager
             return;
         }
 
-        this.audioVolume[audioType] = volume;
+        this.audioSettings.audioVolume[audioType] = volume;
         OnVolumeChange?.Invoke(audioType, volume);
 
         if (audioType == AudioType.Master)
         {
             AudioListener.volume = volume;
         }
+
+        SaveManager.saveManager.Save(this.audioSettings);
     }
 
     public float GetVolume(AudioType audioType)
     {
-        return this.audioVolume[audioType];
+        return this.audioSettings.audioVolume[audioType];
     }
 
 
@@ -62,7 +87,7 @@ public class AudioManager : MonoBehaviour, IGameManager
     public void PlayUISound(AudioClip audioClip, float volume = 1.0f, AudioType audioType = AudioType.Master)
     {
         this.uiAudioSouce.Volume = volume;
-        this.uiAudioSouce.Source.PlayOneShot(audioClip, this.audioVolume[audioType]);
+        this.uiAudioSouce.Source.PlayOneShot(audioClip, this.audioSettings.audioVolume[audioType]);
     }
 
     public void PlayClipAtPoint(AudioClip audioClip, Vector3 position, float volume = 1.0f, AudioType audioType = AudioType.Master)
@@ -120,6 +145,7 @@ public class AudioManager : MonoBehaviour, IGameManager
         this.musicAudioSouce.Source.clip = clip;
 
         this.musicAudioSouce.Source.Play();
+
     }
 
 
