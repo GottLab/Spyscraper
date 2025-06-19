@@ -21,12 +21,10 @@ public class InventoryManager : MonoBehaviour, IGameManager {
 
     public bool AddItem(ItemData data) {
         if (_items.ContainsKey(data)) {
-            Debug.Log("secondo item");
             _items[data] += 1;
             Debug.Log(_items[data]);
             Managers.InventoryUI.AddExistingItem(data, _items[data]);
         } else {
-            Debug.Log("primo item");
             _items[data] = 1;
             Managers.InventoryUI.AddNewItem(data, 1);
         }

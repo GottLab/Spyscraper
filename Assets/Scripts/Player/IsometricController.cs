@@ -32,6 +32,7 @@ public class IsometricController : MonoBehaviour
     void Start()
     {
         _charController = GetComponent<CharacterController>();
+        lookLayerMask = ~(1 << LayerMask.NameToLayer("Ignore Raycast"));
     }
 
     // Update is called once per frame
@@ -70,7 +71,10 @@ public class IsometricController : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray,out hit, Mathf.Infinity, lookLayerMask)) // Check if we hit something
         {
-            Vector3 lookDirection = (hit.point - playerModel.position).normalized;
+            Vector3 flatLookTarget = hit.point;
+            flatLookTarget.y = playerModel.position.y; // Match Y so rotation stays level
+
+            Vector3 lookDirection = (flatLookTarget - playerModel.position).normalized;
             
             Quaternion lookRotation = Quaternion.LookRotation(lookDirection);
             Vector3 euler = lookRotation.eulerAngles;

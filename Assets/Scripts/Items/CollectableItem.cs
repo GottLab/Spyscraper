@@ -1,7 +1,9 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.ProBuilder.Shapes;
 
-public class CollectableItem : MonoBehaviour {
+public class CollectableItem : MonoBehaviour
+{
 
     /*
         (Trial)
@@ -12,9 +14,27 @@ public class CollectableItem : MonoBehaviour {
 
     [SerializeField] private ItemData itemData;
 
+    
+    public void HighlightOn()
+    {
+        var outline = this.gameObject.AddComponent<Outline>();
+
+        outline.OutlineMode = Outline.Mode.OutlineAll;
+        outline.OutlineColor = Color.yellow;
+        outline.OutlineWidth = 2f;
+    }
+
+    public void HighlightOff() {
+        Outline outline = this.gameObject.GetComponent<Outline>();
+        if (outline != null) {
+            Destroy(outline);
+        }
+    }
+
     void OnTriggerEnter(Collider other) {
         if (other.GetComponent<CharacterController>()) {
-            Debug.Log("Item collected: "+itemData.itemName);
+
+            Debug.Log("Item collected: " + itemData.itemName);
             if (Managers.Inventory.AddItem(itemData)) {
                 Destroy(this.gameObject);
             }
