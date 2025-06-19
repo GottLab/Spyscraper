@@ -30,7 +30,7 @@ public sealed class SaveManager
         string path = FilePath(saveData);
         if (!File.Exists(path))
         {
-            Debug.LogWarning("No file found.");
+            Debug.LogWarning($"No save found at {path} creating default one");
             Save(saveData);
         }
 
