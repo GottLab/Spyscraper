@@ -1,20 +1,52 @@
-using UnityEngine;
+using System;
 using System.Collections;
-using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerManager : MonoBehaviour, IGameManager
+{
+    public enum PlayerState
+    {
+        NORMAL,
+        QTE,
+        DIED
+    }
 
 
-// could be useful, but not in this moment
-public class PlayerManager : MonoBehaviour, IGameManager {
+    public ManagerStatus status => ManagerStatus.Started;
+    public static event Action<PlayerState> OnStatusChange;
 
-    /*
-        Manager that takes into account all the stats related to the player
-        possible examples: health, number of kills (?), player speed (normal or slow for stealth)
-    */
+    [SerializeField]
+    private PlayerState currentState = PlayerState.NORMAL;
 
-    public ManagerStatus status {get; private set;}
+    public void Startup()
+    {
+        StartCoroutine(StartupState());
+    }
+    void OnValidate()
+    {
+        this.SetStatus(this.currentState);
+    }
 
-    public void Startup() {
-        Debug.Log("Player manager starting ...");
-        status = ManagerStatus.Started;
+    public void SetStatus(PlayerState playerState)
+    {
+        this.currentState = playerState;
+        OnStatusChange?.Invoke(playerState);
+    }
+
+    //this is to ensure at startup of this manager all listeners will receive the initial state
+    private IEnumerator StartupState()
+    {
+        yield return new WaitForEndOfFrame();
+        SetStatus(this.currentState);
+    }
+
+    public bool IsState(PlayerState playerState)
+    {
+        return playerState == this.currentState;
+    }
+
+    public PlayerState CurrentState
+    {
+        get => currentState;
     }
 }
