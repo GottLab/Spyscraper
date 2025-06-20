@@ -8,21 +8,21 @@ public class IsometricCameraRotation : MonoBehaviour
 
     private float velocity = 0f;
 
-    [SerializeField]
+    [SerializeField, Tooltip("Rotation Speed")]
     private float rotationSpeed = 1.0F;
 
+    [SerializeField, Min(2), Tooltip("Total Angles that divide this camera rotation")]
+    private int totalAngles = 4;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
+    [SerializeField, Tooltip("Default Base Angle Offset")]
+    private float angleOffset = 45F;
 
-    }
-
-    // Update is called once per frame
     void Update()
     {
 
-        float targetYRotation = 45F + currentRotation * 90F;
+        //angle to make a single turn
+        float turnAngle = 360.0f / this.totalAngles;
+        float targetYRotation = angleOffset + currentRotation * turnAngle;
 
         currentYRotation = Mathf.SmoothDampAngle(currentYRotation, targetYRotation, ref velocity, 1f / rotationSpeed);
 
@@ -47,10 +47,10 @@ public class IsometricCameraRotation : MonoBehaviour
 
     void RotateRight()
     {
-        this.currentRotation = (this.currentRotation + 1) % 4;
+        this.currentRotation = (this.currentRotation + 1) % totalAngles;
     }
     void RotateLeft()
     {
-        this.currentRotation = (this.currentRotation - 1) % 4;
+        this.currentRotation = (this.currentRotation - 1) % totalAngles;
     }
 }
