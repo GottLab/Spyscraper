@@ -9,8 +9,10 @@ using UnityEngine;
 public sealed class SaveManager
 {
 
+    
     public static readonly SaveManager saveManager = new();
 
+    private SaveManager(){}
 
     private string FilePath(ISaveData saveData)
     {

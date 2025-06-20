@@ -17,12 +17,7 @@ public class Managers : MonoBehaviour
     public static AudioManager audioManager;
 
     private List<IGameManager> _startSequence;
-
-    void Awake()
-    {
-        DontDestroyOnLoad(this.gameObject);
-    }
-
+    
     void OnEnable()
     {
 
