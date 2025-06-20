@@ -45,7 +45,7 @@ public class AttackStateEnemy : IBehaviourState
     public void End()
     {
         this.stateEnemyAI.NavMeshAgent.speed = this.stateEnemyAI.defaultSpeed;
-        this.stateEnemyAI.UpdateVisionColor(Color.yellow);
+        this.stateEnemyAI.UpdateVisionColor(this.stateEnemyAI.defaultMaskColor);
         this.stateEnemyAI.NavMeshAgent.ResetPath();
     }
 }

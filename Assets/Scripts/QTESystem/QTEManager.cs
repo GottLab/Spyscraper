@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using QTESystem;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -121,8 +122,9 @@ public class QTEManager : MonoBehaviour
         OnQteSequenceStart?.Invoke(enemy);
         mainPlayer.QteStart(enemy);
         enemy.QteStart(mainPlayer);
-        
-        bool sequenceSuccess = true;
+
+        //if sequence is empty then player loses immediatly
+        bool sequenceSuccess = qteSequence.sequence.Length > 0;
 
         foreach (var element in qteSequence.sequence)
         {   

@@ -12,5 +12,5 @@ public class QteSequence : ScriptableObject
         public float time;
     }
     
-    public QteSequenceElement[] sequence;
+    public QteSequenceElement[] sequence = new QteSequenceElement[0];
 }

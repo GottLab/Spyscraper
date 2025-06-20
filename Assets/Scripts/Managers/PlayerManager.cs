@@ -18,14 +18,22 @@ public class PlayerManager : MonoBehaviour, IGameManager
     [SerializeField]
     private PlayerState currentState = PlayerState.NORMAL;
 
+    [SerializeField]
+    private Transform playerTransform;
+
+    private ConeVision playerConeVision;
+
     public void Startup()
     {
         StartCoroutine(StartupState());
+
+        playerConeVision = playerTransform.GetComponentInChildren<ConeVision>();
+
     }
 
     void OnValidate()
     {
-        if(this.isActiveAndEnabled)
+        if (this.isActiveAndEnabled)
             StartCoroutine(StartupState());
     }
 
@@ -50,5 +58,15 @@ public class PlayerManager : MonoBehaviour, IGameManager
     public PlayerState CurrentState
     {
         get => currentState;
+    }
+
+    public Transform PlayerTransform
+    {
+        get => playerTransform;
+    }
+    
+    public ConeVision ConeVision
+    {
+        get => playerConeVision;
     }
 }

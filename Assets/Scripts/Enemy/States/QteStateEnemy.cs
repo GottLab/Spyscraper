@@ -33,11 +33,16 @@ namespace Enemy
         {
             stateAI.StateMachine.SetState(new PatrolStateEnemy(this.stateAI));
             stateAI.ResetSuspition();
+
+            if (stateAI.TryGetComponent(out TutorialEnemy tutorialEnemy))
+                tutorialEnemy.OnEnemyWon();
         }
 
         public void QteFail()
         {
             stateAI.StateMachine.SetState(new DedStateEnemy(this.stateAI));
+            if (stateAI.TryGetComponent(out TutorialEnemy tutorialEnemy))
+                tutorialEnemy.OnEnemyLost();
         }
 
         public void QteOnHit()

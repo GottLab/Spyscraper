@@ -40,6 +40,10 @@ namespace Enemy
 
         [Header("Rendering")]
 
+
+        [Tooltip("Default Mask Color")]
+        public Color defaultMaskColor = Color.yellow;
+
         [NonSerialized]
         public EnemyAnimation enemyAnimation;
 
@@ -51,11 +55,6 @@ namespace Enemy
 
         //SUSPITION VARIABLES
 
-        //suspition level of the enemy it goes from 0 to 100
-        private float currentSuspition = 0.0f;
-
-        //the last time the enemy increased it's suspition level
-        private double lastTimeIncrease;
 
         [SerializeField, Tooltip("Time it takes in seconds to fill up suspition")]
         private float suspitionIncreaseTime = 1.0f;
@@ -65,6 +64,12 @@ namespace Enemy
 
         [SerializeField, Tooltip("How much time in seconds needs to pass before decreasing suspition")]
         private float suspitionAvoidanceTime = 1.0f;
+
+         //suspition level of the enemy it goes from 0 to 100
+        private float currentSuspition = 0.0f;
+
+        //the last time the enemy increased it's suspition level
+        private double lastTimeIncrease;
 
         //called when suspition level increases or decreases
         public event Action<bool> OnSuspitionChange;
@@ -77,7 +82,7 @@ namespace Enemy
             navMeshAgent = GetComponent<NavMeshAgent>();
             stateMachine.SetState(new PatrolStateEnemy(this));
             enemyAnimation = GetComponent<EnemyAnimation>();
-            this.UpdateVisionColor(Color.yellow);
+            this.UpdateVisionColor(this.defaultMaskColor);
 
             this.NavMeshAgent.speed = this.defaultSpeed;
         }
