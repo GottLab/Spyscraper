@@ -1,4 +1,5 @@
 using System;
+using MyGameDevTools.SceneLoading;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour, IGameManager
@@ -15,6 +16,11 @@ public class GameManager : MonoBehaviour, IGameManager
     public void Startup()
     {
 
+    }
+
+    public void TransitionScene(string toScene)
+    {
+        MySceneManager.TransitionAsync(toScene, "LoadingScene");
     }
 
     public void SetGameStopped(bool stopped)

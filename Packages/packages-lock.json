@@ -25,6 +25,12 @@
       },
       "url": "https://packages.unity.com"
     },
+    "com.mygamedevtools.scene-loader": {
+      "version": "file:com.mygamedevtools.scene-loader",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "com.unity.burst": {
       "version": "1.8.19",
       "depth": 1,
