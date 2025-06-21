@@ -14,25 +14,43 @@ public class QTEManager : MonoBehaviour
         Medium,
         Difficult
     }
-    
+
     [Tooltip("Il set di tasti da cui scegliere casualmente per il QTE.")]
     private List<KeyCode> possibleQteKeys = new List<KeyCode>
     {
-        KeyCode.Q,
-        KeyCode.Z,
-        KeyCode.X,
-        KeyCode.R,
+        KeyCode.A,
+        KeyCode.B,
         KeyCode.C,
-        KeyCode.G,
-        KeyCode.T,
+        KeyCode.D,
+        KeyCode.E,
         KeyCode.F,
+        KeyCode.G,
+        KeyCode.H,
+        KeyCode.I,
+        KeyCode.J,
+        KeyCode.K,
+        KeyCode.L,
+        KeyCode.M,
+        KeyCode.N,
+        KeyCode.O,
+        KeyCode.P,
+        KeyCode.Q,
+        KeyCode.R,
+        KeyCode.S,
+        KeyCode.T,
+        KeyCode.U,
+        KeyCode.V,
+        KeyCode.W,
+        KeyCode.X,
+        KeyCode.Y,
+        KeyCode.Z,
         KeyCode.Space // Anche la barra spaziatrice è un'opzione comune
     };
-    
-    
+
+
     [SerializeField]
     private float slowMoScale = 0.2f;
-    
+
     [SerializeField]
     private PlayerAnimator mainPlayer;
 
@@ -44,9 +62,12 @@ public class QTEManager : MonoBehaviour
     public delegate void QteEvent(IQtePlayer target);
     public static event QteEvent OnQteSequenceStart;
     public static event QteEvent OnQteSequenceEnd;
-    
+
     private bool isQtetting = false;
-    
+
+    //describes if the given key was pressed last fram
+    private Dictionary<KeyCode, bool> pressedKeys = new();
+
     public static QTEManager Instance { get; private set; }
 
     private void Awake()
@@ -56,34 +77,36 @@ public class QTEManager : MonoBehaviour
         else
             Instance = this;
     }
-    
+
+
+
     private IEnumerator StartSingleQteEventCoroutine(IQtePlayer enemy, QteSequence.QteSequenceElement element, Action<bool> callback)
-    {   
-        
+    {
+
         Time.timeScale = slowMoScale;
-        
+
         float timer = 0;
         bool success = false;
-        
+
         KeyCode inputKey = possibleQteKeys[Random.Range(0, possibleQteKeys.Count)];
 
         OnQteElementStart?.Invoke(inputKey, element.time);
-        
+
         while (timer < element.time)
         {
-            if (Input.anyKeyDown)
+            if (TotalKeyPressed() > 0)
             {
                 success = Input.GetKeyDown(inputKey);
                 break;
             }
 
-            timer += Time.unscaledDeltaTime;
+            timer += Managers.game.GetUnscaledDeltaTime();
             yield return null;
         }
         Time.timeScale = 1f;
         OnQteElementEnd?.Invoke(success);
-        
-        
+
+
         if (success)
         {
             yield return StartCoroutine(mainPlayer.QteAttack());
@@ -94,7 +117,7 @@ public class QTEManager : MonoBehaviour
             yield return StartCoroutine(enemy.QteAttack());
             mainPlayer.QteOnHit();
         }
-        
+
         callback.Invoke(success);
     }
 
@@ -111,11 +134,11 @@ public class QTEManager : MonoBehaviour
         OnQteSequenceStart?.Invoke(enemy);
         mainPlayer.QteStart(enemy);
         enemy.QteStart(mainPlayer);
-        
+
         bool sequenceSuccess = true;
 
         foreach (var element in qteSequence.sequence)
-        {   
+        {
             yield return StartCoroutine(StartSingleQteEventCoroutine(enemy, element, success => sequenceSuccess = success));
             if (!sequenceSuccess)
                 break;
@@ -132,8 +155,21 @@ public class QTEManager : MonoBehaviour
             enemy.QteSuccess();
         }
         OnQteSequenceEnd?.Invoke(enemy);
-        
+
         isQtetting = false;
-            
+
+    }
+
+
+    private int TotalKeyPressed()
+    {
+        int total = 0;
+        foreach (KeyCode key in possibleQteKeys)
+        {
+            bool pressed = Input.GetKeyDown(key);
+            if (pressed)
+                total += 1;
+        }
+        return total;
     }
 }

@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-[RequireComponent(typeof(PointerManager)), RequireComponent(typeof(PlayerManager)), RequireComponent(typeof(RequireComponent))]
+[RequireComponent(typeof(PointerManager)), RequireComponent(typeof(PlayerManager)), RequireComponent(typeof(RequireComponent)), RequireComponent(typeof(GameManager))]
 public class Managers : MonoBehaviour
 {
 
@@ -13,8 +13,9 @@ public class Managers : MonoBehaviour
 
     public static PointerManager pointerManager;
     public static PlayerManager playerManager;
-
     public static InventoryManager Inventory;
+
+    public static GameManager game;
 
     private List<IGameManager> _startSequence;
 
@@ -24,13 +25,15 @@ public class Managers : MonoBehaviour
         pointerManager = this.GetComponent<PointerManager>();
         playerManager = this.GetComponent<PlayerManager>();
         Inventory = this.GetComponent<InventoryManager>();
+        game = this.GetComponent<GameManager>();
 
 
         _startSequence = new List<IGameManager>
         {
             pointerManager,
             playerManager,
-            Inventory
+            Inventory,
+            game
 
         };
 

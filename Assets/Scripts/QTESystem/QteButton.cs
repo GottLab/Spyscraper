@@ -27,7 +27,7 @@ public class QteButton : MonoBehaviour
         
         while (timer < time)
         {
-            timer += Time.unscaledDeltaTime;
+            timer += Managers.game.GetUnscaledDeltaTime();
             buttonImage.fillAmount = Mathf.Lerp(1.0f, 0.0f, timer / time);
             
             yield return null;
