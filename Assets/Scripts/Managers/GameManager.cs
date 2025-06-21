@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour, IGameManager
@@ -5,17 +6,20 @@ public class GameManager : MonoBehaviour, IGameManager
     public ManagerStatus status => ManagerStatus.Started;
 
 
+    public static event Action<bool> OnGameStop;
+
     private bool isGameStopped = false;
     private float prevTimeScale = 1.0f;
+
 
     public void Startup()
     {
 
     }
 
-    public void SetGameStopped(bool stop)
+    public void SetGameStopped(bool stopped)
     {
-        if (stop)
+        if (stopped)
         {
             isGameStopped = true;
             this.prevTimeScale = Time.timeScale;
@@ -26,10 +30,18 @@ public class GameManager : MonoBehaviour, IGameManager
             isGameStopped = false;
             Time.timeScale = this.prevTimeScale;
         }
+        OnGameStop?.Invoke(stopped);
     }
 
-    public float GetUnscaledDeltaTime()
+    public float UnscaledDeltaTime
     {
-        return this.isGameStopped ? 0.0f : Time.unscaledDeltaTime;
+        get => this.isGameStopped ? 0.0f : Time.unscaledDeltaTime;
     }
+
+    public bool IsGameStopped
+    {
+        get => this.isGameStopped;
+    }
+    
+
 }

@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PlayerStateCamera : MonoBehaviour
 {
+    [SerializeField]
+    private CinemachineBrain cinemachineBrain;
 
     [SerializeField]
     private CinemachineVirtualCameraBase normalCamera;
@@ -17,6 +19,9 @@ public class PlayerStateCamera : MonoBehaviour
 
     private CinemachineVirtualCameraBase currentCamera;
 
+    //this is to store if before game pause the brain had ignore timescale
+    private bool prevIgnoreTimescale;
+
 
     void Awake()
     {
@@ -27,12 +32,14 @@ public class PlayerStateCamera : MonoBehaviour
     {
         PlayerManager.OnStatusChange += OnPlayerStateChange;
         QTEManager.OnQteSequenceStart += OnQteSequenceStart;
+        GameManager.OnGameStop += OnGameStop;
     }
 
     void OnDisable()
     {
         PlayerManager.OnStatusChange -= OnPlayerStateChange;
         QTEManager.OnQteSequenceStart -= OnQteSequenceStart;
+        GameManager.OnGameStop -= OnGameStop;
     }
 
     void OnPlayerStateChange(PlayerManager.PlayerState playerState)
@@ -55,6 +62,19 @@ public class PlayerStateCamera : MonoBehaviour
 
         currentCamera.gameObject.SetActive(true);
 
+    }
+
+    void OnGameStop(bool stopped)
+    {
+        if (stopped)
+        {
+            prevIgnoreTimescale = this.cinemachineBrain.IgnoreTimeScale;
+            this.cinemachineBrain.IgnoreTimeScale = false;
+        }
+        else
+        {
+            this.cinemachineBrain.IgnoreTimeScale = this.prevIgnoreTimescale;
+        }
     }
 
     void SetupCameras()

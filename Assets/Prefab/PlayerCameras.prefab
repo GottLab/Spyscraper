@@ -737,6 +737,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 5
+  totalAngles: 4
+  angleOffset: 45
 --- !u!1 &6910249474346642171
 GameObject:
   m_ObjectHideFlags: 0
@@ -1027,6 +1029,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e8b68c95081c4143b1cbb72338382d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cinemachineBrain: {fileID: 1419148379839427897}
   normalCamera: {fileID: 420911752855946088}
   qteCamera: {fileID: 1277687297773593645}
   deathCamera: {fileID: 5256638571290221696}

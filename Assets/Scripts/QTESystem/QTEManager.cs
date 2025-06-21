@@ -100,7 +100,7 @@ public class QTEManager : MonoBehaviour
                 break;
             }
 
-            timer += Managers.game.GetUnscaledDeltaTime();
+            timer += Managers.game.UnscaledDeltaTime;
             yield return null;
         }
         Time.timeScale = 1f;
