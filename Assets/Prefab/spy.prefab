@@ -730,6 +730,18 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 999237f3696bd91479266aa993dc08a5, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 999237f3696bd91479266aa993dc08a5, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 999237f3696bd91479266aa993dc08a5, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 999237f3696bd91479266aa993dc08a5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -1526,7 +1538,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a5d1c9328ab6f5429b9b065d2066c6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coneVisionObject: {fileID: 0}
   layerMask:
     serializedVersion: 2
     m_Bits: 51
