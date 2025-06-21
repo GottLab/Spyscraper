@@ -31,24 +31,21 @@ public class Managers : MonoBehaviour
 
         _startSequence = new List<IGameManager>
         {
-            
+            pointerManager,
+            playerManager,
+            Inventory,
+            game,
+            Talk
         };
 
         StopAllCoroutines();
         StartCoroutine(StartupManagers());
     }
 
-    void Update()
+     private IEnumerator StartupManagers()
     {
-        foreach (IGameManager manager in _startSequence) {
-            if(manager is IUpdatableManager updatableManager) {
-                updatableManager.Update();
-            }
-        }
-    }
-
-    private IEnumerator StartupManagers() {
-        foreach (IGameManager manager in _startSequence) {
+        foreach (IGameManager manager in _startSequence)
+        {
             manager.Startup();
         }
 

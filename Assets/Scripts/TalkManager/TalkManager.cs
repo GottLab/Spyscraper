@@ -29,6 +29,7 @@ public class TalkManager : MonoBehaviour, IGameManager
     {
         if(Input.GetKeyDown(KeyCode.L))
         {
+            print("START!");
             StartDialogue("intro");
         }
     }
