@@ -15,15 +15,10 @@ public class HighlightTrigger : MonoBehaviour
     public Outline outline;
 
 
-    void Start()
-    {
-    }
-
     void OnTriggerStay(Collider other)
     {
 
         bool highlighted = highlightVision.CheckVision(itemVisionObject);
-        print("ENTER" + highlighted);
         
         if (highlighted != outline.enabled)
             outline.enabled = highlighted;
