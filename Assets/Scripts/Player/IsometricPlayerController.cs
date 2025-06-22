@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Enemy;
 using UnityEngine;
 [
@@ -36,6 +38,9 @@ public class IsometricPlayerController : MonoBehaviour
 
     private float lastMovementTime = 0.0f;
 
+    //it indicates the reasons that are locking player movement, only if this set is empty the player can move
+    private HashSet<string> movementLocks = new();
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -56,22 +61,17 @@ public class IsometricPlayerController : MonoBehaviour
 
     private void OnStatusChange(PlayerManager.PlayerState playerState)
     {
-        if (playerState != PlayerManager.PlayerState.NORMAL)
-        {
-            animator.SetBool(WalkingProperty, false);
-            animator.SetFloat(turnProperty, 0.0f);
-        }
+        this.SetMovement("playerStatus", playerState != PlayerManager.PlayerState.NORMAL);
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Do not move or rotate player if not in torch state
-        if (!Managers.playerManager.IsState(PlayerManager.PlayerState.NORMAL))
+        //Do not move or rotate player
+        if (!CanMove)
         {
             return;
         }
-
 
         UpdateRotation();
         UpdateMovement();
@@ -171,6 +171,22 @@ public class IsometricPlayerController : MonoBehaviour
         {
             hit.gameObject.GetComponent<StateEnemyAI>().OnPlayerCollide();
         }
+    }
+
+    public bool CanMove
+    {
+        get => this.movementLocks.Count == 0;
+    }
+
+    public void SetMovement(string reason, bool locked)
+    {
+        if (locked)
+        {
+            animator.SetBool(WalkingProperty, false);
+            this.movementLocks.Add(reason);
+        }
+        else
+            this.movementLocks.Remove(reason);
     }
     
 }

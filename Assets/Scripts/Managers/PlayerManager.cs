@@ -18,9 +18,16 @@ public class PlayerManager : MonoBehaviour, IGameManager
     [SerializeField]
     private PlayerState currentState = PlayerState.NORMAL;
 
+    [SerializeField]
+    private Transform playerTransform;
+
+
+    private IsometricPlayerController controller;
+
     public void Startup()
     {
         StartCoroutine(StartupState());
+        this.controller = this.playerTransform.GetComponent<IsometricPlayerController>();
     }
     void OnValidate()
     {
@@ -48,5 +55,10 @@ public class PlayerManager : MonoBehaviour, IGameManager
     public PlayerState CurrentState
     {
         get => currentState;
+    }
+
+    public IsometricPlayerController Controller
+    {
+        get => this.controller;
     }
 }
