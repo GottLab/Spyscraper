@@ -1,6 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
+//Source code https://github.com/andydbc/HologramShader
 public static class Layout
 {
     public static void Initialize(Material material)

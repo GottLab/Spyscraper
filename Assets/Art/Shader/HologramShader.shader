@@ -1,3 +1,4 @@
+//Source code https://github.com/andydbc/HologramShader sightly edited to work with uv and not vertex position
 Shader "SFHologram/HologramShader"
 {
 	Properties

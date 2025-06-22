@@ -3,6 +3,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
 
+//Source code https://github.com/andydbc/HologramShader
 public class HologramShaderGUI : ShaderGUI
 {
     Material _material;
@@ -291,6 +292,6 @@ public class HologramShaderGUI : ShaderGUI
         _materialEditor.ShaderProperty(FlickerSpeed, "Speed");
         EditorGUI.indentLevel--;
     }
-    
-    
+
+
 }
