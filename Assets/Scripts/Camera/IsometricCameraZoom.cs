@@ -20,6 +20,7 @@ public class IsometricCameraZoom : MonoBehaviour
 
     private float targetSize = 10;
     public float zoomSensitivity = 1F;
+    private float prevTargetSize = 0.0f;
 
 
     public Vector2 maxPanning = new Vector2(3.0f, 3.0f);
@@ -48,7 +49,7 @@ public class IsometricCameraZoom : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
         if (!Managers.playerManager.IsState(PlayerManager.PlayerState.NORMAL))
         {
             return;
@@ -57,6 +58,13 @@ public class IsometricCameraZoom : MonoBehaviour
         this.targetSize += -Input.mouseScrollDelta.y * zoomSensitivity * Time.deltaTime;
         this.targetSize = Mathf.Clamp(this.targetSize, this.minSize, this.maxSize);
         this._CinemachineCamera.Lens.OrthographicSize = Mathf.Lerp(this._CinemachineCamera.Lens.OrthographicSize, this.targetSize, Time.deltaTime * 10.0F);
+
+
+        if (prevTargetSize != this.targetSize)
+        {
+            Managers.game.PlayEvent(GameManager.GameEvent.ZoomInOut);
+        }
+
 
 
         Vector2 cameraTarget = new Vector2(0, 0);
@@ -73,5 +81,7 @@ public class IsometricCameraZoom : MonoBehaviour
         }
 
         _CinemachinePositionComposer.Composition.ScreenPosition = cameraTarget;
+
+        prevTargetSize = this.targetSize;
     }
 }

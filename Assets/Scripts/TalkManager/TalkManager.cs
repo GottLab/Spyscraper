@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using static GameManager;
 
 public class TalkManager : MonoBehaviour, IGameManager
 {
@@ -24,6 +25,10 @@ public class TalkManager : MonoBehaviour, IGameManager
     public static Action<CharacterDialogue> OnCharacterDialogueStart;
     public delegate void CharacterType(CharacterDialogue dialogueLine, DialogueInfo info, char character);
     public static CharacterType OnCharacterType;
+
+
+    private Action<GameEvent> currentGameEventToWait;
+    
 
     void Update()
     {
@@ -53,6 +58,10 @@ public class TalkManager : MonoBehaviour, IGameManager
     {
         if (currentDialogueCoroutine != null)
         {
+            if (this.currentGameEventToWait != null)
+            {
+                GameManager.OnGameEvent -= this.currentGameEventToWait;
+            }
             StopAllCoroutines();
             this.currentDialogueCoroutine = null;
         }
@@ -94,9 +103,28 @@ public class TalkManager : MonoBehaviour, IGameManager
         yield return StartCoroutine(FadeTextBox(true));
 
         DialogueInfo dialogueInfo = new();
-        
+
         foreach (CharacterDialogue dialogueLine in dialogue.dialogueLines)
         {
+
+            // ----- Game Event Section -----
+            //this section handles listening to game events
+            bool complete = true;
+            if (dialogueLine.gameEvent != GameEvent.None)
+            {
+                complete = false;
+                //when we receive a specific game event then when mark complete to true
+                Action<GameEvent> handleGameEvent = (gameEvent) =>
+                {
+                    if (gameEvent == dialogueLine.gameEvent)
+                        complete = true;
+                };
+                this.currentGameEventToWait = handleGameEvent;
+                GameManager.OnGameEvent += handleGameEvent;
+                // ------------
+            }
+
+
             dialogueInfo.Reset();
             OnCharacterDialogueStart?.Invoke(dialogueLine);
 
@@ -105,7 +133,14 @@ public class TalkManager : MonoBehaviour, IGameManager
                 OnCharacterDialogueStart?.Invoke(dialogueLine);
                 yield return StartCoroutine(TypeText(dialogueLine, line, dialogueInfo));
             }
+
+            yield return new WaitUntil(() => complete);
+            
+            if (currentGameEventToWait != null)
+                GameManager.OnGameEvent -= this.currentGameEventToWait;
         }
+
+        
 
 
         OnDialogueEnd?.Invoke();

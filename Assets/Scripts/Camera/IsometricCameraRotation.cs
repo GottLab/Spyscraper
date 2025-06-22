@@ -35,11 +35,13 @@ public class IsometricCameraRotation : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 RotateRight();
+                Managers.game.PlayEvent(GameManager.GameEvent.TurnCameraRight);
             }
 
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 RotateLeft();
+                Managers.game.PlayEvent(GameManager.GameEvent.TurnCameraLeft);
             }
         }
 

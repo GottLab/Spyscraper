@@ -11,6 +11,8 @@ public struct CharacterDialogue
 {
     public CharacterData character;
     public List<string> lines;
+
+    public GameManager.GameEvent gameEvent;
 }
 
 /// <summary>

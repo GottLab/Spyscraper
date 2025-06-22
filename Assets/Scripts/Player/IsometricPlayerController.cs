@@ -129,6 +129,11 @@ public class IsometricPlayerController : MonoBehaviour
         {
             animator.SetBool(WalkingProperty, _isWalking);
         }
+
+        if (_isWalking)
+        {
+            Managers.game.PlayEvent(GameManager.GameEvent.Moving);
+        }
     }
 
     private void UpdateRotation()
