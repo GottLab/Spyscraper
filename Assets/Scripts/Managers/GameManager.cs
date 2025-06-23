@@ -15,6 +15,18 @@ public class GameManager : MonoBehaviour, IGameManager
         ZoomInOut
     }
 
+    private struct GameData : ISaveData
+    {
+
+        public string currentScene;
+
+        public string Name()
+        {
+            return "game_save";
+        }
+    }
+
+
     public ManagerStatus status => ManagerStatus.Started;
 
 
@@ -23,6 +35,7 @@ public class GameManager : MonoBehaviour, IGameManager
 
     private bool isGameStopped = false;
     private float prevTimeScale = 1.0f;
+    
 
 
     public void Startup()
@@ -33,6 +46,11 @@ public class GameManager : MonoBehaviour, IGameManager
     public void TransitionScene(string toScene)
     {
         MySceneManager.TransitionAsync(toScene, "LoadingScene");
+    }
+
+    public void ReloadScene()
+    {
+        MySceneManager.TransitionAsync(MySceneManager.GetActiveScene().name, "LoadingScene");
     }
 
     public void SetGameStopped(bool stopped)
