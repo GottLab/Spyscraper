@@ -7,8 +7,15 @@ using UnityEngine.ProBuilder.Shapes;
 public class InteractableDoor : MonoBehaviour
 {
 
-
+    
     private DoorBehaviour doorBehaviour;
+
+    [SerializeField]
+    private DialogueHandler failOpenDialogue;
+
+    [SerializeField]
+    private DialogueHandler successOpenDialogue;
+
     
     [SerializeField, Tooltip("Required Items to open this door")]
     private ItemStack[] requiredItems;
@@ -27,10 +34,11 @@ public class InteractableDoor : MonoBehaviour
                 Managers.Inventory.ConsumeItem(stack.item, stack.count);
             }
             this.doorBehaviour.OpenDoor();
+            this.successOpenDialogue?.StartDialogue();
         }
         else
         {
-
+            this.failOpenDialogue?.StartDialogue();
         }
     }
 

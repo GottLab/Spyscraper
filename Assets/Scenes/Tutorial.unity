@@ -8164,6 +8164,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1850309158023385892, guid: d8b657ba10a0d234d94547497f9784df, type: 3}
+      propertyPath: dialogueInstances.Array.data[0].dialogue
+      value: 
+      objectReference: {fileID: 11400000, guid: abef7903da969bc4883066f7a28c44ae, type: 2}
     - target: {fileID: 2496397473185739308, guid: d8b657ba10a0d234d94547497f9784df, type: 3}
       propertyPath: m_Name
       value: ExitDoor
@@ -8184,6 +8188,10 @@ PrefabInstance:
       propertyPath: m_Size.z
       value: 21.3
       objectReference: {fileID: 0}
+    - target: {fileID: 4318748098021963842, guid: d8b657ba10a0d234d94547497f9784df, type: 3}
+      propertyPath: dialogueInstances.Array.data[0].dialogue
+      value: 
+      objectReference: {fileID: 11400000, guid: af3b8662ebcb8aa4ab58263e25dd7534, type: 2}
     - target: {fileID: 5214043191830841295, guid: d8b657ba10a0d234d94547497f9784df, type: 3}
       propertyPath: requiredItems.Array.size
       value: 1
@@ -9020,7 +9028,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5875912689419293346, guid: e748544b503bec6478bdeac504930abe, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.64
+      value: -5.61
       objectReference: {fileID: 0}
     - target: {fileID: 5875912689419293346, guid: e748544b503bec6478bdeac504930abe, type: 3}
       propertyPath: m_LocalPosition.y
@@ -9028,7 +9036,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5875912689419293346, guid: e748544b503bec6478bdeac504930abe, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -9.95
+      value: -9.37
       objectReference: {fileID: 0}
     - target: {fileID: 5875912689419293346, guid: e748544b503bec6478bdeac504930abe, type: 3}
       propertyPath: m_LocalRotation.w

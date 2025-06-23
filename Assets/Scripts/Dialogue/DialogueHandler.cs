@@ -15,10 +15,11 @@ public class DialogueHandler : MonoBehaviour
     [SerializeField]
     private DialogueInstance[] dialogueInstances;
 
-    private int currentDialogueIndex = -1;
+    private int currentDialogueIndex;
 
     public void StartDialogue()
     {
+        currentDialogueIndex = -1;
         NextDialogue();
     }
 

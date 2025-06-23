@@ -68,6 +68,8 @@ GameObject:
   - component: {fileID: 875065425098781334}
   - component: {fileID: 5214043191830841295}
   - component: {fileID: 6728430423435481540}
+  - component: {fileID: 4318748098021963842}
+  - component: {fileID: 1850309158023385892}
   m_Layer: 7
   m_Name: InteractableDoor
   m_TagString: Untagged
@@ -205,6 +207,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2b8060c830d6ab42ab44d9a8d2ecdae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  failOpenDialogue: {fileID: 4318748098021963842}
+  successOpenDialogue: {fileID: 1850309158023385892}
   requiredItems: []
 --- !u!114 &6728430423435481540
 MonoBehaviour:
@@ -218,7 +222,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de5b30b753d0be34599074c244334d53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredItems: []
+--- !u!114 &4318748098021963842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2496397473185739308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8096b59c126f1c5488fc1090c687927b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueInstances:
+  - dialogue: {fileID: 0}
+    OnDialogueEnd:
+      m_PersistentCalls:
+        m_Calls: []
+--- !u!114 &1850309158023385892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2496397473185739308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8096b59c126f1c5488fc1090c687927b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueInstances:
+  - dialogue: {fileID: 0}
+    OnDialogueEnd:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &7347543358284350449
 GameObject:
   m_ObjectHideFlags: 0
