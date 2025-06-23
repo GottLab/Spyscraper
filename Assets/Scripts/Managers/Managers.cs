@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-[RequireComponent(typeof(PointerManager)), RequireComponent(typeof(PlayerManager)), RequireComponent(typeof(RequireComponent)), RequireComponent(typeof(GameManager))]
+[RequireComponent(typeof(PointerManager)), RequireComponent(typeof(TalkManager)),RequireComponent(typeof(PlayerManager)), RequireComponent(typeof(RequireComponent)), RequireComponent(typeof(GameManager))]
 public class Managers : MonoBehaviour
 {
 
@@ -11,10 +11,10 @@ public class Managers : MonoBehaviour
         All the scripts in the game that need to access a specific manager will request it to this module
     */
 
+    public static TalkManager Talk;
     public static PointerManager pointerManager;
     public static PlayerManager playerManager;
     public static InventoryManager Inventory;
-
     public static GameManager game;
 
     private List<IGameManager> _startSequence;
@@ -26,6 +26,7 @@ public class Managers : MonoBehaviour
         playerManager = this.GetComponent<PlayerManager>();
         Inventory = this.GetComponent<InventoryManager>();
         game = this.GetComponent<GameManager>();
+        Talk = this.GetComponent<TalkManager>();
 
 
         _startSequence = new List<IGameManager>
@@ -33,15 +34,15 @@ public class Managers : MonoBehaviour
             pointerManager,
             playerManager,
             Inventory,
-            game
-
+            game,
+            Talk
         };
 
         StopAllCoroutines();
         StartCoroutine(StartupManagers());
     }
 
-    private IEnumerator StartupManagers()
+     private IEnumerator StartupManagers()
     {
         foreach (IGameManager manager in _startSequence)
         {

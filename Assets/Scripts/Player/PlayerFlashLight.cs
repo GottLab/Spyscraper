@@ -79,6 +79,8 @@ public class PlayerFlashLight : MonoBehaviour
         StopAllCoroutines();
         StartCoroutine(SwitchFlashLightPose(on));
         this.usingFlashlight = on;
+
+        Managers.game.PlayEvent(on ? GameManager.GameEvent.TorchOn : GameManager.GameEvent.TorchOff);
     }
 
     private void ResetWeights()

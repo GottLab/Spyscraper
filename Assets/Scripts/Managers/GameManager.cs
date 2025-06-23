@@ -4,9 +4,21 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour, IGameManager
 {
+    public enum GameEvent
+    {
+        None,
+        TurnCameraLeft,
+        TurnCameraRight,
+        Moving,
+        TorchOff,
+        TorchOn,
+        ZoomInOut
+    }
+
     public ManagerStatus status => ManagerStatus.Started;
 
 
+    public static event Action<GameEvent> OnGameEvent;
     public static event Action<bool> OnGameStop;
 
     private bool isGameStopped = false;
@@ -37,6 +49,11 @@ public class GameManager : MonoBehaviour, IGameManager
             Time.timeScale = this.prevTimeScale;
         }
         OnGameStop?.Invoke(stopped);
+    }
+
+    public void PlayEvent(GameEvent gameEvent)
+    {
+        OnGameEvent?.Invoke(gameEvent);
     }
 
     public float UnscaledDeltaTime
