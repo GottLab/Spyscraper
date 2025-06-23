@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using static GameManager;
 
@@ -12,7 +13,7 @@ public class TalkManager : MonoBehaviour, IGameManager
 
     public float minReadTimePerChar = 0.035f; // Used to estimate read time
 
-    public float fadeDuration = 0.7f; // Used to estimate read time
+    public float fadeDuration = 0.7f;
 
     private Coroutine currentDialogueCoroutine = null;
 
@@ -26,18 +27,7 @@ public class TalkManager : MonoBehaviour, IGameManager
     public delegate void CharacterType(CharacterDialogue dialogueLine, DialogueInfo info, char character);
     public static CharacterType OnCharacterType;
 
-
     private Action<GameEvent> currentGameEventToWait;
-    
-
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.L))
-        {
-            print("START!");
-            StartDialogue("intro");
-        }
-    }
 
     private IEnumerator FadeTextBox(bool fadeIn)
     {
@@ -54,7 +44,19 @@ public class TalkManager : MonoBehaviour, IGameManager
         OnDialogueFade?.Invoke(targetAlpha, fadeIn);
     }
 
+    public float CharactersPerSecond
+    {
+        get => this.charactersPerSecond;
+        set => this.charactersPerSecond = CharactersPerSecond;
+    }
+
     public void StartDialogue(string dialogueFile, Action OnDialogueEnd = null)
+    {
+        Dialogue dialogue = DialogueLoader.ReadDialogue(dialogueFile);
+        this.StartDialogue(dialogue, OnDialogueEnd);
+    }
+
+    public void StartDialogue(Dialogue dialogue, Action OnDialogueEnd = null)
     {
         if (currentDialogueCoroutine != null)
         {
@@ -65,39 +67,49 @@ public class TalkManager : MonoBehaviour, IGameManager
             StopAllCoroutines();
             this.currentDialogueCoroutine = null;
         }
-        Dialogue dialogue = DialogueLoader.ReadDialogue(dialogueFile);
+        //Dialogue dialogue = DialogueLoader.ReadDialogue(dialogueFile);
         if (dialogue != null)
         {
-            this.currentDialogueCoroutine = StartCoroutine(StartDialogue(dialogue, OnDialogueEnd));
+            this.currentDialogueCoroutine = StartCoroutine(StartDialogueCoroutine(dialogue, OnDialogueEnd));
         }
     }
-    
+
     private IEnumerator TypeText(CharacterDialogue characterDialogue, string line, DialogueInfo dialogueInfo)
     {
+        //this is used to avoid to skip when pressing enter of the previous line
+        //we wait one frame to be sure that the skip key is no longer pressed
+        yield return null;
 
         float totalDelay = 0;
         int totalCharacters = 0;
+        //should it skip the rest of the line?
+        bool skip = false;
         for (int i = 0; i < line.Length; i++)
         {
+
             DialogueModifier.ApplyModifier(line, dialogueInfo, ref i);
-            yield return new WaitForSeconds(dialogueInfo.pauseTime);
+            if (!skip && dialogueInfo.pauseTime > 0.0f)
+                yield return WaitSecondsOrSkip(dialogueInfo.pauseTime, () => skip = true);
             dialogueInfo.pauseTime = 0.0F;
-           
+
             float delay = 1f / charactersPerSecond;
             delay *= dialogueInfo.charactersPerSecondMultiplier;
             totalDelay += delay;
-            yield return new WaitForSeconds(delay);
+
+            if (!skip)
+                yield return WaitSecondsOrSkip(delay, () => skip = true);
 
             if (i < line.Length)
                 OnCharacterType?.Invoke(characterDialogue, dialogueInfo, line[i]);
             totalCharacters++;
         }
 
-        yield return new WaitForSeconds(Mathf.Max(totalCharacters * minReadTimePerChar - totalDelay, 1.0f));
+        //wait one frame to avoid to skip this dialogue and go directly to next since it would happen in the same frame
+        yield return null;
     }
 
 
-    private IEnumerator StartDialogue(Dialogue dialogue, Action OnDialogueEnd = null)
+    private IEnumerator StartDialogueCoroutine(Dialogue dialogue, Action OnDialogueEnd = null)
     {
         OnDialogueStart?.Invoke(dialogue);
         yield return StartCoroutine(FadeTextBox(true));
@@ -109,20 +121,21 @@ public class TalkManager : MonoBehaviour, IGameManager
 
             // ----- Game Event Section -----
             //this section handles listening to game events
-            bool complete = true;
+            bool gameEventComplete = true;
             if (dialogueLine.gameEvent != GameEvent.None)
             {
-                complete = false;
+                gameEventComplete = false;
                 //when we receive a specific game event then when mark complete to true
                 Action<GameEvent> handleGameEvent = (gameEvent) =>
                 {
                     if (gameEvent == dialogueLine.gameEvent)
-                        complete = true;
+                        gameEventComplete = true;
                 };
                 this.currentGameEventToWait = handleGameEvent;
                 GameManager.OnGameEvent += handleGameEvent;
-                // ------------
+
             }
+            // ---------------------
 
 
             dialogueInfo.Reset();
@@ -132,15 +145,22 @@ public class TalkManager : MonoBehaviour, IGameManager
             {
                 OnCharacterDialogueStart?.Invoke(dialogueLine);
                 yield return StartCoroutine(TypeText(dialogueLine, line, dialogueInfo));
-            }
 
-            yield return new WaitUntil(() => complete);
-            
+                //only when we don't to wait a certain game event then we continue when pressing the skip button
+                if (dialogueLine.gameEvent == GameEvent.None)
+                {
+                    yield return new WaitUntil(() => IsSkipButtonPressed);
+                }
+            }
+            //here we wait for a certain game event if set
+            yield return new WaitUntil(() => gameEventComplete);
+
+            //unhook from gameEvent action when we used it
             if (currentGameEventToWait != null)
                 GameManager.OnGameEvent -= this.currentGameEventToWait;
         }
 
-        
+
 
 
         OnDialogueEnd?.Invoke();
@@ -154,5 +174,30 @@ public class TalkManager : MonoBehaviour, IGameManager
 
     public void Startup()
     {
+    }
+
+
+    //Wait for time in seconds or skip immediatly if return is pressed
+    private IEnumerator WaitSecondsOrSkip(float time, Action OnSkipPressed)
+    {
+        float timeElapsed = 0.0f;
+        bool skip = false;
+        while (timeElapsed < time && !skip)
+        {
+            timeElapsed += Time.deltaTime;
+
+            if (IsSkipButtonPressed)
+            {
+                skip = true;
+                OnSkipPressed.Invoke();
+            }
+            else
+                yield return null;
+        }
+    }
+
+    private bool IsSkipButtonPressed
+    {
+        get => Input.GetKeyDown(KeyCode.Return);
     }
 }

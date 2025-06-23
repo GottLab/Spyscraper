@@ -12,4 +12,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc90add75164a184eb79227f30e36b21, type: 3}
   m_Name: FirstRoomTutorial
   m_EditorClassIdentifier: 
-  dialogueLines: []
+  dialogueLines:
+  - character: {fileID: 11400000, guid: eee85cfdabefcc64799e31d5d23bd39d, type: 2}
+    lines:
+    - Copy, Can you hear me?
+    gameEvent: 0
+  - character: {fileID: 11400000, guid: 77869a3a81cc8944bb5d5446abbbdfe2, type: 2}
+    lines:
+    - Yes, pretty clearly.
+    gameEvent: 0
+  - character: {fileID: 11400000, guid: eee85cfdabefcc64799e31d5d23bd39d, type: 2}
+    lines:
+    - Good, Spy are you informed why are you here?
+    gameEvent: 0
+  - character: {fileID: 11400000, guid: 77869a3a81cc8944bb5d5446abbbdfe2, type: 2}
+    lines:
+    - Yes I already know everything that is needed for this mission
+    gameEvent: 0
+  - character: {fileID: 11400000, guid: eee85cfdabefcc64799e31d5d23bd39d, type: 2}
+    lines:
+    - Ah really? I will explain it again regardless
+    gameEvent: 0
+  - character: {fileID: 11400000, guid: 77869a3a81cc8944bb5d5446abbbdfe2, type: 2}
+    lines:
+    - '|s0.6| WHAT'
+    gameEvent: 0
+  - character: {fileID: 11400000, guid: eee85cfdabefcc64799e31d5d23bd39d, type: 2}
+    lines:
+    - You need to reach the last floor of this corporate building and retrieve an
+      important document
+    - Be aware that it will no be simple
+    gameEvent: 0
+  - character: {fileID: 11400000, guid: eee85cfdabefcc64799e31d5d23bd39d, type: 2}
+    lines:
+    - You are equipped with a flashlight. To turn it on and off press SPACE
+    gameEvent: 5
+  - character: {fileID: 11400000, guid: eee85cfdabefcc64799e31d5d23bd39d, type: 2}
+    lines:
+    - Great, to move around use WASD
+    gameEvent: 3
+  - character: {fileID: 11400000, guid: eee85cfdabefcc64799e31d5d23bd39d, type: 2}
+    lines:
+    - You can now go to the next room
+    gameEvent: 0
