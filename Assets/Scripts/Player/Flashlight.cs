@@ -16,6 +16,11 @@ public class Flashlight : MonoBehaviour
     private Quaternion originalRotation;
     private Vector3 originalPosition;
 
+    [SerializeField]
+    private AudioClip turnOnAudio;
+    [SerializeField]
+    private AudioClip turnOffAudio;
+
     void Start()
     {
         this.originalParent = this.transform.parent;
@@ -45,10 +50,12 @@ public class Flashlight : MonoBehaviour
         //set the emissive material to on or off
         if (on)
         {
+            Managers.audioManager.PlayClipAtPoint(this.turnOnAudio, this.transform.position, 0.5f, AudioType.SoundFx);
             this.FlashlightBulbMaterial.EnableKeyword("_EMISSION");
         }
         else
         {
+            Managers.audioManager.PlayClipAtPoint(this.turnOffAudio, this.transform.position, 0.5f, AudioType.SoundFx);
             this.FlashlightBulbMaterial.DisableKeyword("_EMISSION");
         }
     }

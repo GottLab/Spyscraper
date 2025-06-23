@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Art/Audio/Dialogue/ChiefTalk.wav.meta
 guid: 481679bc5bdc3bd4a9ec012184cf5ed1
+========
+guid: 63af2043ecd66ac42b92fd45b60e34d9
+>>>>>>>> sound:Assets/Art/Audio/footstep/footstep_1.wav.meta
 AudioImporter:
   externalObjects: {}
   serializedVersion: 8

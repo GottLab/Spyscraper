@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-[RequireComponent(typeof(PointerManager)), RequireComponent(typeof(TalkManager)),RequireComponent(typeof(PlayerManager)), RequireComponent(typeof(RequireComponent)), RequireComponent(typeof(GameManager))]
+[RequireComponent(typeof(PointerManager)), RequireComponent(typeof(TalkManager)),RequireComponent(typeof(PlayerManager)), RequireComponent(typeof(RequireComponent)), RequireComponent(typeof(GameManager)), RequireComponent(typeof(AudioManager))]
 public class Managers : MonoBehaviour
 {
 
@@ -14,16 +14,19 @@ public class Managers : MonoBehaviour
     public static TalkManager Talk;
     public static PointerManager pointerManager;
     public static PlayerManager playerManager;
+
+    public static AudioManager audioManager;
     public static InventoryManager Inventory;
     public static GameManager game;
 
     private List<IGameManager> _startSequence;
-
+    
     void OnEnable()
     {
 
         pointerManager = this.GetComponent<PointerManager>();
         playerManager = this.GetComponent<PlayerManager>();
+        audioManager = this.GetComponent<AudioManager>();
         Inventory = this.GetComponent<InventoryManager>();
         game = this.GetComponent<GameManager>();
         Talk = this.GetComponent<TalkManager>();
@@ -33,6 +36,7 @@ public class Managers : MonoBehaviour
         {
             pointerManager,
             playerManager,
+            audioManager,
             Inventory,
             game,
             Talk
