@@ -24,10 +24,13 @@ public class PlayerManager : MonoBehaviour, IGameManager
 
     private IsometricPlayerController controller;
 
+    private ConeVision coneVision;
+
     public void Startup()
     {
         StartCoroutine(StartupState());
         this.controller = this.playerTransform.GetComponent<IsometricPlayerController>();
+        this.coneVision = this.playerTransform.GetComponentInChildren<ConeVision>();
     }
     void OnValidate()
     {
@@ -60,5 +63,10 @@ public class PlayerManager : MonoBehaviour, IGameManager
     public IsometricPlayerController Controller
     {
         get => this.controller;
+    }
+
+    public ConeVision ConeVision
+    {
+        get => this.coneVision;
     }
 }

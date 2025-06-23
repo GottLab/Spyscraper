@@ -23628,6 +23628,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1032830267459844236, guid: d8b657ba10a0d234d94547497f9784df, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -11.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1032830267459844236, guid: d8b657ba10a0d234d94547497f9784df, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0
+      objectReference: {fileID: 0}
     - target: {fileID: 2496397473185739308, guid: d8b657ba10a0d234d94547497f9784df, type: 3}
       propertyPath: m_Name
       value: BlockPort

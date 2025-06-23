@@ -41,7 +41,7 @@ public class Flashlight : MonoBehaviour
     public void Turn(bool on)
     {
         //enable or disable spotlight
-        FlashLightSpotlight.enabled = on;
+        FlashLightSpotlight.gameObject.SetActive(on);
         //set the emissive material to on or off
         if (on)
         {

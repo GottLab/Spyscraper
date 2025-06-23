@@ -4,7 +4,7 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Collider))]
 public class PlayerTrigger : MonoBehaviour
 {
-    private Collider collider;
+    private Collider playerCollider;
 
 
     [SerializeField, Tooltip("If it should trigger again if entering/exit again")]
@@ -21,8 +21,8 @@ public class PlayerTrigger : MonoBehaviour
 
     void Awake()
     {
-        this.collider = GetComponent<Collider>();
-        this.collider.isTrigger = true;
+        this.playerCollider = GetComponent<Collider>();
+        this.playerCollider.isTrigger = true;
         int playerOnlyMask = LayerMask.NameToLayer("OnlyPlayer");
         //exclude every other layer except the player
         this.gameObject.layer = playerOnlyMask;

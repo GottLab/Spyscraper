@@ -57,6 +57,11 @@ public class ConeVision : MonoBehaviour
 
     public bool CheckVision(ConeVisionObject coneVisionObject)
     {
+        if (!this.isActiveAndEnabled)
+        {
+            return false;
+        }
+
         Vector3 coneApex = this.transform.position;
         Vector3 coneDirection = this.transform.forward;
         
