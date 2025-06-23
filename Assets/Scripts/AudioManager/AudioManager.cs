@@ -9,7 +9,6 @@ public class AudioManager : MonoBehaviour, IGameManager
 {
     private class Settings : ISaveData
     {
-        public readonly bool isMuted = false;
         public readonly Dictionary<AudioType, float> audioVolume = new();
 
         public Settings()
@@ -149,12 +148,6 @@ public class AudioManager : MonoBehaviour, IGameManager
 
         this.musicAudioSouce.Source.Play();
 
-    }
-
-
-    public bool soundMute {
-        get {return AudioListener.pause;}
-        set {AudioListener.pause = value;}
     }
 
 }
