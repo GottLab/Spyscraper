@@ -35,9 +35,14 @@ public class AudioManager : MonoBehaviour, IGameManager
     [SerializeField, Tooltip("Audio Source used to play music")]
     private TypeAudioSource musicAudioSouce;
 
+
+    [SerializeField]
+    private Music defaultMusic;
+
     private Settings audioSettings = new();
 
     private Queue<TypeAudioSource> audioSources = new();
+
 
     public void Startup()
     {
@@ -47,6 +52,8 @@ public class AudioManager : MonoBehaviour, IGameManager
         {
             OnVolumeChange?.Invoke(audioType, this.audioSettings.audioVolume[audioType]);
         }
+
+        this.PlayMusic(this.defaultMusic);
     }
 
     public void SetVolume(AudioType audioType, float volume)
@@ -102,13 +109,13 @@ public class AudioManager : MonoBehaviour, IGameManager
         else
         {
             audioSource = new GameObject().AddComponent<AudioSource>().AddComponent<TypeAudioSource>();
-            audioSource.AudioType = audioType;
-            audioSource.Source.spatialize = isSpatial;
-            audioSource.Source.spatialBlend = isSpatial ? 1.0f : 0.0f;
             audioSource.Source.loop = false;
             audioSource.gameObject.hideFlags = HideFlags.HideInHierarchy;
         }
         audioSource.gameObject.SetActive(true);
+        audioSource.AudioType = audioType;
+        audioSource.Source.spatialize = isSpatial;
+        audioSource.Source.spatialBlend = isSpatial ? 1.0f : 0.0f;
         audioSource.Source.clip = audioClip;
         audioSource.Source.volume = volume;
         audioSource.transform.position = isSpatial ? position.Value : Vector3.zero;

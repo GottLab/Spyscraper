@@ -158,10 +158,10 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1259,7 +1259,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicAudioSouce: {fileID: 3139807776384275830}
-  uiAudioSouce: {fileID: 3037646879855446011}
+  defaultMusic: 0
 --- !u!1 &5879244371408855084
 GameObject:
   m_ObjectHideFlags: 0
