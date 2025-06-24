@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 
-[RequireComponent(typeof(PointerManager)), RequireComponent(typeof(TalkManager)), RequireComponent(typeof(PlayerManager)), RequireComponent(typeof(RequireComponent)), RequireComponent(typeof(GameManager)), RequireComponent(typeof(AudioManager))]
+//[RequireComponent(typeof(PointerManager)), RequireComponent(typeof(TalkManager)), RequireComponent(typeof(PlayerManager)), RequireComponent(typeof(RequireComponent)), RequireComponent(typeof(GameManager)), RequireComponent(typeof(AudioManager))]
 public class Managers : MonoBehaviour
 {
 
@@ -42,6 +42,9 @@ public class Managers : MonoBehaviour
             game,
             Talk
         };
+
+        //remove missing managers
+        _startSequence.RemoveAll(obj => obj == null);
 
         StopAllCoroutines();
         StartCoroutine(StartupManagers());

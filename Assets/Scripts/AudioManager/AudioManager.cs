@@ -183,6 +183,11 @@ public class AudioManager : MonoBehaviour, IGameManager
 
     IEnumerator PlayAudioSource(AudioSource audioSource)
     {
+        if (audioSource.IsDestroyed())
+        {
+            yield break;
+        }
+
         audioSource.Play();
         yield return new WaitForSeconds(audioSource.clip.length);
         audioSources.Enqueue(audioSource);
@@ -223,7 +228,7 @@ public class AudioManager : MonoBehaviour, IGameManager
             float t = elapsed / transitionTime;
             from.volume = 1 - t;
             to.volume = t;
-            elapsed += Managers.game.UnscaledDeltaTime;
+            elapsed += Time.unscaledDeltaTime;
             yield return null;
         }
         to.volume = 1.0f;

@@ -15,6 +15,12 @@ public class QtePostProcessEffect : MonoBehaviour
     private Tween fadeTween;
 
 
+    void Awake()
+    {
+        material.SetFloat("_Amount", 0.0f);
+    }
+
+
     void OnEnable()
     {
         QTEManager.OnQteElementStart += OnQteStart;

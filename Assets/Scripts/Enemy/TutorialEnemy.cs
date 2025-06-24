@@ -21,12 +21,6 @@ public class TutorialEnemy : MonoBehaviour
         print("PLAYER WON");
     }
 
-    public void Update()
-    {
-        Transform playerTransform = Managers.playerManager.PlayerTransform;
-        playerTransform.position = playerTransform.position;
-    }
-
     IEnumerator HandlePlayerDefeat()
     {
 
