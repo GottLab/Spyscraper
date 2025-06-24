@@ -130,8 +130,8 @@ Shader "Custom/GlitchShader"
                 float g = tex2D(_MainTex, float2(xpos + noise * 0.05, uv.y)).g;
                 float b = tex2D(_MainTex, float2(xpos - noise * 0.05, uv.y)).b;
 
-                col.g = lerp(col.r, g, 0.25);
-                col.b = lerp(col.r, b, 0.25);
+                col.g = lerp(col.r, g, 0.75);
+                col.b = lerp(col.r, b, 0.75);
 
                 //return col;
                 float randomTvStatic = rand(float2(uv.x, uv.y * time));
