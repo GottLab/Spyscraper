@@ -49,7 +49,7 @@ MonoBehaviour:
     gameEvent: 5
   - character: {fileID: 11400000, guid: eee85cfdabefcc64799e31d5d23bd39d, type: 2}
     lines:
-    - Great, to move around use WASD
+    - '|eHAPPY|Great, to move around use WASD'
     gameEvent: 3
   - character: {fileID: 11400000, guid: eee85cfdabefcc64799e31d5d23bd39d, type: 2}
     lines:
