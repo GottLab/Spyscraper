@@ -1,17 +1,15 @@
 using UnityEngine;
 
-public class FootstepScript : MonoBehaviour
+public class FootstepSound : MonoBehaviour
 {
 
     private Animator animator;
 
     private float prevFootstep;
 
-    [SerializeField]
-    private AudioClip[] stepClips;
 
     [SerializeField]
-    private float volume = 1.0f;
+    private AudioPlayer audioPlayer;
 
     
 
@@ -31,9 +29,7 @@ public class FootstepScript : MonoBehaviour
 
         if ((footstep > 0.0f && prevFootstep <= 0.0f) || (footstep < 0.0f && prevFootstep >= 0.0f))
         {
-
-            AudioClip step = stepClips[Random.Range(0, stepClips.Length)];
-            Managers.audioManager.Play2DSound(step, audioType: AudioType.Sfx, volume: this.volume);
+            audioPlayer.PlayAudio();
         }
 
 
