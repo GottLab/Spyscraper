@@ -27,6 +27,8 @@ public class DialogueTextUpdate : MonoBehaviour, IAnimationClipSource
     void Start()
     {
         this.mugShotAnimator = mugShot.GetComponent<Animator>();
+        this.SetVisible(false);
+
     }
 
     void OnEnable()
@@ -64,6 +66,7 @@ public class DialogueTextUpdate : MonoBehaviour, IAnimationClipSource
 
     private void StartDialogue(Dialogue dialogue)
     {
+        this.SetVisible(true);
         CharacterDialogue? characterDialogue = dialogue.dialogueLines.FirstOrDefault();
 
         if (characterDialogue.HasValue)
@@ -88,5 +91,10 @@ public class DialogueTextUpdate : MonoBehaviour, IAnimationClipSource
         results.Add(this.textBoxAnimation);
     }
 
-    
+
+    void SetVisible(bool visible)
+    {
+        this.gameObject.SetActive(visible);
+    }
+
 }

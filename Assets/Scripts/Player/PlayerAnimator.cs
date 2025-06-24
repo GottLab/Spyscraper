@@ -7,10 +7,10 @@ public class PlayerAnimator : MonoBehaviour, IQtePlayer
 {
 
     private Animator animator;
-    private readonly int StateProperty = Animator.StringToHash("State");
-    private readonly int ChangeStateProperty = Animator.StringToHash("ChangeState");
-    private readonly int LeftPunchProperty = Animator.StringToHash("LeftPunch");
-    private readonly int RightPunchProperty = Animator.StringToHash("RightPunch");
+    private static readonly int StateProperty = Animator.StringToHash("State");
+    private static readonly int ChangeStateProperty = Animator.StringToHash("ChangeState");
+    private static readonly int LeftPunchProperty = Animator.StringToHash("LeftPunch");
+    private static readonly int RightPunchProperty = Animator.StringToHash("RightPunch");
 
     private bool didPunchHit = false;
 
@@ -31,16 +31,20 @@ public class PlayerAnimator : MonoBehaviour, IQtePlayer
 
     // Update Current Player Animation Based on his State
     void OnPlayerStateChange(PlayerManager.PlayerState playerState)
-    {
-        //set the state index
-        animator.SetInteger(StateProperty, (int)playerState);
-        //trigger the transition to it
-        animator.SetTrigger(ChangeStateProperty);
+    {   
+        if (animator)
+        {
+            //set the state index
+            animator.SetInteger(StateProperty, (int)playerState);
+            //trigger the transition to it
+            animator.SetTrigger(ChangeStateProperty);
+        }
     }
 
     //makes the player throw a punch and wait until it lands
     public IEnumerator QteAttack()
     {
+        
         didPunchHit = false;
         animator.ResetTrigger(LeftPunchProperty);
         animator.ResetTrigger(RightPunchProperty);

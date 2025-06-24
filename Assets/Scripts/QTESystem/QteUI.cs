@@ -1,3 +1,4 @@
+using UnityEditor.EditorTools;
 using UnityEngine;
 
 public class QteUI : MonoBehaviour
@@ -6,7 +7,7 @@ public class QteUI : MonoBehaviour
     private GameObject qteButtonPrefab;
 
     private QteButton qteButton;
-    
+
     private void OnQteElementEnd(bool success)
     {
         qteButton.OnQteElementEnd(success);
@@ -16,20 +17,20 @@ public class QteUI : MonoBehaviour
     private void OnQteElementStart(KeyCode keyCode, float time)
     {
         qteButton = Instantiate(qteButtonPrefab, this.transform).GetComponent<QteButton>();
-        
+
         qteButton.StartTimer(keyCode, time);
     }
 
     public void Start()
     {
         Debug.Log(QTEManager.Instance);
-        QTEManager.Instance.OnQteElementStart += OnQteElementStart;
-        QTEManager.Instance.OnQteElementEnd += OnQteElementEnd;
+        QTEManager.OnQteElementStart += OnQteElementStart;
+        QTEManager.OnQteElementEnd += OnQteElementEnd;
     }
 
     public void OnDestroy()
     {
-        QTEManager.Instance.OnQteElementStart -= OnQteElementStart;
-        QTEManager.Instance.OnQteElementEnd -= OnQteElementEnd;
+        QTEManager.OnQteElementStart -= OnQteElementStart;
+        QTEManager.OnQteElementEnd -= OnQteElementEnd;
     }
 }

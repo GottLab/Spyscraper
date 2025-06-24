@@ -51,13 +51,10 @@ public class QTEManager : MonoBehaviour
     [SerializeField]
     private float slowMoScale = 0.2f;
 
-    [SerializeField]
-    private PlayerAnimator mainPlayer;
-
     public delegate void QteElementStart(KeyCode keyCode, float time);
-    public event QteElementStart OnQteElementStart;
+    public static event QteElementStart OnQteElementStart;
     public delegate void QteElementEnd(bool success);
-    public event QteElementEnd OnQteElementEnd;
+    public static event QteElementEnd OnQteElementEnd;
 
     public delegate void QteEvent(IQtePlayer target);
     public static event QteEvent OnQteSequenceStart;
@@ -171,5 +168,11 @@ public class QTEManager : MonoBehaviour
                 total += 1;
         }
         return total;
+    }
+
+
+    private IQtePlayer mainPlayer
+    {
+        get => Managers.playerManager.Animator;
     }
 }

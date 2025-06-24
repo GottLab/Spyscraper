@@ -41,7 +41,8 @@ public class QteButton : MonoBehaviour
     
     public void OnQteElementEnd(bool success)
     {
-        StopCoroutine(timerCoroutine);
+        if(timerCoroutine != null)
+            StopCoroutine(timerCoroutine);
     }
 
     

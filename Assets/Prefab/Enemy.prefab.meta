@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Prefab/ExitLevel.prefab.meta
+guid: 5282d0b2bb18a9442a61b1d90b67e0eb
+========
+guid: aef033096b1aece4cbd3d5130799eebd
+>>>>>>>> enemy-+-qte:Assets/Prefab/Enemy.prefab.meta
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

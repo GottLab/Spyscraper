@@ -21,20 +21,24 @@ public class PlayerManager : MonoBehaviour, IGameManager
     [SerializeField]
     private Transform playerTransform;
 
-
     private IsometricPlayerController controller;
 
     private ConeVision coneVision;
+
+    private PlayerAnimator animator;
 
     public void Startup()
     {
         StartCoroutine(StartupState());
         this.controller = this.playerTransform.GetComponent<IsometricPlayerController>();
         this.coneVision = this.playerTransform.GetComponentInChildren<ConeVision>();
+        this.animator = this.playerTransform.GetComponent<PlayerAnimator>();
     }
+
     void OnValidate()
     {
-        this.SetStatus(this.currentState);
+        if (this.isActiveAndEnabled)
+            StartCoroutine(StartupState());
     }
 
     public void SetStatus(PlayerState playerState)
@@ -68,5 +72,10 @@ public class PlayerManager : MonoBehaviour, IGameManager
     public ConeVision ConeVision
     {
         get => this.coneVision;
+    }
+
+    public PlayerAnimator Animator
+    {
+        get => this.animator;
     }
 }

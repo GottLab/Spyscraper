@@ -64,13 +64,13 @@ public class ConeVision : MonoBehaviour
 
         Vector3 coneApex = this.transform.position;
         Vector3 coneDirection = this.transform.forward;
-        
+
         if (!ConeAABBIntersection.ConeIntersectsAABB(this.transform.position, this.transform.forward, this.ConeAngle, this.ConeRange, coneVisionObject.Bounds))
         {
             Debug.DrawRay(coneApex, coneDirection, Color.red);
             return false;
         }
-        
+
 
         foreach (var collider in coneVisionObject.Colliders)
         {
@@ -92,6 +92,11 @@ public class ConeVision : MonoBehaviour
     public float ConeRange
     {
         get => this.visionLight.range;
+    }
+    
+    public Light VisionLight
+    {
+        get => this.visionLight;
     }
 
 }
