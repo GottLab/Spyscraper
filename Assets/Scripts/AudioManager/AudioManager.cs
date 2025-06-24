@@ -71,7 +71,7 @@ public class AudioManager : MonoBehaviour, IGameManager
 
         foreach (AudioType audioType in Enum.GetValues(typeof(AudioType)))
         {
-            SetVolume(audioType, this.audioSettings.audioVolume[audioType]);
+            SetVolume(audioType, this.audioSettings.audioVolume[audioType], save: false);
         }
 
         this.transitionMusicSource = Instantiate(this.musicAudioSource);
@@ -116,7 +116,7 @@ public class AudioManager : MonoBehaviour, IGameManager
         
     }
 
-    public void SetVolume(AudioType audioType, float value)
+    public void SetVolume(AudioType audioType, float value, bool save = true)
     {
 
         float volumeLinear = Mathf.Clamp01(value);
@@ -125,7 +125,10 @@ public class AudioManager : MonoBehaviour, IGameManager
         this.audioSettings.audioVolume[audioType] = value;
         this.audioMixer.SetFloat($"{audioType}Volume", volumeDb);
         OnVolumeChange?.Invoke(audioType, value);
-        SaveManager.saveManager.Save(this.audioSettings);
+        if (save)
+        {
+            SaveManager.saveManager.Save(this.audioSettings);
+        }
     }
 
     public float GetVolume(AudioType audioType)
