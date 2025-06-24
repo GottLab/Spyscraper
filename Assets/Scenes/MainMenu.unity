@@ -2844,7 +2844,7 @@ MonoBehaviour:
   - {fileID: -3295570096139802388, guid: e7982d3dd1bebce45b2d774b51aa3389, type: 2}
   - {fileID: -8849740178960294283, guid: e7982d3dd1bebce45b2d774b51aa3389, type: 2}
   musicAudioSource: {fileID: 4739837978285390517}
-  defaultMusic: 2
+  defaultMusic: 0
 --- !u!114 &7585545084315203970
 MonoBehaviour:
   m_ObjectHideFlags: 0
