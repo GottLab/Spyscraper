@@ -121,13 +121,11 @@ public class AudioManager : MonoBehaviour, IGameManager
 
         float volumeLinear = Mathf.Clamp01(value);  // value in [0,1]
         float volumeDb = Mathf.Log10(Mathf.Max(volumeLinear, 0.0001f)) * 20f;
-        //float db = Mathf.Log10(value) * 20;
 
         this.audioSettings.audioVolume[audioType] = value;
         this.audioMixer.SetFloat($"{audioType}Volume", volumeDb);
         OnVolumeChange?.Invoke(audioType, value);
         SaveManager.saveManager.Save(this.audioSettings);
-        print($"Set {audioType}Volume to {volumeDb}db given value {value}");
     }
 
     public float GetVolume(AudioType audioType)
