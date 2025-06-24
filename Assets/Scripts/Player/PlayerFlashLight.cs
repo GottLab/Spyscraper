@@ -67,7 +67,7 @@ public class PlayerFlashLight : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && Managers.playerManager.IsState(PlayerManager.PlayerState.NORMAL))
+        if (GameManager.GetKeyDown(KeyCode.Space) && Managers.playerManager.IsState(PlayerManager.PlayerState.NORMAL))
         {
             this.usingFlashlight = !this.usingFlashlight;
             SwitchFlashLight(this.usingFlashlight);

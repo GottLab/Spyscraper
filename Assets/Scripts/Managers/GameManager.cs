@@ -80,6 +80,11 @@ public class GameManager : MonoBehaviour, IGameManager
         OnGameEvent?.Invoke(gameEvent);
     }
 
+    public static bool GetKeyDown(KeyCode keyCode)
+    {
+        return Input.GetKeyDown(keyCode) && !Managers.game.IsGameStopped;
+    }
+
     public float UnscaledDeltaTime
     {
         get => this.isGameStopped ? 0.0f : Time.unscaledDeltaTime;

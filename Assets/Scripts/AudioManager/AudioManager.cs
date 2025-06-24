@@ -73,6 +73,7 @@ public class AudioManager : MonoBehaviour, IGameManager
         {
             SetVolume(audioType, this.audioSettings.audioVolume[audioType], save: false);
         }
+        SaveSettings();
 
         this.transitionMusicSource = Instantiate(this.musicAudioSource);
         this.transitionMusicSource.transform.SetParent(this.musicAudioSource.transform);
@@ -97,23 +98,9 @@ public class AudioManager : MonoBehaviour, IGameManager
         AudioListener.pause = paused;
     }
 
-    void Update()
+    void SaveSettings()
     {
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            PlayMusic(Music.Caught);
-        }
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            PlayMusic(Music.Sneaky);
-        }
-
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            Managers.game.ToggleGameStop();
-        }
-
-        
+        SaveManager.saveManager.Save(this.audioSettings);
     }
 
     public void SetVolume(AudioType audioType, float value, bool save = true)
@@ -127,7 +114,7 @@ public class AudioManager : MonoBehaviour, IGameManager
         OnVolumeChange?.Invoke(audioType, value);
         if (save)
         {
-            SaveManager.saveManager.Save(this.audioSettings);
+            SaveSettings();
         }
     }
 

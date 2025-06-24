@@ -198,6 +198,6 @@ public class TalkManager : MonoBehaviour, IGameManager
 
     private bool IsSkipButtonPressed
     {
-        get => Input.GetKeyDown(KeyCode.Return);
+        get => GameManager.GetKeyDown(KeyCode.Return);
     }
 }

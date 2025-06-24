@@ -32,7 +32,7 @@ public class InteractableItem : MonoBehaviour
 
     void Update()
     {   
-        if (IsInside && Input.GetKeyDown(KeyCode.F) && Managers.playerManager.IsState(PlayerManager.PlayerState.NORMAL))
+        if (IsInside && GameManager.GetKeyDown(KeyCode.F) && Managers.playerManager.IsState(PlayerManager.PlayerState.NORMAL))
         {
             OnInteract?.Invoke();
         }

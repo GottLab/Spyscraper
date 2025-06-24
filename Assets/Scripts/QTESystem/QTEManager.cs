@@ -96,7 +96,7 @@ public class QTEManager : MonoBehaviour
         {
             if (TotalKeyPressed() > 0)
             {
-                success = Input.GetKeyDown(inputKey);
+                success = GameManager.GetKeyDown(inputKey);
                 break;
             }
 
@@ -166,7 +166,7 @@ public class QTEManager : MonoBehaviour
         int total = 0;
         foreach (KeyCode key in possibleQteKeys)
         {
-            bool pressed = Input.GetKeyDown(key);
+            bool pressed = GameManager.GetKeyDown(key);
             if (pressed)
                 total += 1;
         }
