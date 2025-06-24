@@ -52,11 +52,17 @@ public class AudioManager : MonoBehaviour, IGameManager
     private Settings audioSettings = new();
 
     private Queue<AudioSource> audioSources = new();
+    
+    //tells if we are using transitionMusicSource or musicAudioSource for music
+    private bool switched = false;
+
+    //are we transitioning from one musing to another
+    private bool musicTransition;
 
 
     public void Startup()
     {
-        
+
     }
 
     void Start()
@@ -68,9 +74,10 @@ public class AudioManager : MonoBehaviour, IGameManager
             SetVolume(audioType, this.audioSettings.audioVolume[audioType]);
         }
 
-        this.musicAudioSource.ignoreListenerPause = true;
         this.transitionMusicSource = Instantiate(this.musicAudioSource);
         this.transitionMusicSource.transform.SetParent(this.musicAudioSource.transform);
+        this.musicAudioSource.ignoreListenerPause = true;
+        this.transitionMusicSource.ignoreListenerPause = true;
         this.PlayMusic(this.defaultMusic, 1.0f);
     }
 
@@ -131,7 +138,10 @@ public class AudioManager : MonoBehaviour, IGameManager
 
     public void PlayMusic(Music music, float transitionTime = 0.0f)
     {
-        StartCoroutine(LoadAndPlayMusic(music, transitionTime));
+        if (!musicTransition)
+        {
+            StartCoroutine(LoadAndPlayMusic(music, transitionTime));
+        }
     }
 
 
@@ -183,7 +193,6 @@ public class AudioManager : MonoBehaviour, IGameManager
         audioSource.gameObject.SetActive(false);
     }
 
-    private bool switched = false;
     IEnumerator LoadAndPlayMusic(Music music, float transitionTime)
     {
 
@@ -200,6 +209,8 @@ public class AudioManager : MonoBehaviour, IGameManager
             Debug.LogError($"Failed to load Music at path: {musicPath}", this);
             yield break;
         }
+
+        musicTransition = true;
 
         AudioSource from = switched ? this.transitionMusicSource : this.musicAudioSource;
         AudioSource to = switched ? this.musicAudioSource : this.transitionMusicSource;
@@ -222,9 +233,7 @@ public class AudioManager : MonoBehaviour, IGameManager
         to.volume = 1.0f;
         from.volume = 0.0f;
         from.enabled = false;
-        //this.musicAudioSource.volume = 1.0f;
-        //this.musicAudioSource.clip = clip;
-
+        musicTransition = false;
 
     }
 
