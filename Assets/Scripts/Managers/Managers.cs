@@ -1,8 +1,9 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
-[RequireComponent(typeof(PointerManager)), RequireComponent(typeof(TalkManager)),RequireComponent(typeof(PlayerManager)), RequireComponent(typeof(RequireComponent)), RequireComponent(typeof(GameManager)), RequireComponent(typeof(AudioManager))]
+[RequireComponent(typeof(PointerManager)), RequireComponent(typeof(TalkManager)), RequireComponent(typeof(PlayerManager)), RequireComponent(typeof(RequireComponent)), RequireComponent(typeof(GameManager)), RequireComponent(typeof(AudioManager))]
 public class Managers : MonoBehaviour
 {
 
@@ -20,7 +21,7 @@ public class Managers : MonoBehaviour
     public static GameManager game;
 
     private List<IGameManager> _startSequence;
-    
+
     void OnEnable()
     {
 
@@ -46,7 +47,7 @@ public class Managers : MonoBehaviour
         StartCoroutine(StartupManagers());
     }
 
-     private IEnumerator StartupManagers()
+    private IEnumerator StartupManagers()
     {
         foreach (IGameManager manager in _startSequence)
         {
@@ -77,5 +78,11 @@ public class Managers : MonoBehaviour
             yield return null;
         }
         Debug.Log("All managers started up");
+    }
+
+    public static IEnumerator WaitForManagerStatus(IGameManager manager, ManagerStatus managerStatus, Action OnStatus)
+    {
+        yield return new WaitUntil(() => manager.status == managerStatus);
+        OnStatus();
     }
 }

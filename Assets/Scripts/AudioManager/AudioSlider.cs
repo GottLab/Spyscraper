@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Slider))]
-public class AudioSetter : MonoBehaviour
+public class AudioSlider : MonoBehaviour
 {
     [SerializeField]
     private AudioType audioType;
@@ -12,7 +12,12 @@ public class AudioSetter : MonoBehaviour
 
     public void Start()
     {
-        this.slider = GetComponent<Slider>();   
+        this.slider = GetComponent<Slider>();
+
+        StartCoroutine(Managers.WaitForManagerStatus(Managers.audioManager, ManagerStatus.Started, () =>
+        {
+            this.slider.value = Managers.audioManager.GetVolume(this.audioType);
+        }));
     }
 
     public void UpdateAudio(bool save)

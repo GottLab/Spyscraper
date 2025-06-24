@@ -27,7 +27,8 @@ public class AudioManager : MonoBehaviour, IGameManager
     }
 
 
-    public ManagerStatus status => ManagerStatus.Started;
+    private ManagerStatus currentStatus = ManagerStatus.Initializing;
+    public ManagerStatus status => currentStatus;
 
 
     public static event Action<AudioType, Vector3?> OnSoundPlay;
@@ -80,6 +81,8 @@ public class AudioManager : MonoBehaviour, IGameManager
         this.musicAudioSource.ignoreListenerPause = true;
         this.transitionMusicSource.ignoreListenerPause = true;
         this.PlayMusic(this.defaultMusic, 1.0f);
+
+        this.currentStatus = ManagerStatus.Started;
     }
 
     void OnEnable()
