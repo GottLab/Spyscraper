@@ -2,5 +2,6 @@ public enum AudioType
 {
     Master,
     Music,
-    SoundFx
+    Sfx,
+    Ui,
 }

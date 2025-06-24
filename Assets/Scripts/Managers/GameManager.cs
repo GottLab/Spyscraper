@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour, IGameManager
 
 
     public static event Action<GameEvent> OnGameEvent;
-    public static event Action<bool> OnGameStop;
+    public static event Action<bool> OnGamePause;
 
     private bool isGameStopped = false;
     private float prevTimeScale = 1.0f;
@@ -66,7 +66,13 @@ public class GameManager : MonoBehaviour, IGameManager
             isGameStopped = false;
             Time.timeScale = this.prevTimeScale;
         }
-        OnGameStop?.Invoke(stopped);
+        OnGamePause?.Invoke(stopped);
+    }
+
+    public void ToggleGameStop()
+    {
+        this.isGameStopped = !this.isGameStopped;
+        SetGameStopped(this.isGameStopped);
     }
 
     public void PlayEvent(GameEvent gameEvent)

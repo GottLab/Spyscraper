@@ -32,14 +32,14 @@ public class PlayerStateCamera : MonoBehaviour
     {
         PlayerManager.OnStatusChange += OnPlayerStateChange;
         QTEManager.OnQteSequenceStart += OnQteSequenceStart;
-        GameManager.OnGameStop += OnGameStop;
+        GameManager.OnGamePause += OnGameStop;
     }
 
     void OnDisable()
     {
         PlayerManager.OnStatusChange -= OnPlayerStateChange;
         QTEManager.OnQteSequenceStart -= OnQteSequenceStart;
-        GameManager.OnGameStop -= OnGameStop;
+        GameManager.OnGamePause -= OnGameStop;
     }
 
     void OnPlayerStateChange(PlayerManager.PlayerState playerState)
