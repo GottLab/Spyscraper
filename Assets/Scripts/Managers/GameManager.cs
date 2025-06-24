@@ -56,6 +56,14 @@ public class GameManager : MonoBehaviour, IGameManager
         MySceneManager.TransitionAsync(MySceneManager.GetActiveScene().name, "LoadingScene");
     }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ToggleGameStop();
+        }
+    }
+
     public void SetGameStopped(bool stopped)
     {
         if (stopped)
