@@ -7,7 +7,9 @@ using UnityEngine;
 public enum Emotion
 {
     NORMAL,
-    ANGRY
+    ANGRY,
+    HAPPY,
+    SAD
 }
 
 public class DialogueInfo

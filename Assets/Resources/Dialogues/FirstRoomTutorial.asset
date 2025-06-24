@@ -35,7 +35,7 @@ MonoBehaviour:
     gameEvent: 0
   - character: {fileID: 11400000, guid: 77869a3a81cc8944bb5d5446abbbdfe2, type: 2}
     lines:
-    - '|s0.6| WHAT'
+    - '|s0.6| |eANGRY|WHAT'
     gameEvent: 0
   - character: {fileID: 11400000, guid: eee85cfdabefcc64799e31d5d23bd39d, type: 2}
     lines:
