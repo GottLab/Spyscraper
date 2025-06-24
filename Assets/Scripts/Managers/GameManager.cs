@@ -35,7 +35,9 @@ public class GameManager : MonoBehaviour, IGameManager
 
     private bool isGameStopped = false;
     private float prevTimeScale = 1.0f;
-    
+
+    private bool isChangingScene;
+
 
 
     public void Startup()
@@ -45,6 +47,7 @@ public class GameManager : MonoBehaviour, IGameManager
 
     public void TransitionScene(string toScene)
     {
+        this.isChangingScene = true;
         MySceneManager.TransitionAsync(toScene, "LoadingScene");
     }
 
@@ -93,6 +96,11 @@ public class GameManager : MonoBehaviour, IGameManager
     public bool IsGameStopped
     {
         get => this.isGameStopped;
+    }
+
+    public bool IsChangingScene
+    {
+        get => this.isChangingScene;
     }
     
 

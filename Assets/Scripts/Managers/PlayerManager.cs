@@ -78,4 +78,9 @@ public class PlayerManager : MonoBehaviour, IGameManager
     {
         get => this.animator;
     }
+
+    public Transform PlayerTransform
+    {
+        get => this.playerTransform;
+    }
 }

@@ -27,7 +27,7 @@ public class DialogueTextUpdate : MonoBehaviour, IAnimationClipSource
     void Start()
     {
         this.mugShotAnimator = mugShot.GetComponent<Animator>();
-        this.SetVisible(false);
+        FadeCanvas(0.0f, false);
 
     }
 

@@ -67,7 +67,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60bae8578a87e704192d1fa3391e7c1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  retrigger: 1
+  retrigger: 0
   OnPlayerEnter:
     m_PersistentCalls:
       m_Calls:

@@ -91,11 +91,13 @@ namespace Enemy
                 //the amount of turns required to do a 360 degrees rotation
                 int amountOfTurns = (int)(360f / this.patrolData.turnAngle);
 
+                float startAngle = this.stateAI.transform.eulerAngles.y;
+
                 for (int i = 0; i < amountOfTurns; i++)
                 {
-                    float startAngle = this.stateAI.transform.eulerAngles.y;
+                    float targetAngle = startAngle + (1 + i) * this.patrolData.turnAngle;
                     turnDirection = 1;
-                    while (Mathf.DeltaAngle(startAngle, this.stateAI.transform.eulerAngles.y) <= this.patrolData.turnAngle)
+                    while (Mathf.DeltaAngle(targetAngle, this.stateAI.transform.eulerAngles.y) >= 0.1f)
                     {
                         yield return null;
                     }

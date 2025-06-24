@@ -1759,4 +1759,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layerMask:
     serializedVersion: 2
-    m_Bits: 51
+    m_Bits: 1

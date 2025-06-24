@@ -1,6 +1,7 @@
 using System.Collections;
 using Enemy;
 using QTESystem;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(StateEnemyAI))]
@@ -20,16 +21,24 @@ public class TutorialEnemy : MonoBehaviour
         print("PLAYER WON");
     }
 
+    public void Update()
+    {
+        Transform playerTransform = Managers.playerManager.PlayerTransform;
+        playerTransform.position = playerTransform.position;
+    }
+
     IEnumerator HandlePlayerDefeat()
     {
 
         yield return new WaitUntil(() => Managers.playerManager.IsState(PlayerManager.PlayerState.DIED));
         yield return new WaitForSeconds(2.0f);
 
-        Transform playerTransform = Managers.playerManager.transform;
-        //teleport player
-        playerTransform.position = new Vector3(this.spawnpoint.position.x, playerTransform.position.y, this.spawnpoint.position.z);
+        Transform playerTransform = Managers.playerManager.PlayerTransform;
 
         Managers.playerManager.SetStatus(PlayerManager.PlayerState.NORMAL);
+
+        //teleport player
+        playerTransform.position = new Vector3(this.spawnpoint.position.x, spawnpoint.position.y, this.spawnpoint.position.z);
+
     }
 }

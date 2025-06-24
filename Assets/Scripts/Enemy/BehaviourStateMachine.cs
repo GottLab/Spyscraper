@@ -10,13 +10,12 @@ namespace Enemy
         public IBehaviourState CurrentState
         {
             get => currentState;
-        } 
-        
+        }
+
         public void SetState(IBehaviourState state)
-        {   
+        {
             currentState?.End();
             currentState = state;
-            
             currentState.Start();
         }
 

@@ -161,6 +161,11 @@ public class AudioManager : MonoBehaviour, IGameManager
             audioSource.loop = false;
             audioSource.gameObject.hideFlags = HideFlags.HideInHierarchy;
         }
+        if (audioSource.IsDestroyed())
+        {
+            Debug.LogWarning("AudioSource Is destroyed", this);
+            return;
+        }
         audioSource.ignoreListenerPause = audioType == AudioType.Ui;
         audioSource.gameObject.SetActive(true);
         audioSource.outputAudioMixerGroup = GetAudioMixer(audioType);

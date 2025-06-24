@@ -32,7 +32,7 @@ public class InteractionPrompt : MonoBehaviour
 
     void Update()
     {
-        if (IsShowing)
+        if (IsShowing && followCamera)
         {
             this.transform.rotation = Quaternion.LookRotation(this.canvas.worldCamera.transform.position - this.transform.position);
         }

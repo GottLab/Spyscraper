@@ -20,8 +20,8 @@ public class AudioSlider : MonoBehaviour
         }));
     }
 
-    public void UpdateAudio(bool save)
+    public void UpdateAudio(bool saveToFile)
     {
-        Managers.audioManager.SetVolume(audioType, this.slider.value, save);
+        Managers.audioManager.SetVolume(audioType, this.slider.value, saveToFile);
     }
 }
