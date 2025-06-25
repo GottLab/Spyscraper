@@ -50,12 +50,12 @@ public class Flashlight : MonoBehaviour
         //set the emissive material to on or off
         if (on)
         {
-            Managers.audioManager.PlayClipAtPoint(this.turnOnAudio, this.transform.position, 0.5f, AudioType.Sfx);
+            Managers.audioManager.PlayClipAtPoint(this.turnOnAudio, this.transform.position, volume: 0.5f, audioType: AudioType.Sfx);
             this.FlashlightBulbMaterial.EnableKeyword("_EMISSION");
         }
         else
         {
-            Managers.audioManager.PlayClipAtPoint(this.turnOffAudio, this.transform.position, 0.5f, AudioType.Sfx);
+            Managers.audioManager.PlayClipAtPoint(this.turnOffAudio, this.transform.position, volume: 0.5f, audioType: AudioType.Sfx);
             this.FlashlightBulbMaterial.DisableKeyword("_EMISSION");
         }
     }

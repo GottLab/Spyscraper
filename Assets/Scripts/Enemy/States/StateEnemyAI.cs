@@ -154,12 +154,14 @@ namespace Enemy
 
         private void OnDrawGizmosSelected()
         {
+            if (patrolData.patrolPoints == null)
+                return;
             
             foreach (var patrolPoint in patrolData.patrolPoints)
             {
                 Gizmos.color = Color.white;
                 Gizmos.DrawSphere(patrolPoint.position, 0.4f);
-                
+
                 Gizmos.color = Color.red;
                 if (patrolPoint.rotationType == PatrolPoint.RotationType.FIXED)
                     Gizmos.DrawLine(patrolPoint.position, patrolPoint.position + Quaternion.AngleAxis(patrolPoint.fixedAngle, Vector3.up) * Vector3.forward);

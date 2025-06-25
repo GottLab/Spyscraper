@@ -527,6 +527,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: cc573509973499e4e813ac9f2e6e3782, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4964078622249796762}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: cc573509973499e4e813ac9f2e6e3782, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1734674986907346771}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: cc573509973499e4e813ac9f2e6e3782, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7754092776133770003}
   m_SourcePrefab: {fileID: 100100000, guid: cc573509973499e4e813ac9f2e6e3782, type: 3}
 --- !u!137 &2580513040405499241 stripped
 SkinnedMeshRenderer:
@@ -657,13 +663,8 @@ MonoBehaviour:
   qteSequence: {fileID: 11400000, guid: ffe0136476884ec428fe69619579198e, type: 2}
   defaultSpeed: 2
   patrolData:
-    patrolTargets:
-    - {x: -3.69, y: 1, z: 16.52}
-    - {x: -21.68, y: 1, z: 26}
-    - {x: -25.2, y: 1, z: 34}
+    patrolPoints: []
     patrolType: 2
-    turnAngle: 0
-    turnWaitTime: 0
   attackData:
     color: {r: 1, g: 0, b: 0, a: 0}
     speed: 4
@@ -710,3 +711,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27dedcb25df76b04090202e77765a99a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1734674986907346771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8938744053290452793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ab4a3feb6963d8408fcce20c2cc6196, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioPlayer: {fileID: 7754092776133770003}
+--- !u!114 &7754092776133770003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8938744053290452793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1898dab8a3378ef4dabc5e744830d968, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioType: 2
+  volume: 1
+  pitch: 0.7
+  sourceTransform: {fileID: 8594870265206480259}
+  audioClips:
+  - {fileID: 8300000, guid: 184cf76db2c2df44c916f3be4a2ca8fa, type: 3}
+  - {fileID: 8300000, guid: 2d495d1211c53fd44a22334bcb842bd3, type: 3}
+  - {fileID: 8300000, guid: 7a7d5f387e71be24ca05670f1fea1594, type: 3}
+  - {fileID: 8300000, guid: db587bc619def6944a88ad5598afe7f8, type: 3}
+  - {fileID: 8300000, guid: 286f4a4ac0153f4478792373fe1e82f6, type: 3}
+  - {fileID: 8300000, guid: bb72314edf3d4f2439781780764acb53, type: 3}

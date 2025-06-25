@@ -136,12 +136,12 @@ public class AudioManager : MonoBehaviour, IGameManager
     }
 
 
-    public void Play2DSound(AudioClip audioClip, float volume = 1.0f, AudioType audioType = AudioType.Master)
+    public void Play2DSound(AudioClip audioClip, float volume = 1.0f, float pitch = 1.0f, AudioType audioType = AudioType.Master)
     {
-        PlayClipAtPoint(audioClip, null, volume, audioType);
+        PlayClipAtPoint(audioClip, null, volume: volume, pitch: pitch, audioType: audioType);
     }
 
-    public void PlayClipAtPoint(AudioClip audioClip, Vector3? position = null, float volume = 1.0f, AudioType audioType = AudioType.Master)
+    public void PlayClipAtPoint(AudioClip audioClip, Vector3? position = null, float volume = 1.0f, float pitch = 1.0f, AudioType audioType = AudioType.Master)
     {
         if (audioClip == null)
         {
@@ -173,6 +173,7 @@ public class AudioManager : MonoBehaviour, IGameManager
         audioSource.spatialBlend = isSpatial ? 1.0f : 0.0f;
         audioSource.clip = audioClip;
         audioSource.volume = volume;
+        audioSource.pitch = pitch;
         audioSource.transform.position = isSpatial ? position.Value : Vector3.zero;
 
         OnSoundPlay?.Invoke(audioType, position);
