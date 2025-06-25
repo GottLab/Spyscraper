@@ -559,7 +559,7 @@ Canvas:
   m_GameObject: {fileID: 3196913987437264843}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -1005,7 +1005,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lookLayerMask:
     serializedVersion: 2
-    m_Bits: 51
+    m_Bits: 179
   targetTransform: {fileID: 130015738759279528}
 --- !u!114 &2992036570525972999
 MonoBehaviour:
@@ -1085,6 +1085,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f38c8875345e08b48a080aafd697b520, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanPauseGame: 1
 --- !u!114 &7585545082999924913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1184,7 +1185,7 @@ Canvas:
   m_GameObject: {fileID: 6054367299137160089}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -1350,7 +1351,7 @@ Canvas:
   m_GameObject: {fileID: 7278536274438456374}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0

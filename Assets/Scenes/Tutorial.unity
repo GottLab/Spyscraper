@@ -6792,7 +6792,19 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 976321489}
     - target: {fileID: 4660771674839735731, guid: 713f5a54436635e4abb98f6abf6a2ab5, type: 3}
+      propertyPath: m_RenderMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4660771674839735731, guid: 713f5a54436635e4abb98f6abf6a2ab5, type: 3}
       propertyPath: m_PlaneDistance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4660771674839735731, guid: 713f5a54436635e4abb98f6abf6a2ab5, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -36286153
+      objectReference: {fileID: 0}
+    - target: {fileID: 4660771674839735731, guid: 713f5a54436635e4abb98f6abf6a2ab5, type: 3}
+      propertyPath: m_VertexColorAlwaysGammaSpace
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5815145314340316656, guid: 713f5a54436635e4abb98f6abf6a2ab5, type: 3}
@@ -6804,12 +6816,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 976321489}
     - target: {fileID: 5918047361387650960, guid: 713f5a54436635e4abb98f6abf6a2ab5, type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5918047361387650960, guid: 713f5a54436635e4abb98f6abf6a2ab5, type: 3}
       propertyPath: m_SortingOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5918047361387650960, guid: 713f5a54436635e4abb98f6abf6a2ab5, type: 3}
       propertyPath: m_PlaneDistance
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5918047361387650960, guid: 713f5a54436635e4abb98f6abf6a2ab5, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -36286153
       objectReference: {fileID: 0}
     - target: {fileID: 5918047361387650960, guid: 713f5a54436635e4abb98f6abf6a2ab5, type: 3}
       propertyPath: m_VertexColorAlwaysGammaSpace
@@ -6819,6 +6839,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 976321489}
+    - target: {fileID: 6112765545761023464, guid: 713f5a54436635e4abb98f6abf6a2ab5, type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6112765545761023464, guid: 713f5a54436635e4abb98f6abf6a2ab5, type: 3}
       propertyPath: m_PlaneDistance
       value: 1
