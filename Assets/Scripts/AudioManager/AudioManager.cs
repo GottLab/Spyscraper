@@ -183,7 +183,7 @@ public class AudioManager : MonoBehaviour, IGameManager
 
     IEnumerator PlayAudioSource(AudioSource audioSource)
     {
-        if (audioSource.IsDestroyed())
+        if (audioSource.gameObject.IsDestroyed())
         {
             yield break;
         }
