@@ -63,8 +63,15 @@ public class EnemyAnimation : MonoBehaviour
         this.animator.SetTrigger(HurtProperty);
     }
 
-    public void SetTurn(int turn)
+    public void SetTurn(int turn, float speed = 0.1f)
     {
-        this.animator.SetFloat(TurnProperty, turn, 0.1f, Time.deltaTime);
+        if (speed == -1.0f)
+        {
+            this.animator.SetFloat(TurnProperty, turn);
+        }
+        else
+        {
+            this.animator.SetFloat(TurnProperty, turn, speed, Time.deltaTime);
+        }
     }
 }

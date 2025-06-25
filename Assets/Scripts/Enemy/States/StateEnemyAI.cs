@@ -21,8 +21,8 @@ namespace Enemy
         public float defaultSpeed = 2.0f;
 
         [SerializeField]
-        private PatrolStateEnemy.PatrolData patrolData;
-        public PatrolStateEnemy.PatrolData PatrolData => patrolData;
+        private PatrolData patrolData;
+        public PatrolData PatrolData => patrolData;
 
 
         [SerializeField]
@@ -152,13 +152,20 @@ namespace Enemy
             }
         }
 
-        private void OnDrawGizmos()
+        private void OnDrawGizmosSelected()
         {
-            foreach (var patrolTarget in patrolData.patrolTargets)
+            
+            foreach (var patrolPoint in patrolData.patrolPoints)
             {
-                Gizmos.DrawSphere(patrolTarget, 1f);
+                Gizmos.color = Color.white;
+                Gizmos.DrawSphere(patrolPoint.position, 0.4f);
+                
+                Gizmos.color = Color.red;
+                if (patrolPoint.rotationType == PatrolPoint.RotationType.FIXED)
+                    Gizmos.DrawLine(patrolPoint.position, patrolPoint.position + Quaternion.AngleAxis(patrolPoint.fixedAngle, Vector3.up) * Vector3.forward);
             }
         }
+        
 
 
         public void OnTriggerEnter(Collider collider)

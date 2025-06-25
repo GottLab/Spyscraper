@@ -15,7 +15,7 @@ MonoBehaviour:
   dialogueLines:
   - character: {fileID: 11400000, guid: eee85cfdabefcc64799e31d5d23bd39d, type: 2}
     lines:
-    - There is a enemy ahead of you, it seems too strong to defeat it.
+    - Seems like that enemy blocks your way
     - You must avoid it, sneak around him without entering is field of view
     - Otherwise his suspition will increase, and when it is maximum it will |s5.0|
       FOLLOW |s1.0| you
@@ -23,5 +23,5 @@ MonoBehaviour:
     gameEvent: 0
   - character: {fileID: 11400000, guid: 77869a3a81cc8944bb5d5446abbbdfe2, type: 2}
     lines:
-    - Got it
+    - b
     gameEvent: 0

@@ -15,11 +15,11 @@ MonoBehaviour:
   dialogueLines:
   - character: {fileID: 11400000, guid: eee85cfdabefcc64799e31d5d23bd39d, type: 2}
     lines:
-    - Copy, Can you hear me?
+    - Seems like that enemy blocks your way
     gameEvent: 0
   - character: {fileID: 11400000, guid: 77869a3a81cc8944bb5d5446abbbdfe2, type: 2}
     lines:
-    - Yes, pretty clearly.
+    - b
     gameEvent: 0
   - character: {fileID: 11400000, guid: eee85cfdabefcc64799e31d5d23bd39d, type: 2}
     lines:
