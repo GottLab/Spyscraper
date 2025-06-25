@@ -174,6 +174,7 @@ public class AudioManager : MonoBehaviour, IGameManager
         audioSource.clip = audioClip;
         audioSource.volume = volume;
         audioSource.pitch = pitch;
+        audioSource.playOnAwake = true;
         audioSource.transform.position = isSpatial ? position.Value : Vector3.zero;
 
         OnSoundPlay?.Invoke(audioType, position);
@@ -184,12 +185,13 @@ public class AudioManager : MonoBehaviour, IGameManager
 
     IEnumerator PlayAudioSource(AudioSource audioSource)
     {
+        audioSource.Play();
         if (audioSource.gameObject.IsDestroyed())
         {
             yield break;
         }
 
-        audioSource.Play();
+        //audioSource.Play();
         yield return new WaitForSeconds(audioSource.clip.length);
         audioSources.Enqueue(audioSource);
         audioSource.gameObject.SetActive(false);
