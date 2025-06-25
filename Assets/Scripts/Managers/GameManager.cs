@@ -29,16 +29,16 @@ public class GameManager : MonoBehaviour, IGameManager
 
     public ManagerStatus status => ManagerStatus.Started;
 
-
     public static event Action<GameEvent> OnGameEvent;
     public static event Action<bool> OnGamePause;
+
+    [SerializeField, Tooltip("If player can pause this scene using Escape")]
+    private bool CanPauseGame = true;
 
     private bool isGameStopped = false;
     private float prevTimeScale = 1.0f;
 
     private bool isChangingScene;
-
-
 
     public void Startup()
     {
@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour, IGameManager
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (CanPauseGame && Input.GetKeyDown(KeyCode.Escape))
         {
             ToggleGameStop();
         }

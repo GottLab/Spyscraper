@@ -8,8 +8,26 @@ public class MenuController : MonoBehaviour
     public Transform menuLookPoint;
     public float transitionDuration = 1f;
 
+    private bool isHowToPlay = false;
+    
     private Coroutine transitionRoutine;
-
+    
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (isHowToPlay)
+            {
+                BackToMenu();
+            }
+            else
+            {
+                // TODO: IMPLEMENT PROMPT OR REMOVE THIS
+                // QuitGame();
+            }
+        }
+    }
+    
     public void PlayGame()
     {
         Managers.game.TransitionScene("Tutorial");
@@ -24,12 +42,14 @@ public class MenuController : MonoBehaviour
     {
         Debug.Log("How to Play button clicked!");
         MoveCameraTo(howToPlayLookPoint);
+        isHowToPlay = true;
     }
     
     public void BackToMenu()
     {
         Debug.Log("Back to Menu button clicked!");
         MoveCameraTo(menuLookPoint);
+        isHowToPlay = false;
     }
 
     private void MoveCameraTo(Transform target)
@@ -67,7 +87,7 @@ public class MenuController : MonoBehaviour
         #if UNITY_EDITOR
                 UnityEditor.EditorApplication.isPlaying = false;
         #else
-                    Application.Quit();
+                Application.Quit();
         #endif
         }
     }
