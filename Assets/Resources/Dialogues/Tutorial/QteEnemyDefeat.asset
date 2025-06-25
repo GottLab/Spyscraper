@@ -16,5 +16,5 @@ MonoBehaviour:
   - character: {fileID: 11400000, guid: eee85cfdabefcc64799e31d5d23bd39d, type: 2}
     lines:
     - '|eHAPPY| Great job Spy, remember it will not be that easy.'
-    - Fightning should be your last option.
+    - '|eNORMAL| Fightning should be your last option.'
     gameEvent: 0

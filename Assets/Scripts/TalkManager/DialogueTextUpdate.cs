@@ -37,6 +37,7 @@ public class DialogueTextUpdate : MonoBehaviour, IAnimationClipSource
         TalkManager.OnCharacterDialogueStart += StartCharacterDialogue;
         TalkManager.OnDialogueStart += StartDialogue;
         TalkManager.OnDialogueFade += FadeCanvas;
+        TalkManager.OnDialogueEnd += OnDialogueEnd;
     }
 
     void OnDisable()
@@ -45,6 +46,7 @@ public class DialogueTextUpdate : MonoBehaviour, IAnimationClipSource
         TalkManager.OnCharacterDialogueStart -= StartCharacterDialogue;
         TalkManager.OnDialogueStart -= StartDialogue;
         TalkManager.OnDialogueFade -= FadeCanvas;
+        TalkManager.OnDialogueEnd -= OnDialogueEnd;
     }
 
     private void DialogueType(CharacterDialogue dialogueLine, DialogueInfo info, char character)
@@ -57,10 +59,12 @@ public class DialogueTextUpdate : MonoBehaviour, IAnimationClipSource
     {
         dialogueTitleText.text = characterDialogue.character.name;
         dialogueText.text = "";
-        this.mugShotAnimator.runtimeAnimatorController = characterDialogue.character.controller;
-        this.UpdateEmotion(Emotion.NORMAL);
-        //this is used for forcing the current emotion animation without transitions.
-        this.mugShotAnimator.Play("BASE.NORMAL", 0, 0f);
+
+        if (this.mugShotAnimator.runtimeAnimatorController != characterDialogue.character.controller)
+        {
+            this.mugShotAnimator.runtimeAnimatorController = characterDialogue.character.controller;
+           
+        }
 
     }
 
@@ -73,6 +77,12 @@ public class DialogueTextUpdate : MonoBehaviour, IAnimationClipSource
         {
             StartCharacterDialogue(characterDialogue.Value);
         }
+    }
+
+
+    private void OnDialogueEnd()
+    {
+        this.mugShotAnimator.runtimeAnimatorController = null;
     }
 
     private void FadeCanvas(float fade, bool fadeIn)

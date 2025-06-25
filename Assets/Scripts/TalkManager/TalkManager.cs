@@ -27,6 +27,8 @@ public class TalkManager : MonoBehaviour, IGameManager
     public delegate void CharacterType(CharacterDialogue dialogueLine, DialogueInfo info, char character);
     public static CharacterType OnCharacterType;
 
+    public static event Action OnDialogueEnd;
+
     private Action<GameEvent> currentGameEventToWait;
 
     private IEnumerator FadeTextBox(bool fadeIn)
@@ -165,6 +167,7 @@ public class TalkManager : MonoBehaviour, IGameManager
 
         OnDialogueEnd?.Invoke();
         yield return StartCoroutine(FadeTextBox(false));
+        TalkManager.OnDialogueEnd?.Invoke();
     }
 
     public float EstimateReadingTime(string text)
