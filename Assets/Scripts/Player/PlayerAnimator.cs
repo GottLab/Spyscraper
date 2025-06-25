@@ -14,6 +14,9 @@ public class PlayerAnimator : MonoBehaviour, IQtePlayer
 
     private bool didPunchHit = false;
 
+    [SerializeField]
+    private AudioPlayer punchSound;
+
     void Start()
     {
         this.animator = GetComponent<Animator>();
@@ -61,6 +64,7 @@ public class PlayerAnimator : MonoBehaviour, IQtePlayer
     public void OnPunchHit()
     {
         didPunchHit = true;
+        punchSound?.PlayAudio();
     }
 
     public void QteStart(IQtePlayer enemy)

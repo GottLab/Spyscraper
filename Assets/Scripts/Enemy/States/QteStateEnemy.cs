@@ -27,6 +27,7 @@ namespace Enemy
 
         public void End()
         {
+            AttackStateEnemy.IncreaseAgroedCount(-1);
         }
 
         public void QteSuccess()

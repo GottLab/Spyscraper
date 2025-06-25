@@ -1110,10 +1110,13 @@ PrefabInstance:
       addedObject: {fileID: 6633033286769747877}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 999237f3696bd91479266aa993dc08a5, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 4732100742002647156}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 999237f3696bd91479266aa993dc08a5, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 4275965096843202217}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 999237f3696bd91479266aa993dc08a5, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4732100742002647156}
+      addedObject: {fileID: 9203340542310628276}
     - targetCorrespondingSourceObject: {fileID: 8684902060709162855, guid: 999237f3696bd91479266aa993dc08a5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8284584840643354615}
@@ -1522,6 +1525,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25379aa5b3275bf4d9158934b1df7ef9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  punchSound: {fileID: 9203340542310628276}
 --- !u!114 &6633033286769747877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1535,28 +1539,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioPlayer: {fileID: 4275965096843202217}
---- !u!114 &4275965096843202217
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6539437597985097752}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1898dab8a3378ef4dabc5e744830d968, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioType: 2
-  volume: 0.2
-  sourceTransform: {fileID: 0}
-  audioClips:
-  - {fileID: 8300000, guid: 184cf76db2c2df44c916f3be4a2ca8fa, type: 3}
-  - {fileID: 8300000, guid: 2d495d1211c53fd44a22334bcb842bd3, type: 3}
-  - {fileID: 8300000, guid: 7a7d5f387e71be24ca05670f1fea1594, type: 3}
-  - {fileID: 8300000, guid: db587bc619def6944a88ad5598afe7f8, type: 3}
-  - {fileID: 8300000, guid: 286f4a4ac0153f4478792373fe1e82f6, type: 3}
-  - {fileID: 8300000, guid: bb72314edf3d4f2439781780764acb53, type: 3}
 --- !u!114 &4732100742002647156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1576,6 +1558,50 @@ MonoBehaviour:
   - {fileID: 5053969821368914035}
   - {fileID: 8168009257577288494}
   boundsFromCollider: {fileID: 9206251752061054214}
+--- !u!114 &4275965096843202217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6539437597985097752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1898dab8a3378ef4dabc5e744830d968, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioType: 2
+  volume: 0.2
+  pitch: 1
+  sourceTransform: {fileID: 0}
+  audioClips:
+  - {fileID: 8300000, guid: 184cf76db2c2df44c916f3be4a2ca8fa, type: 3}
+  - {fileID: 8300000, guid: 2d495d1211c53fd44a22334bcb842bd3, type: 3}
+  - {fileID: 8300000, guid: 7a7d5f387e71be24ca05670f1fea1594, type: 3}
+  - {fileID: 8300000, guid: db587bc619def6944a88ad5598afe7f8, type: 3}
+  - {fileID: 8300000, guid: 286f4a4ac0153f4478792373fe1e82f6, type: 3}
+  - {fileID: 8300000, guid: bb72314edf3d4f2439781780764acb53, type: 3}
+--- !u!114 &9203340542310628276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6539437597985097752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1898dab8a3378ef4dabc5e744830d968, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioType: 2
+  volume: 1
+  pitch: 0.5
+  sourceTransform: {fileID: 0}
+  audioClips:
+  - {fileID: 8300000, guid: 856d159d77b0af048a18ed5ed906e15f, type: 3}
+  - {fileID: 8300000, guid: ee6916b32d293fb45927fa651c0a5e65, type: 3}
+  - {fileID: 8300000, guid: 3d143470e3056f945bb63a51ed596648, type: 3}
+  - {fileID: 8300000, guid: b67811bc74ce4a24bb14469265283bf2, type: 3}
 --- !u!4 &7089634807956672660 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3774763345726531037, guid: 999237f3696bd91479266aa993dc08a5, type: 3}
@@ -1759,4 +1785,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 513

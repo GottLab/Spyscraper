@@ -10,7 +10,7 @@ public class ConeVision : MonoBehaviour
 
     private Light visionLight;
 
-    public void Start()
+    public void Awake()
     {
         visionLight = this.GetComponent<Light>();
     }

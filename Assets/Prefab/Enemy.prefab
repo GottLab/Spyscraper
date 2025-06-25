@@ -533,6 +533,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: cc573509973499e4e813ac9f2e6e3782, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7754092776133770003}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: cc573509973499e4e813ac9f2e6e3782, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6034390624698519407}
   m_SourcePrefab: {fileID: 100100000, guid: cc573509973499e4e813ac9f2e6e3782, type: 3}
 --- !u!137 &2580513040405499241 stripped
 SkinnedMeshRenderer:
@@ -711,6 +714,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27dedcb25df76b04090202e77765a99a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  punchHit: {fileID: 6034390624698519407}
 --- !u!114 &1734674986907346771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -747,3 +751,21 @@ MonoBehaviour:
   - {fileID: 8300000, guid: db587bc619def6944a88ad5598afe7f8, type: 3}
   - {fileID: 8300000, guid: 286f4a4ac0153f4478792373fe1e82f6, type: 3}
   - {fileID: 8300000, guid: bb72314edf3d4f2439781780764acb53, type: 3}
+--- !u!114 &6034390624698519407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8938744053290452793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1898dab8a3378ef4dabc5e744830d968, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioType: 2
+  volume: 1
+  pitch: 1
+  sourceTransform: {fileID: 0}
+  audioClips:
+  - {fileID: 8300000, guid: a350c54ea246d734f8945748b897cb07, type: 3}

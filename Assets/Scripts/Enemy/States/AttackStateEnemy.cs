@@ -15,6 +15,9 @@ public class AttackStateEnemy : IBehaviourState
         public float speed;
     }
 
+
+    public static int totalAgroedEnemies = 0;
+
     private readonly StateEnemyAI stateEnemyAI;
     private readonly Transform target;
 
@@ -23,6 +26,7 @@ public class AttackStateEnemy : IBehaviourState
     {
         this.stateEnemyAI = stateEnemyAI;
         this.target = target;
+        IncreaseAgroedCount(1);
     }
 
     public void Start()
@@ -36,9 +40,10 @@ public class AttackStateEnemy : IBehaviourState
         this.stateEnemyAI.NavMeshAgent.destination = this.target.position;
         if (this.stateEnemyAI.SuspitionLevel == 0.0f)
         {
+            IncreaseAgroedCount(-1);
             this.stateEnemyAI.StateMachine.SetState(new PatrolStateEnemy(this.stateEnemyAI));
         }
-        
+
     }
 
     public void End()
@@ -46,5 +51,15 @@ public class AttackStateEnemy : IBehaviourState
         this.stateEnemyAI.NavMeshAgent.speed = this.stateEnemyAI.defaultSpeed;
         this.stateEnemyAI.UpdateVisionColor(this.stateEnemyAI.defaultMaskColor);
         this.stateEnemyAI.NavMeshAgent.ResetPath();
+    }
+
+    public static void IncreaseAgroedCount(int amount)
+    {
+        totalAgroedEnemies += amount;
+        totalAgroedEnemies = Math.Max(0, totalAgroedEnemies);
+
+        bool beingAttacked = totalAgroedEnemies > 0;
+
+        Managers.audioManager.PlayMusic(beingAttacked ? Music.Caught : Music.Sneaky, 1.0f);
     }
 }

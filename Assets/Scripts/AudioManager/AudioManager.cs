@@ -60,6 +60,8 @@ public class AudioManager : MonoBehaviour, IGameManager
     //are we transitioning from one musing to another
     private bool musicTransition;
 
+    private Music currentMusic = Music.None;
+
 
     public void Startup()
     {
@@ -129,8 +131,10 @@ public class AudioManager : MonoBehaviour, IGameManager
 
     public void PlayMusic(Music music, float transitionTime = 0.0f)
     {
-        if (!musicTransition)
+        if (!musicTransition && this.currentMusic != music)
         {
+            
+            Debug.Log("Play music" + music);
             StartCoroutine(LoadAndPlayMusic(music, transitionTime));
         }
     }
@@ -199,21 +203,24 @@ public class AudioManager : MonoBehaviour, IGameManager
 
     IEnumerator LoadAndPlayMusic(Music music, float transitionTime)
     {
-
-        string musicPath = $"Music/{music}";
-
-        ResourceRequest request = Resources.LoadAsync<AudioClip>(musicPath);
-
-        yield return request;
-
-        AudioClip clip = request.asset as AudioClip;
-
-        if (clip == null)
+        AudioClip musicClip = null;
+        if (music != Music.None)
         {
-            Debug.LogError($"Failed to load Music at path: {musicPath}", this);
-            yield break;
-        }
+            string musicPath = $"Music/{music}";
 
+            ResourceRequest request = Resources.LoadAsync<AudioClip>(musicPath);
+
+            yield return request;
+
+            musicClip = request.asset as AudioClip;
+
+            if (musicClip == null)
+            {
+                Debug.LogError($"Failed to load Music at path: {musicPath}", this);
+                yield break;
+            }
+        }
+        currentMusic = music;
         musicTransition = true;
 
         AudioSource from = switched ? this.transitionMusicSource : this.musicAudioSource;
@@ -221,7 +228,7 @@ public class AudioManager : MonoBehaviour, IGameManager
         switched = !switched;
 
         to.enabled = true;
-        to.clip = clip;
+        to.clip = musicClip;
         to.Play();
 
         float elapsed = 0.0f;

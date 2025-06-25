@@ -11,16 +11,16 @@ public class EnemyAnimation : MonoBehaviour
     private StateEnemyAI stateEnemyAI;
     private Light agentLight;
 
-
     //ANIMATOR PROPERTIES    
     private static readonly int SpeedProperty = Animator.StringToHash("Speed");
     private static readonly int AttackProperty = Animator.StringToHash("Attack");
     private static readonly int DeathProperty =  Animator.StringToHash("Death");
     private static readonly int HurtProperty = Animator.StringToHash("Hurt");
     private static readonly int TurnProperty = Animator.StringToHash("Turn");
-
-
     private bool hitPunch = false;
+
+    [SerializeField]
+    private AudioPlayer punchHit;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -48,6 +48,7 @@ public class EnemyAnimation : MonoBehaviour
     public void OnPunchHit()
     {
         hitPunch = true;
+        punchHit?.PlayAudio();
     }
 
     public void StartDeath()
