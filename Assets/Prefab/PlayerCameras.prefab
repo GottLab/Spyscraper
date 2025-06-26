@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 8819918755896764074}
   - component: {fileID: 6159021123894379310}
   - component: {fileID: 4816875024760547799}
+  - component: {fileID: 5277634355795292702}
+  - component: {fileID: 1585727700243782420}
   m_Layer: 0
   m_Name: ThirdAngle
   m_TagString: Untagged
@@ -107,6 +109,69 @@ MonoBehaviour:
     Time: 0
     Smoothing: 0
     IgnoreY: 0
+--- !u!114 &5277634355795292702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 547023892372627418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c657da9fbf87ac4caa9deae71bbb343, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EventTarget: {fileID: 0}
+  CameraActivatedEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1585727700243782420}
+        m_TargetAssemblyTypeName: DialogueHandler, Assembly-CSharp
+        m_MethodName: StartDialogue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  CameraDeactivatedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  BlendCreatedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  BlendFinishedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1585727700243782420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 547023892372627418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8096b59c126f1c5488fc1090c687927b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  random: 1
+  dialogueInstances:
+  - dialogue: {fileID: 11400000, guid: f67630566e5b2c843b1ec66302bfc210, type: 2}
+    OnDialogueEnd:
+      m_PersistentCalls:
+        m_Calls: []
+  - dialogue: {fileID: 11400000, guid: 73be91cbfe94dcd49b9ed6e572503c24, type: 2}
+    OnDialogueEnd:
+      m_PersistentCalls:
+        m_Calls: []
+  - dialogue: {fileID: 11400000, guid: 963ade815789d134b8582beaed74c320, type: 2}
+    OnDialogueEnd:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &792873683023025686
 GameObject:
   m_ObjectHideFlags: 0

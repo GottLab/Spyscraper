@@ -53,12 +53,12 @@ public class GameManager : MonoBehaviour, IGameManager
 
     public void ReloadScene()
     {
-        MySceneManager.TransitionAsync(MySceneManager.GetActiveScene().name, "LoadingScene");
+        TransitionScene(MySceneManager.GetActiveScene().name);
     }
 
     void Update()
     {
-        if (CanPauseGame && Input.GetKeyDown(KeyCode.Escape))
+        if (CanPauseGame && Input.GetKeyDown(KeyCode.Escape) && !this.isChangingScene)
         {
             ToggleGameStop();
         }

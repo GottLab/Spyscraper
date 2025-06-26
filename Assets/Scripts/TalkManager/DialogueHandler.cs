@@ -12,6 +12,10 @@ public class DialogueHandler : MonoBehaviour
         public UnityEvent OnDialogueEnd;
     }
 
+    
+    [SerializeField, Tooltip("Play one random dialogue from the list instead of being sequential")]
+    private bool random;
+
     [SerializeField]
     private DialogueInstance[] dialogueInstances;
 
@@ -19,13 +23,16 @@ public class DialogueHandler : MonoBehaviour
 
     public void StartDialogue()
     {
-        currentDialogueIndex = -1;
+        currentDialogueIndex = random ? UnityEngine.Random.Range(0, this.dialogueInstances.Length) : -1;
         NextDialogue();
     }
 
     private void NextDialogue()
     {
-        this.currentDialogueIndex++;
+        if (!random)
+        {
+            this.currentDialogueIndex++;
+        }
 
         if (this.currentDialogueIndex >= this.dialogueInstances.Length)
         {
@@ -36,7 +43,10 @@ public class DialogueHandler : MonoBehaviour
 
         Managers.Talk.StartDialogue(dialogueInstance.dialogue, () =>
         {
-            NextDialogue();
+            if (!random)
+            {
+                NextDialogue();
+            }
             dialogueInstance.OnDialogueEnd?.Invoke();
         });
     }
