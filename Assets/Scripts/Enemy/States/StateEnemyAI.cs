@@ -138,8 +138,6 @@ namespace Enemy
 
             if (color.HasValue)
             {
-                Debug.Log(this.enemyVision);
-                Debug.Log(this.enemyVision.VisionLight);
                 this.enemyVision.VisionLight.color = color.Value;
                 //enable lens emission
                 lensMaterial.EnableKeyword("_EMISSION");

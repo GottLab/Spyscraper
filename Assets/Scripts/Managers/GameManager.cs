@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour, IGameManager
             isGameStopped = false;
             Time.timeScale = this.prevTimeScale;
         }
-        OnGamePause?.Invoke(stopped);
+        OnGamePause?.Invoke(isGameStopped);
     }
 
     public void ToggleGameStop()

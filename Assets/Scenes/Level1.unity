@@ -22351,6 +22351,46 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2166446600345617610, guid: 27d5c1b3b1af7eb4b90886b778e1636c, type: 3}
+      propertyPath: sigma
+      value: 1.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 2166446600345617610, guid: 27d5c1b3b1af7eb4b90886b778e1636c, type: 3}
+      propertyPath: blurSize
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2166446600345617610, guid: 27d5c1b3b1af7eb4b90886b778e1636c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2166446600345617610, guid: 27d5c1b3b1af7eb4b90886b778e1636c, type: 3}
+      propertyPath: blurPasses
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2166446600345617610, guid: 27d5c1b3b1af7eb4b90886b778e1636c, type: 3}
+      propertyPath: blurShader
+      value: 
+      objectReference: {fileID: 4800000, guid: 7ff3f1f0481ee254aab1630b3853289c, type: 3}
+    - target: {fileID: 2166446600345617610, guid: 27d5c1b3b1af7eb4b90886b778e1636c, type: 3}
+      propertyPath: downSample
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2166446600345617610, guid: 27d5c1b3b1af7eb4b90886b778e1636c, type: 3}
+      propertyPath: kernelSize
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2166446600345617610, guid: 27d5c1b3b1af7eb4b90886b778e1636c, type: 3}
+      propertyPath: blurMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 8d7d574db05050c48aa7d26f727a1364, type: 2}
+    - target: {fileID: 2166446600345617610, guid: 27d5c1b3b1af7eb4b90886b778e1636c, type: 3}
+      propertyPath: blurOperator
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2198913583681895304, guid: 27d5c1b3b1af7eb4b90886b778e1636c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7990590287707129774, guid: 27d5c1b3b1af7eb4b90886b778e1636c, type: 3}
       propertyPath: m_Name
       value: PlayerCameras
@@ -27896,6 +27936,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1939405170079733421, guid: 713f5a54436635e4abb98f6abf6a2ab5, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 134.90002
+      objectReference: {fileID: 0}
     - target: {fileID: 1969753202229891749, guid: 713f5a54436635e4abb98f6abf6a2ab5, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.1235247
@@ -27939,6 +27983,18 @@ PrefabInstance:
     - target: {fileID: 5815145314340316656, guid: 713f5a54436635e4abb98f6abf6a2ab5, type: 3}
       propertyPath: m_Name
       value: Managers
+      objectReference: {fileID: 0}
+    - target: {fileID: 6112765545761023464, guid: 713f5a54436635e4abb98f6abf6a2ab5, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 2003042384}
+    - target: {fileID: 6112765545761023464, guid: 713f5a54436635e4abb98f6abf6a2ab5, type: 3}
+      propertyPath: m_RenderMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6112765545761023464, guid: 713f5a54436635e4abb98f6abf6a2ab5, type: 3}
+      propertyPath: m_PlaneDistance
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7510624859745851553, guid: 713f5a54436635e4abb98f6abf6a2ab5, type: 3}
       propertyPath: playerTransform
@@ -28735,6 +28791,11 @@ LightProbeGroup:
   - {x: 0, y: 1, z: 0}
   - {x: 0, y: 0, z: 0}
   m_Dering: 1
+--- !u!20 &2003042384 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 5291544271966234614, guid: 27d5c1b3b1af7eb4b90886b778e1636c, type: 3}
+  m_PrefabInstance: {fileID: 1551267159}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2006387615
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,15 +11,16 @@ public class QtePostProcessEffect : MonoBehaviour
     [SerializeField, Tooltip("Time it takes in seconds to fade in this effect")]
     private float fadeInTime = 1.0f;
 
-
     private Tween fadeTween;
 
+    private Material qteMaterial;
 
     void Awake()
     {
-        material.SetFloat("_Amount", 0.0f);
+        qteMaterial = new Material(material);
+        qteMaterial.hideFlags = HideFlags.HideAndDontSave;
+        OnQteEnd(true);
     }
-
 
     void OnEnable()
     {
@@ -29,6 +30,7 @@ public class QtePostProcessEffect : MonoBehaviour
 
     void OnDisable()
     {
+        qteMaterial = null;
         QTEManager.OnQteElementStart -= OnQteStart;
         QTEManager.OnQteElementEnd -= OnQteEnd;
     }
@@ -40,22 +42,22 @@ public class QtePostProcessEffect : MonoBehaviour
                 x =>
                 {
                     intensity = x;
-                    material.SetFloat("_Amount", intensity);
+                    qteMaterial.SetFloat("_Amount", intensity);
                 },
                 1.0f, fadeInTime).SetUpdate(true);
     }
 
     void OnQteEnd(bool success)
     {
-        fadeTween.Kill();
-        material.SetFloat("_Amount", 0.0f);
+        fadeTween?.Kill();
+        qteMaterial.SetFloat("_Amount", 0.0f);
     }
 
 
     void OnRenderImage(RenderTexture source, RenderTexture destination)
     {
-        if (material != null && material.GetFloat("_Amount") > 0.0f)
-            Graphics.Blit(source, destination, material);
+        if (qteMaterial != null && qteMaterial.GetFloat("_Amount") > 0.0f)
+            Graphics.Blit(source, destination, qteMaterial);
         else
             Graphics.Blit(source, destination);
     }
