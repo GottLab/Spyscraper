@@ -261,7 +261,7 @@ public class AudioManager : MonoBehaviour, IGameManager
 
     bool IsAudioSourceDestroyed(AudioSource audioSource)
     {
-        return audioSource.gameObject == null || audioSource.gameObject.IsDestroyed();
+        return audioSource == null || audioSource.IsDestroyed();
     }
 
 }

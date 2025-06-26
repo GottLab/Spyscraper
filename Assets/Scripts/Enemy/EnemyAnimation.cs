@@ -22,6 +22,9 @@ public class EnemyAnimation : MonoBehaviour
     [SerializeField]
     private AudioPlayer punchHit;
 
+    [SerializeField]
+    private AudioPlayer punchReceive;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -62,6 +65,7 @@ public class EnemyAnimation : MonoBehaviour
     public void StartHit()
     {
         this.animator.SetTrigger(HurtProperty);
+        this.punchReceive?.PlayAudio();
     }
 
     public void SetTurn(int turn, float speed = 0.1f)
