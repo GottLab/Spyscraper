@@ -54,13 +54,14 @@ public class AudioManager : MonoBehaviour, IGameManager
 
     private Queue<AudioSource> audioSources = new();
 
+    //music section
+
     //tells if we are using transitionMusicSource or musicAudioSource for music
     private bool switched = false;
-
-    //are we transitioning from one musing to another
-    private bool musicTransition;
-
     private Music currentMusic = Music.None;
+    private Coroutine musicTransition;
+
+    public readonly EnemyCaughtTracker enemyCaughtTracker = new();
 
 
     public void Startup()
@@ -131,11 +132,15 @@ public class AudioManager : MonoBehaviour, IGameManager
 
     public void PlayMusic(Music music, float transitionTime = 0.0f)
     {
-        if (!musicTransition && this.currentMusic != music)
+        if (this.currentMusic != music)
         {
-
+            if (this.musicTransition != null)
+            {
+                StopCoroutine(this.musicTransition);
+                musicTransition = null;
+            }
             Debug.Log("Play music" + music);
-            StartCoroutine(LoadAndPlayMusic(music, transitionTime));
+            this.musicTransition = StartCoroutine(LoadAndPlayMusic(music, transitionTime));
         }
     }
 
@@ -191,7 +196,7 @@ public class AudioManager : MonoBehaviour, IGameManager
         audioSource.Play();
         yield return new WaitForSeconds(audioSource.clip.length);
 
-         if (IsAudioSourceDestroyed(audioSource))
+        if (IsAudioSourceDestroyed(audioSource))
             yield break;
             
         audioSources.Enqueue(audioSource);
@@ -218,7 +223,6 @@ public class AudioManager : MonoBehaviour, IGameManager
             }
         }
         currentMusic = music;
-        musicTransition = true;
 
         AudioSource from = switched ? this.transitionMusicSource : this.musicAudioSource;
         AudioSource to = switched ? this.musicAudioSource : this.transitionMusicSource;
@@ -241,7 +245,7 @@ public class AudioManager : MonoBehaviour, IGameManager
         to.volume = 1.0f;
         from.volume = 0.0f;
         from.enabled = false;
-        musicTransition = false;
+        musicTransition = null;
 
     }
 
