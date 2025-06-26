@@ -5048,7 +5048,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5875912689419293346, guid: e748544b503bec6478bdeac504930abe, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.7
+      value: 6.25
       objectReference: {fileID: 0}
     - target: {fileID: 5875912689419293346, guid: e748544b503bec6478bdeac504930abe, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5056,7 +5056,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5875912689419293346, guid: e748544b503bec6478bdeac504930abe, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 38.06
+      value: 1.48
       objectReference: {fileID: 0}
     - target: {fileID: 5875912689419293346, guid: e748544b503bec6478bdeac504930abe, type: 3}
       propertyPath: m_LocalRotation.w
@@ -13256,6 +13256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8096b59c126f1c5488fc1090c687927b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  random: 0
   dialogueInstances:
   - dialogue: {fileID: 11400000, guid: 7c8bda9cb901fc7458dab8feb7c2d858, type: 2}
     OnDialogueEnd:
@@ -24395,6 +24396,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8096b59c126f1c5488fc1090c687927b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  random: 0
   dialogueInstances:
   - dialogue: {fileID: 11400000, guid: 43a5aae510bef734dbe509e8f2933244, type: 2}
     OnDialogueEnd:
