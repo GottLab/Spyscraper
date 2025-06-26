@@ -53,7 +53,7 @@ public class AudioManager : MonoBehaviour, IGameManager
     private Settings audioSettings = new();
 
     private Queue<AudioSource> audioSources = new();
-    
+
     //tells if we are using transitionMusicSource or musicAudioSource for music
     private bool switched = false;
 
@@ -133,7 +133,7 @@ public class AudioManager : MonoBehaviour, IGameManager
     {
         if (!musicTransition && this.currentMusic != music)
         {
-            
+
             Debug.Log("Play music" + music);
             StartCoroutine(LoadAndPlayMusic(music, transitionTime));
         }
@@ -165,9 +165,8 @@ public class AudioManager : MonoBehaviour, IGameManager
             audioSource.loop = false;
             audioSource.gameObject.hideFlags = HideFlags.HideInHierarchy;
         }
-        if (audioSource.IsDestroyed())
+        if (IsAudioSourceDestroyed(audioSource))
         {
-            Debug.LogWarning("AudioSource Is destroyed", this);
             return;
         }
         audioSource.ignoreListenerPause = audioType == AudioType.Ui;
@@ -190,13 +189,11 @@ public class AudioManager : MonoBehaviour, IGameManager
     IEnumerator PlayAudioSource(AudioSource audioSource)
     {
         audioSource.Play();
-        if (audioSource.gameObject.IsDestroyed())
-        {
-            yield break;
-        }
-
-        //audioSource.Play();
         yield return new WaitForSeconds(audioSource.clip.length);
+
+         if (IsAudioSourceDestroyed(audioSource))
+            yield break;
+            
         audioSources.Enqueue(audioSource);
         audioSource.gameObject.SetActive(false);
     }
@@ -260,6 +257,11 @@ public class AudioManager : MonoBehaviour, IGameManager
         }
 
         return this.mixerGroupTypes[index];
+    }
+
+    bool IsAudioSourceDestroyed(AudioSource audioSource)
+    {
+        return audioSource.gameObject == null || audioSource.gameObject.IsDestroyed();
     }
 
 }

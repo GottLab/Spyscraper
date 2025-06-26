@@ -15,21 +15,18 @@ public class QtePostProcessEffect : MonoBehaviour
 
     private Material qteMaterial;
 
-    void Awake()
+    void OnEnable()
     {
         qteMaterial = new Material(material);
         qteMaterial.hideFlags = HideFlags.HideAndDontSave;
         OnQteEnd(true);
-    }
-
-    void OnEnable()
-    {
         QTEManager.OnQteElementStart += OnQteStart;
         QTEManager.OnQteElementEnd += OnQteEnd;
     }
 
     void OnDisable()
     {
+        DestroyImmediate(qteMaterial);
         qteMaterial = null;
         QTEManager.OnQteElementStart -= OnQteStart;
         QTEManager.OnQteElementEnd -= OnQteEnd;

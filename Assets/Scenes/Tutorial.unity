@@ -6690,11 +6690,6 @@ MonoBehaviour:
   m_MinRegionArea: 1
   m_NavMeshData: {fileID: 23800000, guid: c85b4f1fa5685574b984e9408c57ba6f, type: 2}
   m_BuildHeightMesh: 0
---- !u!20 &976321489 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 5291544271966234614, guid: 27d5c1b3b1af7eb4b90886b778e1636c, type: 3}
-  m_PrefabInstance: {fileID: 1215592135}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &981367182
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6706,6 +6701,10 @@ PrefabInstance:
     - target: {fileID: 660920431647843126, guid: 713f5a54436635e4abb98f6abf6a2ab5, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -50.299973
+      objectReference: {fileID: 0}
+    - target: {fileID: 813266373341038281, guid: 713f5a54436635e4abb98f6abf6a2ab5, type: 3}
+      propertyPath: m_TargetTexture
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 852830937754427280, guid: 713f5a54436635e4abb98f6abf6a2ab5, type: 3}
       propertyPath: m_AnchorMax.x
@@ -6802,10 +6801,10 @@ PrefabInstance:
     - target: {fileID: 4660771674839735731, guid: 713f5a54436635e4abb98f6abf6a2ab5, type: 3}
       propertyPath: m_Camera
       value: 
-      objectReference: {fileID: 976321489}
+      objectReference: {fileID: 981367183}
     - target: {fileID: 4660771674839735731, guid: 713f5a54436635e4abb98f6abf6a2ab5, type: 3}
       propertyPath: m_RenderMode
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4660771674839735731, guid: 713f5a54436635e4abb98f6abf6a2ab5, type: 3}
       propertyPath: m_PlaneDistance
@@ -6830,7 +6829,7 @@ PrefabInstance:
     - target: {fileID: 5918047361387650960, guid: 713f5a54436635e4abb98f6abf6a2ab5, type: 3}
       propertyPath: m_Camera
       value: 
-      objectReference: {fileID: 976321489}
+      objectReference: {fileID: 981367183}
     - target: {fileID: 5918047361387650960, guid: 713f5a54436635e4abb98f6abf6a2ab5, type: 3}
       propertyPath: m_RenderMode
       value: 1
@@ -6851,10 +6850,14 @@ PrefabInstance:
       propertyPath: m_VertexColorAlwaysGammaSpace
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6054367299137160089, guid: 713f5a54436635e4abb98f6abf6a2ab5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6112765545761023464, guid: 713f5a54436635e4abb98f6abf6a2ab5, type: 3}
       propertyPath: m_Camera
       value: 
-      objectReference: {fileID: 976321489}
+      objectReference: {fileID: 981367183}
     - target: {fileID: 6112765545761023464, guid: 713f5a54436635e4abb98f6abf6a2ab5, type: 3}
       propertyPath: m_RenderMode
       value: 1
@@ -6862,6 +6865,10 @@ PrefabInstance:
     - target: {fileID: 6112765545761023464, guid: 713f5a54436635e4abb98f6abf6a2ab5, type: 3}
       propertyPath: m_PlaneDistance
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6112765545761023464, guid: 713f5a54436635e4abb98f6abf6a2ab5, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 6139664583343249574, guid: 713f5a54436635e4abb98f6abf6a2ab5, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -6909,6 +6916,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7973003676697957364, guid: 713f5a54436635e4abb98f6abf6a2ab5, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8149329763626053851, guid: 713f5a54436635e4abb98f6abf6a2ab5, type: 3}
+      propertyPath: m_RenderingPath
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8149329763626053851, guid: 713f5a54436635e4abb98f6abf6a2ab5, type: 3}
+      propertyPath: m_TargetTexture
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8149329763626053851, guid: 713f5a54436635e4abb98f6abf6a2ab5, type: 3}
+      propertyPath: m_OcclusionCulling
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8467166134525797608, guid: 713f5a54436635e4abb98f6abf6a2ab5, type: 3}
@@ -6972,6 +6991,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 713f5a54436635e4abb98f6abf6a2ab5, type: 3}
+--- !u!20 &981367183 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 813266373341038281, guid: 713f5a54436635e4abb98f6abf6a2ab5, type: 3}
+  m_PrefabInstance: {fileID: 981367182}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &988494080
 GameObject:
   m_ObjectHideFlags: 0
@@ -7891,6 +7915,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 310888588326993947, guid: 27d5c1b3b1af7eb4b90886b778e1636c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 310888588326993947, guid: 27d5c1b3b1af7eb4b90886b778e1636c, type: 3}
+      propertyPath: otherCamera
+      value: 
+      objectReference: {fileID: 981367183}
     - target: {fileID: 1002582281774121595, guid: 27d5c1b3b1af7eb4b90886b778e1636c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.160488
@@ -7931,8 +7963,24 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2166446600345617610, guid: 27d5c1b3b1af7eb4b90886b778e1636c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2198913583681895304, guid: 27d5c1b3b1af7eb4b90886b778e1636c, type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3023618042804003126, guid: 27d5c1b3b1af7eb4b90886b778e1636c, type: 3}
+      propertyPath: m_TargetTexture
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6191752029772905970, guid: 27d5c1b3b1af7eb4b90886b778e1636c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7764684287456839841, guid: 27d5c1b3b1af7eb4b90886b778e1636c, type: 3}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7990590287707129774, guid: 27d5c1b3b1af7eb4b90886b778e1636c, type: 3}

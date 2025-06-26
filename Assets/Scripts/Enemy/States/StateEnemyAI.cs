@@ -154,11 +154,10 @@ namespace Enemy
 
         private void OnDrawGizmosSelected()
         {
-            if (patrolData.patrolPoints == null)
-                return;
             
-            foreach (var patrolPoint in patrolData.patrolPoints)
+            for(int i = 0;i < this.patrolData.TotalPointsCount();i++)
             {
+                PatrolPoint patrolPoint = this.patrolData.GetPoint(i);
                 Gizmos.color = Color.white;
                 Gizmos.DrawSphere(patrolPoint.position, 0.4f);
 

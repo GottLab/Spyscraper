@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Splines;
 using Random = UnityEngine.Random;
 
 namespace Enemy
@@ -42,6 +43,34 @@ namespace Enemy
     {
         public PatrolPoint[] patrolPoints;
         public PatrolType patrolType;
+
+        [Tooltip("Spline that the enemy will follow")]
+        public SplineContainer spline;
+
+        [Tooltip("Steps that divide the spline")]
+        public int splineSteps;
+
+        public PatrolPoint GetPoint(int index)
+        {
+            if (spline != null)
+            {
+                PatrolPoint patrolPoint = new PatrolPoint();
+                patrolPoint.rotationType = PatrolPoint.RotationType.NONE;
+                patrolPoint.position = spline.EvaluatePosition(index / (float)this.splineSteps);
+                return patrolPoint;
+            }
+            else
+            {
+                return this.patrolPoints[index];
+            }
+        }
+
+        public int TotalPointsCount()
+        {
+            return spline != null ? splineSteps : patrolPoints.Length;
+        }
+
+        
     }
 
     public class PatrolStateEnemy : IBehaviourState
@@ -69,30 +98,30 @@ namespace Enemy
 
         public void Start()
         {
+            this.destPoint = FindNearestPointIndex();
             GotoNextPoint();
         }
 
         private void GotoNextPoint()
         {
-            // Returns if no points have been set up
-            if (patrolData.patrolPoints.Length == 0)
-                return;
-
+            PatrolPoint patrolPoint = this.patrolData.GetPoint(this.destPoint);
             // Set the agent to go to the currently selected destination.
-            stateAI.NavMeshAgent.destination = patrolData.patrolPoints[destPoint].position;
+            stateAI.NavMeshAgent.destination = patrolPoint.position;
+
+            int totalPoints = this.patrolData.TotalPointsCount();
 
             // Choose the next point in the array as the destination,
             // cycling to the start if necessary.
             switch (patrolData.patrolType)
             {
                 case PatrolType.Circle:
-                    destPoint = (destPoint + 1) % patrolData.patrolPoints.Length;
+                    destPoint = (destPoint + 1) % totalPoints;
                     break;
 
                 case PatrolType.Sequential:
                     var forward = isMovingForward ? 1 : -1;
                     destPoint += forward;
-                    if (destPoint >= patrolData.patrolPoints.Length || destPoint < 0)
+                    if (destPoint >= totalPoints || destPoint < 0)
                     {
                         isMovingForward = !isMovingForward;
                         destPoint -= forward * 2;
@@ -100,14 +129,14 @@ namespace Enemy
                     break;
 
                 case PatrolType.Random:
-                    destPoint = Random.Range(0, patrolData.patrolPoints.Length);
+                    destPoint = Random.Range(0, totalPoints);
                     break;
             }
         }
 
         private IEnumerator RotateAndGotoNextPoint()
         {
-            PatrolPoint currentPoint = this.patrolData.patrolPoints[this.destPoint];
+            PatrolPoint currentPoint = this.patrolData.GetPoint(this.destPoint);
             switch (currentPoint.rotationType)
             {
                 case PatrolPoint.RotationType.AROUND:
@@ -134,6 +163,7 @@ namespace Enemy
         }
 
 
+
         private IEnumerator RotateToAngle(float targetAngle)
         {
             float direction = Mathf.DeltaAngle(targetAngle, this.stateAI.transform.eulerAngles.y);
@@ -154,8 +184,29 @@ namespace Enemy
                 this.stateAI.transform.rotation = Quaternion.Slerp(this.stateAI.transform.rotation, Quaternion.AngleAxis(targetAngle, Vector3.up), Time.deltaTime);
                 yield return null;
             }
-            //this.stateAI.enemyAnimation.SetTurn(0, speed: -1.0f);
-            
+
+        }
+
+        //find the index of the nearest patrol point
+        int FindNearestPointIndex()
+        {
+            if (this.patrolData.TotalPointsCount() <= 0)
+                return -1;
+
+            Vector3 enemyPosition = this.stateAI.transform.position;
+            float minDistanceSqr = Mathf.Infinity;
+            int closestIndex = -1;
+
+            for (int i = 0; i < this.patrolData.TotalPointsCount(); i++)
+            {
+                float distSqr = (this.patrolData.GetPoint(i).position - enemyPosition).sqrMagnitude;
+                if (distSqr < minDistanceSqr)
+                {
+                    minDistanceSqr = distSqr;
+                    closestIndex = i;
+                }
+            }
+            return closestIndex;
         }
 
 
