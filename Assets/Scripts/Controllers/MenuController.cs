@@ -1,14 +1,20 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.Serialization;
 
 public class MenuController : MonoBehaviour
 {
     public Transform cameraTransform;
     public Transform howToPlayLookPoint;
     public Transform menuLookPoint;
-    public float transitionDuration = 1f;
-
-    private bool isHowToPlay = false;
+    
+    public float cameraTransitionDuration = 1f;
+    
+    public Transform settingsLookPoint;
+    public Animator settingsAnimator;
+    
+    private bool isHowToPlayOpen = false;
+    private bool isSettingsOpen = false; 
     
     private Coroutine transitionRoutine;
     
@@ -16,7 +22,7 @@ public class MenuController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (isHowToPlay)
+            if (isHowToPlayOpen || isSettingsOpen)
             {
                 BackToMenu();
             }
@@ -35,6 +41,8 @@ public class MenuController : MonoBehaviour
 
     public void OpenSettings()
     {
+        isSettingsOpen = true;
+        MoveCameraTo(settingsLookPoint);
         Debug.Log("Settings button clicked!");
     }
 
@@ -42,14 +50,21 @@ public class MenuController : MonoBehaviour
     {
         Debug.Log("How to Play button clicked!");
         MoveCameraTo(howToPlayLookPoint);
-        isHowToPlay = true;
+        isHowToPlayOpen = true;
     }
     
     public void BackToMenu()
     {
         Debug.Log("Back to Menu button clicked!");
+        // We need this in order to avoid the settings animator to play the disappearing animation on spawn
+        settingsAnimator.SetBool("IsSpawn", false);
+        if (isSettingsOpen) {
+            
+            settingsAnimator.SetBool("IsOpen", false);
+        }
+        isSettingsOpen = false;
+        isHowToPlayOpen = false;
         MoveCameraTo(menuLookPoint);
-        isHowToPlay = false;
     }
 
     private void MoveCameraTo(Transform target)
@@ -71,13 +86,17 @@ public class MenuController : MonoBehaviour
         float t = 0f;
         while (t < 1f)
         {
-            t += Time.deltaTime / transitionDuration;
+            t += Time.deltaTime / cameraTransitionDuration;
             cameraTransform.position = Vector3.Lerp(startPos, targetPos, t);
             cameraTransform.rotation = Quaternion.Slerp(startRot, targetRot, t);
             yield return null;
         }
         cameraTransform.position = targetPos;
         cameraTransform.rotation = targetRot;
+
+        if (isSettingsOpen) {
+            settingsAnimator.SetBool("IsOpen", true);
+        }
     }
 
     public void QuitGame()

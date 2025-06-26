@@ -1,9 +1,9 @@
-
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Slider))]
-public class AudioSlider : MonoBehaviour
+public class AudioSlider : MonoBehaviour, IEndDragHandler
 {
     [SerializeField]
     private AudioType audioType;
@@ -18,10 +18,20 @@ public class AudioSlider : MonoBehaviour
         {
             this.slider.value = Managers.audioManager.GetVolume(this.audioType);
         }));
+
+        this.slider.onValueChanged.AddListener((value) =>
+        {
+            UpdateAudio(false);
+        });
     }
 
     public void UpdateAudio(bool saveToFile)
     {
         Managers.audioManager.SetVolume(audioType, this.slider.value, saveToFile);
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        UpdateAudio(true);
     }
 }
