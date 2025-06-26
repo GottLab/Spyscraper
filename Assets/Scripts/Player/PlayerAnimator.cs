@@ -17,6 +17,9 @@ public class PlayerAnimator : MonoBehaviour, IQtePlayer
     [SerializeField]
     private AudioPlayer punchSound;
 
+    [SerializeField]
+    private AudioPlayer deathSound;
+
     void Start()
     {
         this.animator = GetComponent<Animator>();
@@ -34,13 +37,18 @@ public class PlayerAnimator : MonoBehaviour, IQtePlayer
 
     // Update Current Player Animation Based on his State
     void OnPlayerStateChange(PlayerManager.PlayerState playerState)
-    {   
+    {
         if (animator)
         {
             //set the state index
             animator.SetInteger(StateProperty, (int)playerState);
             //trigger the transition to it
             animator.SetTrigger(ChangeStateProperty);
+        }
+
+        if (playerState == PlayerManager.PlayerState.DIED)
+        {
+            deathSound?.PlayAudio();
         }
     }
 

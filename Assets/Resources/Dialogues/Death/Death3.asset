@@ -15,5 +15,5 @@ MonoBehaviour:
   dialogueLines:
   - character: {fileID: 11400000, guid: eee85cfdabefcc64799e31d5d23bd39d, type: 2}
     lines:
-    - Death2
+    - Death3
     gameEvent: 0
