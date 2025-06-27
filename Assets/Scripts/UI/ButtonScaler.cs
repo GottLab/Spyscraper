@@ -22,6 +22,7 @@ public class ButtonScaler : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     public void OnPointerEnter(PointerEventData eventData)
     {
         targetScale = hoverScale;
+        EventSystem.current.SetSelectedGameObject(this.gameObject);
     }
 
     public void OnPointerExit(PointerEventData eventData)

@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections;
-using UnityEngine.Serialization;
+using UnityEngine.EventSystems;
 
 public class MenuController : MonoBehaviour
 {
@@ -17,7 +17,7 @@ public class MenuController : MonoBehaviour
     private bool isSettingsOpen = false; 
     
     private Coroutine transitionRoutine;
-    
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -33,10 +33,11 @@ public class MenuController : MonoBehaviour
             }
         }
     }
-    
+
     public void PlayGame()
     {
         Managers.game.TransitionScene("Tutorial");
+        DeselectButton();
     }
 
     public void OpenSettings()
@@ -44,6 +45,7 @@ public class MenuController : MonoBehaviour
         isSettingsOpen = true;
         MoveCameraTo(settingsLookPoint);
         Debug.Log("Settings button clicked!");
+        DeselectButton();
     }
 
     public void HowToPlay()
@@ -51,15 +53,15 @@ public class MenuController : MonoBehaviour
         Debug.Log("How to Play button clicked!");
         MoveCameraTo(howToPlayLookPoint);
         isHowToPlayOpen = true;
+        DeselectButton();
     }
     
     public void BackToMenu()
     {
         Debug.Log("Back to Menu button clicked!");
         // We need this in order to avoid the settings animator to play the disappearing animation on spawn
-        settingsAnimator.SetBool("IsSpawn", false);
         if (isSettingsOpen) {
-            
+            settingsAnimator.SetBool("IsSpawn", false);
             settingsAnimator.SetBool("IsOpen", false);
         }
         isSettingsOpen = false;
@@ -97,6 +99,7 @@ public class MenuController : MonoBehaviour
         if (isSettingsOpen) {
             settingsAnimator.SetBool("IsOpen", true);
         }
+        DeselectButton();
     }
 
     public void QuitGame()
@@ -104,9 +107,16 @@ public class MenuController : MonoBehaviour
         Debug.Log("Quit button clicked!");
 
         #if UNITY_EDITOR
-                UnityEditor.EditorApplication.isPlaying = false;
+        UnityEditor.EditorApplication.isPlaying = false;
         #else
                 Application.Quit();
         #endif
-        }
     }
+
+    public void DeselectButton()
+    {
+        Debug.Log("The currently selected button is: " + EventSystem.current.currentSelectedGameObject);
+        EventSystem.current.SetSelectedGameObject(null);
+        Debug.Log("button deselected, current is: " + EventSystem.current.currentSelectedGameObject);
+    }
+}
