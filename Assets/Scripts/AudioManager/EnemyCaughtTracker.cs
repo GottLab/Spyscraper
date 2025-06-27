@@ -14,6 +14,8 @@ public class EnemyCaughtTracker
         totalAgroedEnemies += amount;
         totalAgroedEnemies = Math.Max(0, totalAgroedEnemies);
 
+        
+        Debug.Log("AMOUNT " + totalAgroedEnemies); 
         bool beingAttacked = totalAgroedEnemies > 0;
 
         Managers.audioManager.PlayMusic(beingAttacked ? Music.Caught : Music.Sneaky, 1.0f);

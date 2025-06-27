@@ -134,6 +134,8 @@ public class AudioManager : MonoBehaviour, IGameManager
     {
         if (this.currentMusic != music)
         {
+            currentMusic = music;
+
             if (this.musicTransition != null)
             {
                 StopCoroutine(this.musicTransition);
@@ -222,8 +224,7 @@ public class AudioManager : MonoBehaviour, IGameManager
                 yield break;
             }
         }
-        currentMusic = music;
-
+    
         AudioSource from = switched ? this.transitionMusicSource : this.musicAudioSource;
         AudioSource to = switched ? this.musicAudioSource : this.transitionMusicSource;
         switched = !switched;

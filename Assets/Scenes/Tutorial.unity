@@ -6095,6 +6095,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8096b59c126f1c5488fc1090c687927b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  random: 0
   dialogueInstances:
   - dialogue: {fileID: 11400000, guid: 278e0f78fda8dff45bd32a7e73326e10, type: 2}
     OnDialogueEnd:
@@ -6366,6 +6367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8096b59c126f1c5488fc1090c687927b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  random: 0
   dialogueInstances:
   - dialogue: {fileID: 11400000, guid: d48f8b8bd9e522a4e8db3c73ec1ea2f4, type: 2}
     OnDialogueEnd:
@@ -6395,6 +6397,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8096b59c126f1c5488fc1090c687927b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  random: 0
   dialogueInstances:
   - dialogue: {fileID: 11400000, guid: f989f2ee3d79480498cb237d80440053, type: 2}
     OnDialogueEnd:
@@ -7601,6 +7604,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8096b59c126f1c5488fc1090c687927b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  random: 0
   dialogueInstances:
   - dialogue: {fileID: 11400000, guid: 251b61790572fd9439f96464e5d7770a, type: 2}
     OnDialogueEnd:
@@ -7915,6 +7919,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 178072241841465819, guid: 27d5c1b3b1af7eb4b90886b778e1636c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -12.144944
+      objectReference: {fileID: 0}
+    - target: {fileID: 306755822310079864, guid: 27d5c1b3b1af7eb4b90886b778e1636c, type: 3}
+      propertyPath: CameraDistance
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 310888588326993947, guid: 27d5c1b3b1af7eb4b90886b778e1636c, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -7974,6 +7986,14 @@ PrefabInstance:
     - target: {fileID: 3023618042804003126, guid: 27d5c1b3b1af7eb4b90886b778e1636c, type: 3}
       propertyPath: m_TargetTexture
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3707169177679366396, guid: 27d5c1b3b1af7eb4b90886b778e1636c, type: 3}
+      propertyPath: maxSize
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3707169177679366396, guid: 27d5c1b3b1af7eb4b90886b778e1636c, type: 3}
+      propertyPath: minSize
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6191752029772905970, guid: 27d5c1b3b1af7eb4b90886b778e1636c, type: 3}
       propertyPath: m_IsActive
@@ -9785,6 +9805,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8096b59c126f1c5488fc1090c687927b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  random: 0
   dialogueInstances:
   - dialogue: {fileID: 11400000, guid: 234641cd18e729745a2954bd7af47bd3, type: 2}
     OnDialogueEnd:
@@ -10274,7 +10295,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5875912689419293346, guid: e748544b503bec6478bdeac504930abe, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.5
+      value: -5.97
       objectReference: {fileID: 0}
     - target: {fileID: 5875912689419293346, guid: e748544b503bec6478bdeac504930abe, type: 3}
       propertyPath: m_LocalPosition.y
@@ -10282,7 +10303,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5875912689419293346, guid: e748544b503bec6478bdeac504930abe, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -9.8
+      value: -9.22
       objectReference: {fileID: 0}
     - target: {fileID: 5875912689419293346, guid: e748544b503bec6478bdeac504930abe, type: 3}
       propertyPath: m_LocalRotation.w
@@ -13076,6 +13097,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8096b59c126f1c5488fc1090c687927b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  random: 0
   dialogueInstances:
   - dialogue: {fileID: 11400000, guid: 916ac1888bf488145a4fb2882ccd547d, type: 2}
     OnDialogueEnd:
