@@ -22,7 +22,6 @@ public class IsometricCameraZoom : MonoBehaviour
     public float zoomSensitivity = 1F;
     private float prevTargetSize = 0.0f;
 
-
     public Vector2 maxPanning = new Vector2(3.0f, 3.0f);
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -30,6 +29,7 @@ public class IsometricCameraZoom : MonoBehaviour
     {
         this._CinemachineCamera = GetComponent<CinemachineCamera>();
         this._CinemachinePositionComposer = GetComponent<CinemachinePositionComposer>();
+        this._CinemachineCamera.Lens.OrthographicSize = maxSize;
     }
     void OnEnable()
     {

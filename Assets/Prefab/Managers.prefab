@@ -1227,6 +1227,7 @@ MonoBehaviour:
   charactersPerSecond: 30
   minReadTimePerChar: 0.035
   fadeDuration: 0.7
+  automaticSkipTime: 3
   confirmSound: {fileID: 7330077867969815602}
   dialogueOpen: {fileID: 5076908260972332150}
   dialogueClose: {fileID: 7382061100028125994}

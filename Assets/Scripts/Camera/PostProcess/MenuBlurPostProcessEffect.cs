@@ -51,7 +51,6 @@ public class MenuBlurPostProcessEffect : MonoBehaviour
     
     void Awake()
     {
-        print("START");
         blurMat = new Material(blurShader);
         blurMat.hideFlags = HideFlags.HideAndDontSave;
         GameManager.OnGamePause += EnableBlur;

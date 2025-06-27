@@ -17,6 +17,9 @@ public class TalkManager : MonoBehaviour, IGameManager
     [SerializeField]
     private float fadeDuration = 0.7f;
 
+    [SerializeField]
+    private float automaticSkipTime = 2.0f;
+
     [Header("Sounds")]
     [SerializeField]
     private AudioPlayer confirmSound;
@@ -166,7 +169,10 @@ public class TalkManager : MonoBehaviour, IGameManager
                 //only when we don't to wait a certain game event then we continue when pressing the skip button
                 if (dialogueLine.gameEvent == GameEvent.None)
                 {
-                    yield return new WaitUntil(() => IsSkipButtonPressed);
+                    float currentTime = Time.time;
+                    //check if dialogue should continue after automaticSkipTime in seconds
+                    yield return new WaitUntil(() => IsSkipButtonPressed || Time.time - currentTime > automaticSkipTime);
+                    //play audio only if skipped manually
                     confirmSound?.PlayAudio();
                 }
             }
