@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a66a02ad56ad334b99684f67125dab3, type: 3}
   m_Name: CyanKey
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 7b19498563bdcaf4a9247801224588f2, type: 3}
+  sprite: {fileID: 21300000, guid: d31bc99626c73ea40a22e1df265b5685, type: 3}
   itemName: key
   onConsume:
     m_PersistentCalls:

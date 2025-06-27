@@ -72,7 +72,6 @@ public class InventoryManager : MonoBehaviour, IGameManager
         {
             itemDisplay += item.Key.itemName + "(" + item.Value + ") ";
         }
-        Debug.Log(itemDisplay);
     }
 
     public List<string> GetItemList()
