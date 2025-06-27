@@ -414,6 +414,8 @@ GameObject:
   - component: {fileID: 4307813971190658872}
   - component: {fileID: 431919913489368629}
   - component: {fileID: 1021361252930100527}
+  - component: {fileID: 7382061100028125994}
+  - component: {fileID: 5076908260972332150}
   m_Layer: 5
   m_Name: TextBox
   m_TagString: Untagged
@@ -510,6 +512,42 @@ MonoBehaviour:
   dialogueTitleText: {fileID: 3042166796358704937}
   mugShot: {fileID: 7548891116952908338}
   textBoxAnimation: {fileID: 7400000, guid: bf7361c17cd65e94ca4e73b432ac5ee1, type: 2}
+--- !u!114 &7382061100028125994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3043275522159945104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1898dab8a3378ef4dabc5e744830d968, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioType: 2
+  volume: 1
+  pitch: 1
+  sourceTransform: {fileID: 0}
+  audioClips:
+  - {fileID: 8300000, guid: 093f7144e0ef6f84c9180ab499df419b, type: 3}
+--- !u!114 &5076908260972332150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3043275522159945104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1898dab8a3378ef4dabc5e744830d968, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioType: 2
+  volume: 1
+  pitch: 1
+  sourceTransform: {fileID: 0}
+  audioClips:
+  - {fileID: 8300000, guid: e2633d7dc5ae6de4a952177e243da288, type: 3}
 --- !u!1 &3196913987437264843
 GameObject:
   m_ObjectHideFlags: 0
@@ -523,7 +561,6 @@ GameObject:
   - component: {fileID: 274219833895356218}
   - component: {fileID: 3948758387311188418}
   - component: {fileID: 458319250602079943}
-  - component: {fileID: 506713499081303463}
   m_Layer: 5
   m_Name: InventoryUI
   m_TagString: Untagged
@@ -638,18 +675,6 @@ MonoBehaviour:
   BR:
     image: {fileID: 7181059176051876939}
     quantity: {fileID: 8512650430097908317}
---- !u!114 &506713499081303463
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3196913987437264843}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d16880923d2557469ad20ab627c2b50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3331370219117271598
 GameObject:
   m_ObjectHideFlags: 0
@@ -1202,6 +1227,9 @@ MonoBehaviour:
   charactersPerSecond: 30
   minReadTimePerChar: 0.035
   fadeDuration: 0.7
+  confirmSound: {fileID: 7330077867969815602}
+  dialogueOpen: {fileID: 5076908260972332150}
+  dialogueClose: {fileID: 7382061100028125994}
 --- !u!114 &5060211168632635193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1278,7 +1306,7 @@ GameObject:
   - component: {fileID: 6112765545761023464}
   - component: {fileID: 1504940535162336317}
   - component: {fileID: 430083830869846468}
-  - component: {fileID: 968647434630432393}
+  - component: {fileID: 7330077867969815602}
   m_Layer: 5
   m_Name: DialogueUI
   m_TagString: Untagged
@@ -1369,18 +1397,24 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &968647434630432393
+--- !u!114 &7330077867969815602
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6054367299137160089}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d16880923d2557469ad20ab627c2b50, type: 3}
+  m_Script: {fileID: 11500000, guid: 1898dab8a3378ef4dabc5e744830d968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioType: 2
+  volume: 0.2
+  pitch: 0.7
+  sourceTransform: {fileID: 0}
+  audioClips:
+  - {fileID: 8300000, guid: 504771951836ad14f814c6e58a37549f, type: 3}
 --- !u!1 &7137474477041656616
 GameObject:
   m_ObjectHideFlags: 0
@@ -1458,7 +1492,6 @@ GameObject:
   - component: {fileID: 7058891636524859103}
   - component: {fileID: 292395709727896238}
   - component: {fileID: 2076064599539810368}
-  - component: {fileID: 3726168216160559840}
   m_Layer: 5
   m_Name: QteUI
   m_TagString: Untagged
@@ -1561,18 +1594,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   qteButtonPrefab: {fileID: 3589570301076847162, guid: fff88bf873caf1245b43ffbd26cd471d, type: 3}
---- !u!114 &3726168216160559840
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7278536274438456374}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d16880923d2557469ad20ab627c2b50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &77350054417818743
 PrefabInstance:
   m_ObjectHideFlags: 0

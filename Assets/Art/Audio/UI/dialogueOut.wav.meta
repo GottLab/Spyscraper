@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Art/Audio/Dialogue/ChiefTalk.wav.meta
-guid: 481679bc5bdc3bd4a9ec012184cf5ed1
-========
-guid: 63af2043ecd66ac42b92fd45b60e34d9
->>>>>>>> sound:Assets/Art/Audio/footstep/footstep_1.wav.meta
+guid: 093f7144e0ef6f84c9180ab499df419b
 AudioImporter:
   externalObjects: {}
   serializedVersion: 8
@@ -15,11 +11,11 @@ AudioImporter:
     compressionFormat: 1
     quality: 1
     conversionMode: 0
-    preloadAudioData: 0
+    preloadAudioData: 1
   platformSettingOverrides: {}
   forceToMono: 0
   normalize: 1
-  loadInBackground: 0
+  loadInBackground: 1
   ambisonic: 0
   3D: 1
   userData: 

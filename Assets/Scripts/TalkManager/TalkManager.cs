@@ -7,13 +7,27 @@ using static GameManager;
 public class TalkManager : MonoBehaviour, IGameManager
 {
 
+    [Header("Dialogue Parameters")]
+    [SerializeField]
+    private float charactersPerSecond = 30f; // Speed of typing
+    
+    [SerializeField]
+    private float minReadTimePerChar = 0.035f; // Used to estimate read time
+
+    [SerializeField]
+    private float fadeDuration = 0.7f;
+
+    [Header("Sounds")]
+    [SerializeField]
+    private AudioPlayer confirmSound;
+
+    [SerializeField]
+    private AudioPlayer dialogueOpen;
+
+    [SerializeField]
+    private AudioPlayer dialogueClose;
+
     public ManagerStatus status => ManagerStatus.Started;
-
-    public float charactersPerSecond = 30f; // Speed of typing
-
-    public float minReadTimePerChar = 0.035f; // Used to estimate read time
-
-    public float fadeDuration = 0.7f;
 
     private Coroutine currentDialogueCoroutine = null;
 
@@ -113,6 +127,7 @@ public class TalkManager : MonoBehaviour, IGameManager
 
     private IEnumerator StartDialogueCoroutine(Dialogue dialogue, Action OnDialogueEnd = null)
     {
+        this.dialogueOpen?.PlayAudio();
         OnDialogueStart?.Invoke(dialogue);
         yield return StartCoroutine(FadeTextBox(true));
 
@@ -152,6 +167,7 @@ public class TalkManager : MonoBehaviour, IGameManager
                 if (dialogueLine.gameEvent == GameEvent.None)
                 {
                     yield return new WaitUntil(() => IsSkipButtonPressed);
+                    confirmSound?.PlayAudio();
                 }
             }
             //here we wait for a certain game event if set
@@ -164,7 +180,7 @@ public class TalkManager : MonoBehaviour, IGameManager
 
 
 
-
+        this.dialogueClose?.PlayAudio();
         OnDialogueEnd?.Invoke();
         yield return StartCoroutine(FadeTextBox(false));
         TalkManager.OnDialogueEnd?.Invoke();
