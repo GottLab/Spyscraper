@@ -17,7 +17,7 @@ public class DialogueLineDataDrawer : PropertyDrawer
         }
 
         float height = EditorGUI.GetPropertyHeight(property.FindPropertyRelative("character"));
-        height += EditorGUI.GetPropertyHeight(property.FindPropertyRelative("gameEvent"));
+        height += EditorGUI.GetPropertyHeight(property.FindPropertyRelative("eventInfo"));
         height += reorderableList.GetHeight();
         return height + 6f;
     }
@@ -26,7 +26,7 @@ public class DialogueLineDataDrawer : PropertyDrawer
     {
         var characterProp = property.FindPropertyRelative("character");
         var linesProp = property.FindPropertyRelative("lines");
-        var gameEventProp = property.FindPropertyRelative("gameEvent");
+        var eventProp = property.FindPropertyRelative("eventInfo");
 
         if (reorderableList == null || reorderableList.serializedProperty != linesProp)
         {
@@ -38,8 +38,8 @@ public class DialogueLineDataDrawer : PropertyDrawer
 
         
         position.y += position.height + 2f;
-        position.height = EditorGUI.GetPropertyHeight(gameEventProp);
-        EditorGUI.PropertyField(position, gameEventProp, new GUIContent("Required Action"));
+        position.height = EditorGUI.GetPropertyHeight(eventProp);
+        EditorGUI.PropertyField(position, eventProp, new GUIContent("Events"), true);
 
         position.y += position.height + 2;
         reorderableList.DoList(position);

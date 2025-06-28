@@ -9,10 +9,19 @@ using UnityEngine;
 [Serializable]
 public struct CharacterDialogue
 {
+    [Serializable]
+    public struct Event
+    {
+        [Tooltip("Event to wait before going forward")]
+        public GameManager.GameEvent gameEvent;
+
+        [Tooltip("Action Name used to make something happen")]
+        public string action;
+    }
+
     public CharacterData character;
     public List<string> lines;
-
-    public GameManager.GameEvent gameEvent;
+    public Event eventInfo;
 }
 
 /// <summary>

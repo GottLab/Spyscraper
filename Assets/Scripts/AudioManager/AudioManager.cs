@@ -141,7 +141,6 @@ public class AudioManager : MonoBehaviour, IGameManager
                 StopCoroutine(this.musicTransition);
                 musicTransition = null;
             }
-            Debug.Log("Play music" + music);
             this.musicTransition = StartCoroutine(LoadAndPlayMusic(music, transitionTime));
         }
     }

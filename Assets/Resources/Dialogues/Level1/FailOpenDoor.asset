@@ -16,4 +16,6 @@ MonoBehaviour:
   - character: {fileID: 11400000, guid: eee85cfdabefcc64799e31d5d23bd39d, type: 2}
     lines:
     - You need one red key and one green key
-    gameEvent: 0
+    eventInfo:
+      gameEvent: 0
+      action: qweq

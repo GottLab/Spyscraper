@@ -69,13 +69,13 @@ public class TalkManager : MonoBehaviour, IGameManager
         set => this.charactersPerSecond = CharactersPerSecond;
     }
 
-    public void StartDialogue(string dialogueFile, Action OnDialogueEnd = null)
+    public void StartDialogue(string dialogueFile, Action<CharacterDialogue> OnCharacterDialogueEnd = null,Action OnDialogueEnd = null)
     {
         Dialogue dialogue = DialogueLoader.ReadDialogue(dialogueFile);
-        this.StartDialogue(dialogue, OnDialogueEnd);
+        this.StartDialogue(dialogue, OnCharacterDialogueEnd, OnDialogueEnd);
     }
 
-    public void StartDialogue(Dialogue dialogue, Action OnDialogueEnd = null)
+    public void StartDialogue(Dialogue dialogue, Action<CharacterDialogue> OnCharacterDialogueEnd = null, Action OnDialogueEnd = null)
     {
         if (currentDialogueCoroutine != null)
         {
@@ -89,7 +89,7 @@ public class TalkManager : MonoBehaviour, IGameManager
         //Dialogue dialogue = DialogueLoader.ReadDialogue(dialogueFile);
         if (dialogue != null)
         {
-            this.currentDialogueCoroutine = StartCoroutine(StartDialogueCoroutine(dialogue, OnDialogueEnd));
+            this.currentDialogueCoroutine = StartCoroutine(StartDialogueCoroutine(dialogue, OnCharacterDialogueEnd, OnDialogueEnd));
         }
     }
 
@@ -128,7 +128,7 @@ public class TalkManager : MonoBehaviour, IGameManager
     }
 
 
-    private IEnumerator StartDialogueCoroutine(Dialogue dialogue, Action OnDialogueEnd = null)
+    private IEnumerator StartDialogueCoroutine(Dialogue dialogue, Action<CharacterDialogue> OnCharacterDialogueEnd = null, Action OnDialogueEnd = null)
     {
         this.dialogueOpen?.PlayAudio();
         OnDialogueStart?.Invoke(dialogue);
@@ -142,13 +142,13 @@ public class TalkManager : MonoBehaviour, IGameManager
             // ----- Game Event Section -----
             //this section handles listening to game events
             bool gameEventComplete = true;
-            if (dialogueLine.gameEvent != GameEvent.None)
+            if (dialogueLine.eventInfo.gameEvent != GameEvent.None)
             {
                 gameEventComplete = false;
                 //when we receive a specific game event then when mark complete to true
                 Action<GameEvent> handleGameEvent = (gameEvent) =>
                 {
-                    if (gameEvent == dialogueLine.gameEvent)
+                    if (gameEvent == dialogueLine.eventInfo.gameEvent)
                         gameEventComplete = true;
                 };
                 this.currentGameEventToWait = handleGameEvent;
@@ -167,12 +167,11 @@ public class TalkManager : MonoBehaviour, IGameManager
                 yield return StartCoroutine(TypeText(dialogueLine, line, dialogueInfo));
 
                 //only when we don't to wait a certain game event then we continue when pressing the skip button
-                if (dialogueLine.gameEvent == GameEvent.None)
+                if (dialogueLine.eventInfo.gameEvent == GameEvent.None)
                 {
                     float currentTime = Time.time;
                     //check if dialogue should continue after automaticSkipTime in seconds
                     yield return new WaitUntil(() => IsSkipButtonPressed || Time.time - currentTime > automaticSkipTime);
-                    //play audio only if skipped manually
                     confirmSound?.PlayAudio();
                 }
             }
@@ -182,6 +181,10 @@ public class TalkManager : MonoBehaviour, IGameManager
             //unhook from gameEvent action when we used it
             if (currentGameEventToWait != null)
                 GameManager.OnGameEvent -= this.currentGameEventToWait;
+            
+            OnCharacterDialogueEnd?.Invoke(dialogueLine);
+
+            
         }
 
 
