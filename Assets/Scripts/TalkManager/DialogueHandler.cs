@@ -59,7 +59,7 @@ public class DialogueHandler : MonoBehaviour
         Managers.Talk.StartDialogue(dialogueInstance.dialogue, OnCharacterDialogueEnd: (charDialogue) =>
         {
             //when dialogueline has an action call the corresponding event
-            if (charDialogue.eventInfo.action.Length > 0)
+            if (charDialogue.eventInfo.action != null && charDialogue.eventInfo.action.Length > 0)
                 CallDialogueEvent(dialogueInstance, charDialogue.eventInfo.action, required: true);
                 
         }, OnDialogueEnd: () =>
