@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.ProBuilder.Shapes;
 
 public class LoopObject : MonoBehaviour
@@ -45,6 +46,8 @@ public class LoopObject : MonoBehaviour
 
     private int totalLoops = 0;
 
+    public UnityEvent OnFirstLoop;
+
     // Update is called once per frame
     void Update()
     {
@@ -60,6 +63,13 @@ public class LoopObject : MonoBehaviour
             this.transform.position = reference.TransformPoint(pos);
             Physics.SyncTransforms();
             totalLoops += 1;
+
+            if (totalLoops == 1)
+            {
+                OnFirstLoop?.Invoke();
+            }
+
+
         }
     }
 

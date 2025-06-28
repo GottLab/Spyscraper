@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -8,11 +9,13 @@ public class DialogueHandler : MonoBehaviour
     [Serializable]
     public struct DialogueInstance
     {
+        [Tooltip("Time to wait to play this dialogue")]
+        public float delay;
         public Dialogue dialogue;
         public UnityEvent OnDialogueEnd;
     }
 
-    
+
     [SerializeField, Tooltip("Play one random dialogue from the list instead of being sequential")]
     private bool random;
 
@@ -24,10 +27,10 @@ public class DialogueHandler : MonoBehaviour
     public void StartDialogue()
     {
         currentDialogueIndex = random ? UnityEngine.Random.Range(0, this.dialogueInstances.Length) : -1;
-        NextDialogue();
+        StartCoroutine(NextDialogue());
     }
 
-    private void NextDialogue()
+    private IEnumerator NextDialogue()
     {
         if (!random)
         {
@@ -36,18 +39,22 @@ public class DialogueHandler : MonoBehaviour
 
         if (this.currentDialogueIndex >= this.dialogueInstances.Length)
         {
-            return;
+            yield break;
         }
 
         DialogueInstance dialogueInstance = this.dialogueInstances[this.currentDialogueIndex];
+
+        yield return new WaitForSeconds(dialogueInstance.delay);
 
         Managers.Talk.StartDialogue(dialogueInstance.dialogue, () =>
         {
             if (!random)
             {
-                NextDialogue();
+                StartCoroutine(NextDialogue());
             }
             dialogueInstance.OnDialogueEnd?.Invoke();
         });
     }
+
+
 }
