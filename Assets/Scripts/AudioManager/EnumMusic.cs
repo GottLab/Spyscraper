@@ -4,5 +4,6 @@ public enum Music
     None,
     Sneaky,
     Menu,
-    Caught
+    Caught,
+    Credits
 }

@@ -174,7 +174,7 @@ public class IsometricPlayerController : MonoBehaviour
     void SetCollideWithEnemies(bool collide)
     {
         int enemyMask = 1 << LayerMask.NameToLayer("Enemy");
-        
+
         if (!collide)
         {
             this._characterController.excludeLayers |= enemyMask;
@@ -200,5 +200,14 @@ public class IsometricPlayerController : MonoBehaviour
         else
             this.movementLocks.Remove(reason);
     }
-    
+
+    public void LockMovement(string reason)
+    {
+        this.SetMovement(reason, true);
+    }
+
+    public void UnlockMovement(string reason)
+    {
+        this.SetMovement(reason, false);
+    }    
 }

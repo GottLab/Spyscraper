@@ -16190,15 +16190,14 @@ MonoBehaviour:
       m_Calls: []
   m_text: '<size=150%><b>Staff Credits</b></size>
 
-    
 
-    
 
-    
+
+
+
 
     <b>Programmers</b>
 
-    
 
     Pierluigi
     Altimari
@@ -16217,9 +16216,8 @@ MonoBehaviour:
 
     Jacopo Garofalo
 
-    
 
-    
+
 
     <b>Technical Lead</b>
 
@@ -16228,24 +16226,19 @@ MonoBehaviour:
     Altimari
 
 
-    
 
     <b>Game Designer</b>
 
-    
 
     Alessandro Monetti
 
     Gianmarco
     La Marca
 
-    
 
-    
 
     <b>Artist</b>
 
-    
 
     @RainyDay'
   m_isRightToLeft: 0
@@ -16590,7 +16583,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -115.60004, y: -60}
+  m_AnchoredPosition: {x: -115.60004, y: 297.78}
   m_SizeDelta: {x: 231.20001, y: 622}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1069661840

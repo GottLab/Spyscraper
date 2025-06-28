@@ -9,6 +9,10 @@ public class Credits : MonoBehaviour
     [SerializeField]
     private Animator creditsAnimator;
 
+    private bool started;
+
+    private readonly int SpeedProperty = Animator.StringToHash("Speed");
+
     public void StartCredits()
     {
         StartCoroutine(StartCreditsDelay());
@@ -20,6 +24,11 @@ public class Credits : MonoBehaviour
         {
             Managers.game.TransitionScene("MainMenu");
         }
+
+        if (started)
+        {
+            this.creditsAnimator.SetFloat(SpeedProperty, GameManager.GetKey(KeyCode.Return) ? 5.0f : 1.0f);
+        }
         
     }
 
@@ -27,11 +36,13 @@ public class Credits : MonoBehaviour
     private IEnumerator StartCreditsDelay()
     {
         yield return new WaitForSeconds(delay);
+        started = true;
         this.creditsAnimator.gameObject.SetActive(true);
+        Managers.audioManager.PlayMusic(Music.Credits, 2.0f);
     }
 
     bool AreCreditsFinished()
     {
-        return this.creditsAnimator.isActiveAndEnabled && this.creditsAnimator.GetAnimatorTransitionInfo(0).normalizedTime >= 1.0f;
+        return started && this.creditsAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f;
     }
 }

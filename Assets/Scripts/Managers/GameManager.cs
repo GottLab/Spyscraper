@@ -96,6 +96,11 @@ public class GameManager : MonoBehaviour, IGameManager
         return Input.GetKeyDown(keyCode) && !Managers.game.IsGameStopped;
     }
 
+    public static bool GetKey(KeyCode keyCode)
+    {
+        return Input.GetKey(keyCode) && !Managers.game.IsGameStopped;
+    }
+
     public float UnscaledDeltaTime
     {
         get => this.isGameStopped ? 0.0f : Time.unscaledDeltaTime;
