@@ -16199,6 +16199,7 @@ MonoBehaviour:
     <b>Programmers</b>
 
 
+
     Pierluigi
     Altimari
 
@@ -16227,7 +16228,9 @@ MonoBehaviour:
 
 
 
+
     <b>Game Designer</b>
+
 
 
     Alessandro Monetti
@@ -16237,7 +16240,10 @@ MonoBehaviour:
 
 
 
+
+
     <b>Artist</b>
+
 
 
     @RainyDay'
@@ -17540,13 +17546,13 @@ MonoBehaviour:
     OnDialogueEnd:
       m_PersistentCalls:
         m_Calls: []
-  - delay: 1
-    dialogue: {fileID: 11400000, guid: 73be91cbfe94dcd49b9ed6e572503c24, type: 2}
+  - delay: 5
+    dialogue: {fileID: 11400000, guid: e0d79d72b660b6e40b88ad12732bee89, type: 2}
     OnDialogueEnd:
       m_PersistentCalls:
         m_Calls: []
-  - delay: 1
-    dialogue: {fileID: 11400000, guid: 963ade815789d134b8582beaed74c320, type: 2}
+  - delay: 5
+    dialogue: {fileID: 11400000, guid: 359b47bad7feb854ca28ef7d409478ea, type: 2}
     OnDialogueEnd:
       m_PersistentCalls:
         m_Calls:

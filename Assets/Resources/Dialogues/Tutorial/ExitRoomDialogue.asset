@@ -15,15 +15,23 @@ MonoBehaviour:
   dialogueLines:
   - character: {fileID: 11400000, guid: eee85cfdabefcc64799e31d5d23bd39d, type: 2}
     lines:
-    - In this room there should be the Exit Door,
-    - You need a key to open it
-    - search around.
+    - In this room, there should be the exit door...
+    - "You\u2019ll need a badge to advance!"
+    gameEvent: 0
+  - character: {fileID: 11400000, guid: 77869a3a81cc8944bb5d5446abbbdfe2, type: 2}
+    lines:
+    - Where do I find one?
     gameEvent: 0
   - character: {fileID: 11400000, guid: eee85cfdabefcc64799e31d5d23bd39d, type: 2}
     lines:
-    - Press Q to look left
+    - "I can\u2019t know that..."
+    - What I can tell you is you can rotate your viewpoint.
+    gameEvent: 0
+  - character: {fileID: 11400000, guid: eee85cfdabefcc64799e31d5d23bd39d, type: 2}
+    lines:
+    - Press Q to turn it to the left...
     gameEvent: 1
   - character: {fileID: 11400000, guid: eee85cfdabefcc64799e31d5d23bd39d, type: 2}
     lines:
-    - Press E to look right
+    - Press E to turn it to the right...
     gameEvent: 2

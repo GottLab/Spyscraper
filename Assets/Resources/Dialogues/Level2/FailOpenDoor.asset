@@ -15,5 +15,7 @@ MonoBehaviour:
   dialogueLines:
   - character: {fileID: 11400000, guid: eee85cfdabefcc64799e31d5d23bd39d, type: 2}
     lines:
-    - You need one red key, one green key and one cyan key
+    - "Sorry, no cutting corners\u2014it\u2019s not a supermarket sweep."
+    - "You\u2019re going to need all three badges: the red badge, the green badge,
+      and the cyan badge."
     gameEvent: 0

@@ -15,7 +15,7 @@ MonoBehaviour:
   dialogueLines:
   - character: {fileID: 11400000, guid: eee85cfdabefcc64799e31d5d23bd39d, type: 2}
     lines:
-    - You cannot open this door you need 1 red key
-    - Search around the floor to find it
-    - Remember to use Q and E and the flashlight
+    - '|eANGRY|Have you already forgotten everything?'
+    - '|eNORMAL|You need the badge to get through...'
+    - "|eANGRY|You haven\u2019t forgotten already, have you?!"
     gameEvent: 0

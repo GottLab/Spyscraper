@@ -15,5 +15,6 @@ MonoBehaviour:
   dialogueLines:
   - character: {fileID: 11400000, guid: eee85cfdabefcc64799e31d5d23bd39d, type: 2}
     lines:
-    - You need one red key and one green key
+    - What a strange building...
+    - This floor feels different.
     gameEvent: 0
