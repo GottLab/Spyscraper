@@ -15,6 +15,11 @@ MonoBehaviour:
   dialogueLines:
   - character: {fileID: 11400000, guid: eee85cfdabefcc64799e31d5d23bd39d, type: 2}
     lines:
-    - Seems like that enemy blocks your way
-    - There is no other option besides defeating it
+    - Here, there should be the guard blocking the door...
+    - '|eSAD|I think you have no choice but to face him...'
+    - Pay close attention to what happens when you engage.
+    gameEvent: 0
+  - character: {fileID: 11400000, guid: 77869a3a81cc8944bb5d5446abbbdfe2, type: 2}
+    lines:
+    - '|eSAD|Oh no...'
     gameEvent: 0

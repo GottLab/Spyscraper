@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
 using NUnit.Framework;
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 
 [Serializable]
-public class SerializableDictionary<TKey, TValue> : Dictionary<TKey, TValue>, ISerializationCallbackReceiver
+public abstract class SerializableDictionary<TKey, TValue> : Dictionary<TKey, TValue>, ISerializationCallbackReceiver
 {
 
     [Serializable]
@@ -12,7 +13,7 @@ public class SerializableDictionary<TKey, TValue> : Dictionary<TKey, TValue>, IS
     {
         public A key;
         public B Value;
-    } 
+    }
 
     [SerializeField]
     private List<SerializableTuple<TKey, TValue>> values = new();
@@ -40,7 +41,10 @@ public class SerializableDictionary<TKey, TValue> : Dictionary<TKey, TValue>, IS
 
         foreach (var pair in values)
         {
-            this.Add(pair.key, pair.Value);
+            if (!this.TryAdd(pair.key, pair.Value))
+                this.TryAdd(GetNewKey(pair.key), pair.Value);
         }
     }
+
+    public abstract TKey GetNewKey(TKey key);
 }

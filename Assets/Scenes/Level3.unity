@@ -15107,7 +15107,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 110.600006, y: -688.4}
+  m_AnchoredPosition: {x: 110.600006, y: -853.62}
   m_SizeDelta: {x: 221.20001, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &75004174
@@ -15332,7 +15332,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 110.600006, y: -728.4}
+  m_AnchoredPosition: {x: 110.600006, y: -893.62}
   m_SizeDelta: {x: 221.20001, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &227754178
@@ -15857,7 +15857,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 110.600006, y: -648.4}
+  m_AnchoredPosition: {x: 110.600006, y: -813.62}
   m_SizeDelta: {x: 221.20001, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &732411336
@@ -16204,9 +16204,10 @@ MonoBehaviour:
 
     Jacopo Garofalo
 
+    Gianmarco La Marca
+
     Alessandro Monetti
 
-    Gianmarco La Marca
 
 
 
@@ -16218,7 +16219,6 @@ MonoBehaviour:
 
 
 
-
     <b>Technical Lead</b>
 
 
@@ -16226,21 +16226,24 @@ MonoBehaviour:
     Altimari
 
 
-
-    <b>Game Designer</b>
-
+    <b> Art Director & Level Designer </b>
 
     Alessandro Monetti
 
-    Gianmarco
-    La Marca
+
+    <b>Game
+    Designer</b>
+
+
+    Gianmarco La Marca
 
 
 
-    <b>Artist</b>
+    <b>Sprite Designer</b>
 
 
-    @RainyDay'
+    Rainy
+    Day'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -17027,8 +17030,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 110.600006, y: -524.15}
-  m_SizeDelta: {x: 221.20001, y: 198.5}
+  m_AnchoredPosition: {x: 110.600006, y: -606.76}
+  m_SizeDelta: {x: 221.20001, y: 363.72}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1846190116
 GameObject:
@@ -17537,31 +17540,32 @@ MonoBehaviour:
   dialogueInstances:
   - delay: 0
     dialogue: {fileID: 11400000, guid: 1118170d4f29ad44b83f5ef0c013b289, type: 2}
-    OnDialogueEnd:
-      m_PersistentCalls:
-        m_Calls: []
-  - delay: 1
-    dialogue: {fileID: 11400000, guid: 73be91cbfe94dcd49b9ed6e572503c24, type: 2}
-    OnDialogueEnd:
-      m_PersistentCalls:
-        m_Calls: []
-  - delay: 1
-    dialogue: {fileID: 11400000, guid: 963ade815789d134b8582beaed74c320, type: 2}
-    OnDialogueEnd:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 2105955567}
-          m_TargetAssemblyTypeName: Credits, Assembly-CSharp
-          m_MethodName: StartCredits
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
+    dialogueEvents:
+      values: []
+  - delay: 5
+    dialogue: {fileID: 11400000, guid: e0d79d72b660b6e40b88ad12732bee89, type: 2}
+    dialogueEvents:
+      values: []
+  - delay: 5
+    dialogue: {fileID: 11400000, guid: 359b47bad7feb854ca28ef7d409478ea, type: 2}
+    dialogueEvents:
+      values:
+      - key: End
+        Value:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 2105955567}
+              m_TargetAssemblyTypeName: Credits, Assembly-CSharp
+              m_MethodName: StartCredits
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
 --- !u!4 &2105955566
 Transform:
   m_ObjectHideFlags: 0
@@ -17589,7 +17593,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a1929fa675a90149a0cae8194eda2ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 3
+  delay: 1
   creditsAnimator: {fileID: 1956360025}
 --- !u!1 &2125073216
 GameObject:

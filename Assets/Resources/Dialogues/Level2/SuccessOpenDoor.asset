@@ -15,5 +15,6 @@ MonoBehaviour:
   dialogueLines:
   - character: {fileID: 11400000, guid: eee85cfdabefcc64799e31d5d23bd39d, type: 2}
     lines:
-    - Good job
+    - Great work!
+    - At this rate you might actually make it all the way to a real contract.
     gameEvent: 0

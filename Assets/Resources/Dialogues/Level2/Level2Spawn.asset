@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc90add75164a184eb79227f30e36b21, type: 3}
+  m_Name: Level2Spawn
+  m_EditorClassIdentifier: 
+  dialogueLines:
+  - character: {fileID: 11400000, guid: eee85cfdabefcc64799e31d5d23bd39d, type: 2}
+    lines:
+    - "On this floor, you\u2019re right next to the office of the CEO of MEGACORP..."
+    - "|eSAD|That\u2019s why the guards here are, let\u2019s say, not exactly in
+      a friendly mood."
+    gameEvent: 0
+  - character: {fileID: 11400000, guid: 77869a3a81cc8944bb5d5446abbbdfe2, type: 2}
+    lines:
+    - '|eHAPPY|Thanks!'
+    - "|eANGRY|Now I\u2019m really at ease\u2026 What\u2019s next, attack dogs?"
+    gameEvent: 0

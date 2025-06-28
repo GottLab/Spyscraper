@@ -15,5 +15,6 @@ MonoBehaviour:
   dialogueLines:
   - character: {fileID: 11400000, guid: eee85cfdabefcc64799e31d5d23bd39d, type: 2}
     lines:
-    - Good job Spy, this is only the start but a great one indeed
+    - "|eHAPPY|Perfect, you\u2019re not so bad after all."
+    - '|eSAD|Now things get serious!'
     gameEvent: 0

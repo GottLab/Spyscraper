@@ -15,5 +15,8 @@ MonoBehaviour:
   dialogueLines:
   - character: {fileID: 11400000, guid: eee85cfdabefcc64799e31d5d23bd39d, type: 2}
     lines:
-    - Good job
-    gameEvent: 0
+    - 'All badges present! '
+    - "Maybe you\u2019re not such a rookie after all."
+    eventInfo:
+      gameEvent: 0
+      action: 

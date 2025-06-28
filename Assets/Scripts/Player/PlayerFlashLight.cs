@@ -79,8 +79,6 @@ public class PlayerFlashLight : MonoBehaviour
         StopAllCoroutines();
         StartCoroutine(SwitchFlashLightPose(on));
         this.usingFlashlight = on;
-
-        Managers.game.PlayEvent(on ? GameManager.GameEvent.TorchOn : GameManager.GameEvent.TorchOff);
     }
 
     private void ResetWeights()
@@ -116,7 +114,7 @@ public class PlayerFlashLight : MonoBehaviour
     IEnumerator SwitchFlashLightPose(bool start)
     {
 
-        
+
         if (start)
         {
             //if we are starting the animation then enable the flashlight rig
@@ -126,6 +124,7 @@ public class PlayerFlashLight : MonoBehaviour
         {
             //turn off the flashlight at the end of the animation
             flashlight.Turn(false);
+            Managers.game.PlayEvent(GameManager.GameEvent.TorchOff);
         }
 
 
@@ -166,6 +165,7 @@ public class PlayerFlashLight : MonoBehaviour
         else
         {
             flashlight.Turn(true);
+            Managers.game.PlayEvent(GameManager.GameEvent.TorchOn);
         }
 
     }

@@ -13,11 +13,6 @@ MonoBehaviour:
   m_Name: Medium
   m_EditorClassIdentifier: 
   sequence:
-  - time: 1
-  - time: 1
-  - time: 1
-  - time: 1
-  - time: 1
-  - time: 1
-  - time: 1
-  - time: 1
+  - time: 2
+  - time: 2
+  - time: 2

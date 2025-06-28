@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc90add75164a184eb79227f30e36b21, type: 3}
+  m_Name: TutorialSpawnRoom
+  m_EditorClassIdentifier: 
+  dialogueLines:
+  - character: {fileID: 11400000, guid: 77869a3a81cc8944bb5d5446abbbdfe2, type: 2}
+    lines:
+    - 'Okay, let me remind you... |eHAPPY|this is my first real mission. '
+    - '|eSAD|Can you tell me what I need to do?'
+    eventInfo:
+      gameEvent: 0
+      action: 
+  - character: {fileID: 11400000, guid: eee85cfdabefcc64799e31d5d23bd39d, type: 2}
+    lines:
+    - "First of all, can\u2019t you see it\u2019s pretty dark in there? Press SPACEBAR
+      to turn on your flashlight..."
+    eventInfo:
+      gameEvent: 5
+      action: TorchOn
+  - character: {fileID: 11400000, guid: eee85cfdabefcc64799e31d5d23bd39d, type: 2}
+    lines:
+    - Be very careful! This is a new model they sent us from Japan.
+    - '|eHAPPY|Rumor has it, it can light up the dark INSIDE the dark.'
+    eventInfo:
+      gameEvent: 0
+      action: 
+  - character: {fileID: 11400000, guid: 77869a3a81cc8944bb5d5446abbbdfe2, type: 2}
+    lines:
+    - ...Huh?!?
+    eventInfo:
+      gameEvent: 0
+      action: 
+  - character: {fileID: 11400000, guid: eee85cfdabefcc64799e31d5d23bd39d, type: 2}
+    lines:
+    - "Trust me, |eHAPPY|it\u2019s wild."
+    - '|eSAD|Do I need to explain how to move as well?'
+    eventInfo:
+      gameEvent: 0
+      action: 
+  - character: {fileID: 11400000, guid: 77869a3a81cc8944bb5d5446abbbdfe2, type: 2}
+    lines:
+    - "|eSAD|...since we\u2019re at it..."
+    eventInfo:
+      gameEvent: 0
+      action: 
+  - character: {fileID: 11400000, guid: eee85cfdabefcc64799e31d5d23bd39d, type: 2}
+    lines:
+    - "|eANGRY|WHO HIRED YOU?!?! I\u2019ll have a word with Simone..."
+    - '|eNORMAL|Anyway, you can move around using WASD. '
+    eventInfo:
+      gameEvent: 3
+      action: 
+  - character: {fileID: 11400000, guid: 77869a3a81cc8944bb5d5446abbbdfe2, type: 2}
+    lines:
+    - "Got it, looks like it\u2019s working. |eHAPPY|I feel reborn!"
+    eventInfo:
+      gameEvent: 0
+      action: 
+  - character: {fileID: 11400000, guid: eee85cfdabefcc64799e31d5d23bd39d, type: 2}
+    lines:
+    - "|eHAPPY|HAHA, |eANGRY|aren\u2019t you funny..."
+    - NOW GET MOVING!
+    eventInfo:
+      gameEvent: 0
+      action: 

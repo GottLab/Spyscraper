@@ -8,7 +8,13 @@ public class DialogueHandler : MonoBehaviour
 {
 
     [Serializable]
-    public class EventDictionary : SerializableDictionary<string, UnityEvent> { };
+    public class EventDictionary : SerializableDictionary<string, UnityEvent>
+    {
+        public override string GetNewKey(string key)
+        {
+            return key + "_new";
+        }
+    };
 
     [Serializable]
     public struct DialogueInstance
