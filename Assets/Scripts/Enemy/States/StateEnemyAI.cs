@@ -88,6 +88,7 @@ namespace Enemy
             this.UpdateVisionColor(this.defaultMaskColor);
 
             this.NavMeshAgent.speed = this.defaultSpeed;
+            this.ResetSuspition();
         }
 
         void Update()
@@ -180,6 +181,7 @@ namespace Enemy
         public void ResetSuspition()
         {
             this.currentSuspition = 0;
+            OnSuspitionChange.Invoke(true);
             OnSuspitionReset?.Invoke();
         }
 
