@@ -4287,7 +4287,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4913919104773953458}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5876955740885382914}
+        m_TargetAssemblyTypeName: QualitySettings, Assembly-CSharp
+        m_MethodName: SetQualityLow
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3458511386096123867
 GameObject:
   m_ObjectHideFlags: 0
@@ -4495,7 +4507,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7865922677960504915}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5876955740885382914}
+        m_TargetAssemblyTypeName: QualitySettings, Assembly-CSharp
+        m_MethodName: SetQualityMedium
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4171080007544807675
 GameObject:
   m_ObjectHideFlags: 0
@@ -5213,7 +5237,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1374022113443453889}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5876955740885382914}
+        m_TargetAssemblyTypeName: QualitySettings, Assembly-CSharp
+        m_MethodName: SetQualityHigh
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5296971233351091483
 GameObject:
   m_ObjectHideFlags: 0
@@ -5428,6 +5464,7 @@ GameObject:
   - component: {fileID: 3233434854914575496}
   - component: {fileID: 507079679130497924}
   - component: {fileID: 4524843926234614269}
+  - component: {fileID: 5876955740885382914}
   m_Layer: 5
   m_Name: Settings Canvas
   m_TagString: Untagged
@@ -5435,6 +5472,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &5876955740885382914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5876955740885382913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8626c5fcf9e03a488171706a8d49a02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!222 &6206166183229685939
 CanvasRenderer:
   m_ObjectHideFlags: 0
