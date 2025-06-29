@@ -1,15 +1,14 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Canvas))]
 public class PauseMenu : MonoBehaviour
 {
 
+    [SerializeField, Tooltip("Canvas to activate/deactivate when game is paused")]
     private Canvas pauseCanvas;
 
 
     void Start()
     {
-        this.pauseCanvas = this.GetComponent<Canvas>();
         GameManager.OnGamePause += ShowPauseMenu;
     }
 
@@ -20,7 +19,7 @@ public class PauseMenu : MonoBehaviour
 
     void ShowPauseMenu(bool paused)
     {
-        this.pauseCanvas.enabled = paused;
+        this.pauseCanvas.gameObject.SetActive(paused);
     }
 
     void Update()

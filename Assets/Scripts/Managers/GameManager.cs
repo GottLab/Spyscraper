@@ -57,16 +57,6 @@ public class GameManager : MonoBehaviour, IGameManager
     }
 
 
-    /*
-    void Update()
-    {
-        if (CanPauseGame && Input.GetKeyDown(KeyCode.Escape) && !this.isChangingScene)
-        {
-            ToggleGameStop();
-        }
-    }
-    */
-
     public void SetGameStopped(bool stopped)
     {
         if (stopped)
@@ -90,6 +80,15 @@ public class GameManager : MonoBehaviour, IGameManager
             this.isGameStopped = !this.isGameStopped;
             SetGameStopped(this.isGameStopped);
         }
+    }
+
+    public void CloseGame()
+    {
+        #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+        #else
+            Application.Quit();
+        #endif
     }
 
     public void PlayEvent(GameEvent gameEvent)
