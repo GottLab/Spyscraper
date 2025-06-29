@@ -58,7 +58,7 @@ public class LoadingScreen : MonoBehaviour
             panelImage.rectTransform.offsetMin = new Vector2(offsetMin.x, value * canvaRect.rect.size.y);
             panelImage.rectTransform.offsetMax = new Vector2(offsetMax.x, value * canvaRect.rect.size.y);
 
-            elapsed += Time.deltaTime;
+            elapsed += Time.unscaledDeltaTime;
             yield return null;
         }
 

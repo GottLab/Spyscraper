@@ -32,9 +32,6 @@ public class GameManager : MonoBehaviour, IGameManager
     public static event Action<GameEvent> OnGameEvent;
     public static event Action<bool> OnGamePause;
 
-    [SerializeField, Tooltip("If player can pause this scene using Escape")]
-    private bool CanPauseGame = true;
-
     private bool isGameStopped = false;
     private float prevTimeScale = 1.0f;
 
@@ -42,13 +39,16 @@ public class GameManager : MonoBehaviour, IGameManager
 
     public void Startup()
     {
-
+        SetGameStopped(false);
     }
 
     public void TransitionScene(string toScene)
     {
-        this.isChangingScene = true;
-        MySceneManager.TransitionAsync(toScene, "LoadingScene");
+        if (!this.IsChangingScene)
+        {
+            this.isChangingScene = true;
+            MySceneManager.TransitionAsync(toScene, "LoadingScene");
+        }
     }
 
     public void ReloadScene()
@@ -56,6 +56,8 @@ public class GameManager : MonoBehaviour, IGameManager
         TransitionScene(MySceneManager.GetActiveScene().name);
     }
 
+
+    /*
     void Update()
     {
         if (CanPauseGame && Input.GetKeyDown(KeyCode.Escape) && !this.isChangingScene)
@@ -63,6 +65,7 @@ public class GameManager : MonoBehaviour, IGameManager
             ToggleGameStop();
         }
     }
+    */
 
     public void SetGameStopped(bool stopped)
     {
@@ -82,8 +85,11 @@ public class GameManager : MonoBehaviour, IGameManager
 
     public void ToggleGameStop()
     {
-        this.isGameStopped = !this.isGameStopped;
-        SetGameStopped(this.isGameStopped);
+        if (!this.IsChangingScene)
+        {
+            this.isGameStopped = !this.isGameStopped;
+            SetGameStopped(this.isGameStopped);
+        }
     }
 
     public void PlayEvent(GameEvent gameEvent)

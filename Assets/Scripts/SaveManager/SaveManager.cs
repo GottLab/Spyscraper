@@ -24,7 +24,6 @@ public sealed class SaveManager
         string json = JsonConvert.SerializeObject(saveData, Newtonsoft.Json.Formatting.Indented);
         string path = FilePath(saveData);
         File.WriteAllText(path, json);
-        Debug.Log("Saved: " + path);
     }
 
     public void Load<T>(T saveData) where T : ISaveData
