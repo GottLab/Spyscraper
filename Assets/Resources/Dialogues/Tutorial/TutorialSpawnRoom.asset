@@ -13,6 +13,71 @@ MonoBehaviour:
   m_Name: TutorialSpawnRoom
   m_EditorClassIdentifier: 
   dialogueLines:
+  - character: {fileID: 11400000, guid: eee85cfdabefcc64799e31d5d23bd39d, type: 2}
+    lines:
+    - Spy, do you copy?
+    eventInfo:
+      gameEvent: 0
+      action: 
+  - character: {fileID: 11400000, guid: 77869a3a81cc8944bb5d5446abbbdfe2, type: 2}
+    lines:
+    - '|eNORMAL|Loud and clear.'
+    - I've just entered the target facility.
+    - Can you finally tell me what I'm supposed to do now?
+    eventInfo:
+      gameEvent: 0
+      action: 
+  - character: {fileID: 11400000, guid: eee85cfdabefcc64799e31d5d23bd39d, type: 2}
+    lines:
+    - We've sent you to MEGACORP headquarters.
+    - You need to retrieve some highly classified information before it's too late.
+    eventInfo:
+      gameEvent: 0
+      action: 
+  - character: {fileID: 11400000, guid: 77869a3a81cc8944bb5d5446abbbdfe2, type: 2}
+    lines:
+    - What kind of information?
+    eventInfo:
+      gameEvent: 0
+      action: 
+  - character: {fileID: 11400000, guid: eee85cfdabefcc64799e31d5d23bd39d, type: 2}
+    lines:
+    - "If you would just |eANGRY|let me finish talking, I\u2019d tell you!"
+    eventInfo:
+      gameEvent: 0
+      action: 
+  - character: {fileID: 11400000, guid: 77869a3a81cc8944bb5d5446abbbdfe2, type: 2}
+    lines:
+    - Okay, please finish then...
+    eventInfo:
+      gameEvent: 0
+      action: 
+  - character: {fileID: 11400000, guid: eee85cfdabefcc64799e31d5d23bd39d, type: 2}
+    lines:
+    - '|eANGRY|Are you handing out permits too now?'
+    - "Acting like an anarchist and we haven\u2019t even started yet..."
+    - '|eNORMAL|Back to business, a few days ago we sent a colleague of yours on
+      this same mission.'
+    - Things didn't go well...
+    - "If only |eANGRY|he didn\u2019t have his phone on loud, and got exposed because
+      his mistress called him."
+    eventInfo:
+      gameEvent: 0
+      action: 
+  - character: {fileID: 11400000, guid: 77869a3a81cc8944bb5d5446abbbdfe2, type: 2}
+    lines:
+    - Back home, they say...
+    - '|eSAD|Loose lips sink ships.'
+    eventInfo:
+      gameEvent: 0
+      action: 
+  - character: {fileID: 11400000, guid: eee85cfdabefcc64799e31d5d23bd39d, type: 2}
+    lines:
+    - Enough chit-chat, it's your job to complete his mission and get the intel.
+    - "Let\u2019s get to work."
+    eventInfo:
+      gameEvent: 0
+      action: 
   - character: {fileID: 11400000, guid: 77869a3a81cc8944bb5d5446abbbdfe2, type: 2}
     lines:
     - 'Okay, let me remind you... |eHAPPY|this is my first real mission. '

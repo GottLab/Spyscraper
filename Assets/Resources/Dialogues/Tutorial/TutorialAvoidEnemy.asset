@@ -19,9 +19,13 @@ MonoBehaviour:
     - "|eNORMAL|I really wonder what they\u2019re hiding that\u2019s so important..."
     - "Anyway. Our intel says there\u2019s a really dangerous guard in this room..."
     - You need to find a way to avoid him...
-    - '|eANGRY|At all costs!'
-    gameEvent: 0
+    - '|eANGRY|At. All. Costs!'
+    eventInfo:
+      gameEvent: 0
+      action: 
   - character: {fileID: 11400000, guid: 77869a3a81cc8944bb5d5446abbbdfe2, type: 2}
     lines:
     - Okay|s0.6|, got it.
-    gameEvent: 0
+    eventInfo:
+      gameEvent: 0
+      action: 
