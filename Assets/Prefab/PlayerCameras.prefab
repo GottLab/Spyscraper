@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8819918755896764074}
   - component: {fileID: 6159021123894379310}
   - component: {fileID: 4816875024760547799}
+  - component: {fileID: 7610193570464800035}
   m_Layer: 0
   m_Name: ThirdAngle
   m_TagString: Untagged
@@ -107,6 +108,31 @@ MonoBehaviour:
     Time: 0
     Smoothing: 0
     IgnoreY: 0
+--- !u!114 &7610193570464800035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 547023892372627418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c657da9fbf87ac4caa9deae71bbb343, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EventTarget: {fileID: 0}
+  CameraActivatedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  CameraDeactivatedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  BlendCreatedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  BlendFinishedEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &792873683023025686
 GameObject:
   m_ObjectHideFlags: 0
@@ -218,7 +244,7 @@ MonoBehaviour:
   - Camera: {fileID: 6495987204565210658}
     Blend:
       Style: 1
-      Time: 3
+      Time: 5
       CustomCurve:
         serializedVersion: 2
         m_Curve: []

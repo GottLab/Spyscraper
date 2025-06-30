@@ -6218,6 +6218,48 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8594870265206480259, guid: 5282d0b2bb18a9442a61b1d90b67e0eb, type: 3}
   m_PrefabInstance: {fileID: 736169325}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &900915441 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 547023892372627418, guid: 27d5c1b3b1af7eb4b90886b778e1636c, type: 3}
+  m_PrefabInstance: {fileID: 1215592135}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &900915445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900915441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c657da9fbf87ac4caa9deae71bbb343, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EventTarget: {fileID: 0}
+  CameraActivatedEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 981367184}
+        m_TargetAssemblyTypeName: DeathScreen, Assembly-CSharp
+        m_MethodName: StartDeathScreen
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  CameraDeactivatedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  BlendCreatedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  BlendFinishedEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &904073108
 GameObject:
   m_ObjectHideFlags: 0
@@ -6900,6 +6942,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 68613606714114372, guid: 713f5a54436635e4abb98f6abf6a2ab5, type: 3}
       propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 214323914954780790, guid: 713f5a54436635e4abb98f6abf6a2ab5, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 214323914954780790, guid: 713f5a54436635e4abb98f6abf6a2ab5, type: 3}
+      propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 519950435773206548, guid: 713f5a54436635e4abb98f6abf6a2ab5, type: 3}
@@ -7800,6 +7850,17 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 813266373341038281, guid: 713f5a54436635e4abb98f6abf6a2ab5, type: 3}
   m_PrefabInstance: {fileID: 981367182}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &981367184 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4432990233266042055, guid: 713f5a54436635e4abb98f6abf6a2ab5, type: 3}
+  m_PrefabInstance: {fileID: 981367182}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53570cb3f786d1048ad95baaf45c4eca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &988494080
 GameObject:
   m_ObjectHideFlags: 0
@@ -8890,7 +8951,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 547023892372627418, guid: 27d5c1b3b1af7eb4b90886b778e1636c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 900915445}
   m_SourcePrefab: {fileID: 100100000, guid: 27d5c1b3b1af7eb4b90886b778e1636c, type: 3}
 --- !u!1 &1219528146
 GameObject:

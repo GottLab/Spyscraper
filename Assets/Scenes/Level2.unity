@@ -22450,6 +22450,34 @@ PrefabInstance:
       propertyPath: minSize
       value: 1.3
       objectReference: {fileID: 0}
+    - target: {fileID: 7610193570464800035, guid: 27d5c1b3b1af7eb4b90886b778e1636c, type: 3}
+      propertyPath: CameraActivatedEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7610193570464800035, guid: 27d5c1b3b1af7eb4b90886b778e1636c, type: 3}
+      propertyPath: CameraActivatedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7610193570464800035, guid: 27d5c1b3b1af7eb4b90886b778e1636c, type: 3}
+      propertyPath: CameraActivatedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1962717594}
+    - target: {fileID: 7610193570464800035, guid: 27d5c1b3b1af7eb4b90886b778e1636c, type: 3}
+      propertyPath: CameraActivatedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7610193570464800035, guid: 27d5c1b3b1af7eb4b90886b778e1636c, type: 3}
+      propertyPath: CameraActivatedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StartDeathScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 7610193570464800035, guid: 27d5c1b3b1af7eb4b90886b778e1636c, type: 3}
+      propertyPath: CameraActivatedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DeathScreen, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7610193570464800035, guid: 27d5c1b3b1af7eb4b90886b778e1636c, type: 3}
+      propertyPath: CameraActivatedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7990590287707129774, guid: 27d5c1b3b1af7eb4b90886b778e1636c, type: 3}
       propertyPath: m_Name
       value: PlayerCameras
@@ -28038,6 +28066,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 214323914954780790, guid: 713f5a54436635e4abb98f6abf6a2ab5, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 813266373341038281, guid: 713f5a54436635e4abb98f6abf6a2ab5, type: 3}
       propertyPath: m_TargetTexture
       value: 
@@ -28220,6 +28252,17 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 813266373341038281, guid: 713f5a54436635e4abb98f6abf6a2ab5, type: 3}
   m_PrefabInstance: {fileID: 1962717592}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1962717594 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4432990233266042055, guid: 713f5a54436635e4abb98f6abf6a2ab5, type: 3}
+  m_PrefabInstance: {fileID: 1962717592}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53570cb3f786d1048ad95baaf45c4eca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1963613023
 GameObject:
   m_ObjectHideFlags: 0
