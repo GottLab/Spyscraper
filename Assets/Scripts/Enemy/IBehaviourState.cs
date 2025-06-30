@@ -1,7 +1,4 @@
-﻿using Unity.VisualScripting;
-using UnityEngine;
-
-namespace Enemy
+﻿namespace Enemy
 {
     public interface IBehaviourState
     {

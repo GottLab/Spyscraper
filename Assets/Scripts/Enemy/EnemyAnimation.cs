@@ -1,7 +1,6 @@
 using System.Collections;
 using Enemy;
 using UnityEngine;
-using UnityEngine.AI;
 
 [RequireComponent(typeof(Animator)), RequireComponent(typeof(StateEnemyAI))]
 public class EnemyAnimation : MonoBehaviour

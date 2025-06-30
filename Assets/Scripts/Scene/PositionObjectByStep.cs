@@ -1,5 +1,4 @@
 
-using Unity.Mathematics;
 using UnityEngine;
 using static LoopObject;
 

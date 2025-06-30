@@ -1,7 +1,5 @@
 using System.Collections;
 using Enemy;
-using QTESystem;
-using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(StateEnemyAI))]

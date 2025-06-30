@@ -1,5 +1,3 @@
-using NUnit.Framework;
-using Palmmedia.ReportGenerator.Core.Parser.Analysis;
 using UnityEngine;
 
 
@@ -68,7 +66,6 @@ public class Flashlight : MonoBehaviour
             if (_flashlightSpotlight == null)
             {
                 _flashlightSpotlight = GetComponentInChildren<Light>();
-                Assert.IsNotNull(_flashlightSpotlight, "Light is missing in children!", this);
             }
 
             return this._flashlightSpotlight;

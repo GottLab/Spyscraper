@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using Enemy;
 using UnityEngine;
 [
     RequireComponent(typeof(CharacterController)),

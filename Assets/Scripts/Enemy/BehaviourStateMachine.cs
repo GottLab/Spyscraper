@@ -1,7 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using UnityEngine;
-
-namespace Enemy
+﻿namespace Enemy
 {
     public class BehaviourStateMachine
     {

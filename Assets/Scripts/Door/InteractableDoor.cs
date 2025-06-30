@@ -1,6 +1,4 @@
-using UnityEditor.EditorTools;
 using UnityEngine;
-using UnityEngine.ProBuilder.Shapes;
 
 
 [RequireComponent(typeof(DoorBehaviour))]

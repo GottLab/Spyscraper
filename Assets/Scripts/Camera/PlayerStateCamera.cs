@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using QTESystem;
 using Unity.Cinemachine;
 using UnityEngine;

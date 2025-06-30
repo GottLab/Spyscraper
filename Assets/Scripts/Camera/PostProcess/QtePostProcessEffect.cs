@@ -1,5 +1,4 @@
 using DG.Tweening;
-using QTESystem;
 using UnityEngine;
 
 [ExecuteInEditMode]

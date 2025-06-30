@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.ProBuilder.Shapes;
 
 public class LoopObject : MonoBehaviour
 {

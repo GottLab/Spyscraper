@@ -1,6 +1,5 @@
 using Unity.Cinemachine;
 using UnityEngine;
-using UnityEngine.Events;
 
 [RequireComponent(typeof(CinemachineBrain))]
 public class CameraSwitcher : MonoBehaviour
