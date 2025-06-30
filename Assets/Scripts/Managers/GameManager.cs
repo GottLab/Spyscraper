@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using MyGameDevTools.SceneLoading;
 using UnityEngine;
 
@@ -34,12 +35,18 @@ public class GameManager : MonoBehaviour, IGameManager
 
     private bool isGameStopped = false;
     private float prevTimeScale = 1.0f;
-
     private bool isChangingScene;
+
+    private HashSet<KeyCode> ConsumedKeys = new();
 
     public void Startup()
     {
         SetGameStopped(false);
+    }
+
+    void LateUpdate()
+    {
+        this.ConsumedKeys.Clear();
     }
 
     public void TransitionScene(string toScene)
@@ -96,9 +103,21 @@ public class GameManager : MonoBehaviour, IGameManager
         OnGameEvent?.Invoke(gameEvent);
     }
 
+    //used to prevent for example that pressing with return in the pause menu will unpause the game AND skip dialogue in one frame
+    public void ConsumeSubmit()
+    {
+        ConsumeKey(KeyCode.Return);
+    }
+
     public static bool GetKeyDown(KeyCode keyCode)
     {
-        return Input.GetKeyDown(keyCode) && !Managers.game.IsGameStopped;
+        return !Managers.game.IsGameStopped && Input.GetKeyDown(keyCode) && !Managers.game.ConsumedKeys.Contains(keyCode);
+    }
+
+    //when a key is consumed future calls of GetKeyDown in the current frame will fail to prevent other inputs
+    public static void ConsumeKey(KeyCode keyCode)
+    {
+        Managers.game.ConsumedKeys.Add(keyCode);
     }
 
     public static bool GetKey(KeyCode keyCode)

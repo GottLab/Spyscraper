@@ -65,7 +65,7 @@ public class AudioManager : MonoBehaviour, IGameManager
 
     public void Startup()
     {
-
+        GameManager.OnGamePause += OnGamePause;
     }
 
     void Start()
@@ -87,19 +87,15 @@ public class AudioManager : MonoBehaviour, IGameManager
         this.currentStatus = ManagerStatus.Started;
     }
 
-    void OnEnable()
-    {
-        GameManager.OnGamePause += OnGamePause;
-    }
-
-    void OnDisable()
+    void OnDestroy()
     {
         GameManager.OnGamePause -= OnGamePause;
+        OnGamePause(false);
     }
 
     void OnGamePause(bool paused)
     {
-        this.audioMixer.SetFloat("MusicFreqCutoff", paused ? 300.0f : 5000.0f);
+        this.audioMixer.SetFloat("MusicFreqCutoff", paused ? 300.0f : 10000.0f);
         AudioListener.pause = paused;
     }
 

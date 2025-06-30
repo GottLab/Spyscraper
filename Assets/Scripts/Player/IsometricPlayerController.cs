@@ -36,8 +36,8 @@ public class IsometricPlayerController : MonoBehaviour
 
     private float lastMovementTime = 0.0f;
 
-    //it indicates the reasons that are locking player movement, only if this set is empty the player can move
-    private HashSet<string> movementLocks = new();
+    //used to lock player movement
+    public readonly LockManager movementLock = new();
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -45,6 +45,7 @@ public class IsometricPlayerController : MonoBehaviour
     {
         _characterController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
+        movementLock.OnLock += () => animator.SetBool(WalkingProperty, false); 
     }
 
     void OnEnable()
@@ -59,7 +60,7 @@ public class IsometricPlayerController : MonoBehaviour
 
     private void OnStatusChange(PlayerManager.PlayerState playerState)
     {
-        this.SetMovement("playerStatus", playerState != PlayerManager.PlayerState.NORMAL);
+        this.movementLock.SetLock("playerStatus", playerState != PlayerManager.PlayerState.NORMAL);
         SetCollideWithEnemies(playerState != PlayerManager.PlayerState.DIED);
     }
 
@@ -183,29 +184,20 @@ public class IsometricPlayerController : MonoBehaviour
         }
     }
 
+    public void Lock(string reason)
+    {
+        this.movementLock.Lock(reason);
+    }
+
+    public void Unlock(string reason)
+    {
+        this.movementLock.Unlock(reason);
+    }
+
     public bool CanMove
     {
-        get => this.movementLocks.Count == 0;
+        get => !this.movementLock.Locked;
     }
 
-    public void SetMovement(string reason, bool locked)
-    {
-        if (locked)
-        {
-            animator.SetBool(WalkingProperty, false);
-            this.movementLocks.Add(reason);
-        }
-        else
-            this.movementLocks.Remove(reason);
-    }
 
-    public void LockMovement(string reason)
-    {
-        this.SetMovement(reason, true);
-    }
-
-    public void UnlockMovement(string reason)
-    {
-        this.SetMovement(reason, false);
-    }    
 }

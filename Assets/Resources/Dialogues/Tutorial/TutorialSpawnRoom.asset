@@ -84,7 +84,7 @@ MonoBehaviour:
     - '|eSAD|Can you tell me what I need to do?'
     eventInfo:
       gameEvent: 0
-      action: 
+      action: UnlockFlashlight
   - character: {fileID: 11400000, guid: eee85cfdabefcc64799e31d5d23bd39d, type: 2}
     lines:
     - "First of all, can\u2019t you see it\u2019s pretty dark in there? Press SPACEBAR
@@ -117,7 +117,7 @@ MonoBehaviour:
     - "|eSAD|...since we\u2019re at it..."
     eventInfo:
       gameEvent: 0
-      action: 
+      action: UnlockMovement
   - character: {fileID: 11400000, guid: eee85cfdabefcc64799e31d5d23bd39d, type: 2}
     lines:
     - "|eANGRY|WHO HIRED YOU?!?! I\u2019ll have a word with Simone..."

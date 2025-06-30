@@ -9,7 +9,7 @@ public class PlayerFlashLight : MonoBehaviour
 
     [SerializeField, Tooltip("Constraint to make the flashlight move between player holster and holding position")]
     private MultiParentConstraint multiParentConstraint;
-    
+
     [SerializeField, Tooltip("describes the animation curve the flashlight follows to reach the target")]
     private AnimationCurve flashLightEquipAnimationCurve;
 
@@ -27,11 +27,13 @@ public class PlayerFlashLight : MonoBehaviour
 
     private bool usingFlashlight = false;
 
+    private readonly LockManager flashlightLock = new();
+
     public void Start()
     {
         this.SwitchFlashLight(this.usingFlashlight);
     }
-    
+
     void OnEnable()
     {
         PlayerManager.OnStatusChange += OnStatusChange;
@@ -67,7 +69,7 @@ public class PlayerFlashLight : MonoBehaviour
 
     public void Update()
     {
-        if (GameManager.GetKeyDown(KeyCode.Space) && Managers.playerManager.IsState(PlayerManager.PlayerState.NORMAL))
+        if (CanUseFlashLight && GameManager.GetKeyDown(KeyCode.Space))
         {
             this.usingFlashlight = !this.usingFlashlight;
             SwitchFlashLight(this.usingFlashlight);
@@ -90,7 +92,7 @@ public class PlayerFlashLight : MonoBehaviour
         multiParentConstraint.data.sourceObjects = sourceObjects;
         this.flashlightRig.weight = 0.0f;
     }
-    
+
 
     //This method is used to smootly enable and disable the flashlight rig.
     IEnumerator FlashLightRig(bool start)
@@ -168,5 +170,20 @@ public class PlayerFlashLight : MonoBehaviour
             Managers.game.PlayEvent(GameManager.GameEvent.TorchOn);
         }
 
+    }
+
+    public void Lock(string reason)
+    {
+        this.flashlightLock.Lock(reason);
+    }
+
+    public void Unlock(string reason)
+    {
+        this.flashlightLock.Unlock(reason);
+    }
+    
+    public bool CanUseFlashLight
+    {
+        get => Managers.playerManager.IsState(PlayerManager.PlayerState.NORMAL) && !this.flashlightLock.Locked;
     }
 }

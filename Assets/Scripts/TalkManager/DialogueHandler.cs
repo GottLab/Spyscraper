@@ -55,6 +55,9 @@ public class DialogueHandler : MonoBehaviour
 
         yield return new WaitForSeconds(dialogueInstance.delay);
 
+         //call end event when dialogue ends
+        CallDialogueEvent(dialogueInstance, "Start", required: false);
+
         Managers.Talk.StartDialogue(dialogueInstance.dialogue, OnCharacterDialogueEnd: (charDialogue) =>
         {
             //when dialogueline has an action call the corresponding event
@@ -63,6 +66,7 @@ public class DialogueHandler : MonoBehaviour
                 
         }, OnDialogueEnd: () =>
         {
+            
             if (!random)
             {
                 Managers.Talk.StartCoroutine(NextDialogue());
