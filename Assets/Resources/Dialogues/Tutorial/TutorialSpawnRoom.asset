@@ -121,6 +121,11 @@ MonoBehaviour:
   - character: {fileID: 11400000, guid: eee85cfdabefcc64799e31d5d23bd39d, type: 2}
     lines:
     - "|eANGRY|WHO HIRED YOU?!?! I\u2019ll have a word with Simone..."
+    eventInfo:
+      gameEvent: 0
+      action: 
+  - character: {fileID: 11400000, guid: eee85cfdabefcc64799e31d5d23bd39d, type: 2}
+    lines:
     - '|eNORMAL|Anyway, you can move around using WASD. '
     eventInfo:
       gameEvent: 3
