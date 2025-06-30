@@ -4446,6 +4446,78 @@ Transform:
   m_Children: []
   m_Father: {fileID: 752029530}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &595335895
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 431358364100866796, guid: d6ec82e610b5c1c40bfc9b2ddd18f4cb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -14.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 431358364100866796, guid: d6ec82e610b5c1c40bfc9b2ddd18f4cb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 431358364100866796, guid: d6ec82e610b5c1c40bfc9b2ddd18f4cb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 27.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 431358364100866796, guid: d6ec82e610b5c1c40bfc9b2ddd18f4cb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 431358364100866796, guid: d6ec82e610b5c1c40bfc9b2ddd18f4cb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 431358364100866796, guid: d6ec82e610b5c1c40bfc9b2ddd18f4cb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 431358364100866796, guid: d6ec82e610b5c1c40bfc9b2ddd18f4cb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 431358364100866796, guid: d6ec82e610b5c1c40bfc9b2ddd18f4cb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 431358364100866796, guid: d6ec82e610b5c1c40bfc9b2ddd18f4cb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 431358364100866796, guid: d6ec82e610b5c1c40bfc9b2ddd18f4cb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 7124716937164668277, guid: d6ec82e610b5c1c40bfc9b2ddd18f4cb, type: 3}
+      propertyPath: m_Name
+      value: ExitTutorialDoor
+      objectReference: {fileID: 0}
+    - target: {fileID: 7124716937164668277, guid: d6ec82e610b5c1c40bfc9b2ddd18f4cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d6ec82e610b5c1c40bfc9b2ddd18f4cb, type: 3}
+--- !u!114 &595335896 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8720097377312962049, guid: d6ec82e610b5c1c40bfc9b2ddd18f4cb, type: 3}
+  m_PrefabInstance: {fileID: 595335895}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de5b30b753d0be34599074c244334d53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &602185792
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6197,7 +6269,23 @@ MonoBehaviour:
   - delay: 0
     dialogue: {fileID: 11400000, guid: 278e0f78fda8dff45bd32a7e73326e10, type: 2}
     dialogueEvents:
-      values: []
+      values:
+      - key: End
+        Value:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 595335896}
+              m_TargetAssemblyTypeName: DoorBehaviour, Assembly-CSharp
+              m_MethodName: OpenDoor
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
 --- !u!114 &904073111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15194,3 +15282,4 @@ SceneRoots:
   - {fileID: 1487374173}
   - {fileID: 478607704}
   - {fileID: 1170963607}
+  - {fileID: 595335895}
