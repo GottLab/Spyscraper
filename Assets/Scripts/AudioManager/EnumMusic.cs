@@ -5,5 +5,7 @@ public enum Music
     Sneaky,
     Menu,
     Caught,
-    Credits
+    Credits,
+
+    Combat
 }

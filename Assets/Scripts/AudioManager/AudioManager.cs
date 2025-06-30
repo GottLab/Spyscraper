@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using QTESystem;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -65,11 +66,14 @@ public class AudioManager : MonoBehaviour, IGameManager
 
     public void Startup()
     {
-        GameManager.OnGamePause += OnGamePause;
     }
 
     void Start()
-    {
+    {   
+        GameManager.OnGamePause += OnGamePause;
+        QTEManager.OnQteSequenceStart += OnQteStart;
+        QTEManager.OnQteSequenceEnd += OnQteEnd;
+
         SaveManager.saveManager.Load(this.audioSettings);
 
         foreach (AudioType audioType in Enum.GetValues(typeof(AudioType)))
@@ -90,7 +94,19 @@ public class AudioManager : MonoBehaviour, IGameManager
     void OnDestroy()
     {
         GameManager.OnGamePause -= OnGamePause;
+        QTEManager.OnQteSequenceStart -= OnQteStart;
+        QTEManager.OnQteSequenceEnd -= OnQteEnd;
         OnGamePause(false);
+    }
+
+    void OnQteStart(IQtePlayer player)
+    {
+        this.PlayMusic(Music.Combat, 0.5f);
+    }
+
+     void OnQteEnd(IQtePlayer player)
+    {
+        this.PlayMusic(Music.Sneaky, 1.5f);
     }
 
     void OnGamePause(bool paused)

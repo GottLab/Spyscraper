@@ -19,7 +19,6 @@ namespace Enemy
             this.stateAI.NavMeshAgent.velocity = Vector3.zero;
             QTEManager.Instance.StartQteEvent(this, stateAI.QteSequence);
             stateAI.ResetSuspition();
-            Managers.audioManager.enemyCaughtTracker.IncreaseAgroedCount(1);
         }
 
         public void Update()
@@ -28,7 +27,6 @@ namespace Enemy
 
         public void End()
         {
-            Managers.audioManager.enemyCaughtTracker.IncreaseAgroedCount(-1);
         }
 
         public void QteSuccess()
