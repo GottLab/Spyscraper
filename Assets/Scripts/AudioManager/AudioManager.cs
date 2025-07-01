@@ -34,6 +34,8 @@ public class AudioManager : MonoBehaviour, IGameManager
     public static event Action<AudioType, Vector3?> OnSoundPlay;
     public static event Action<AudioType, float> OnVolumeChange;
 
+
+    [Header("Mixing")]
     [SerializeField]
     private AudioMixer audioMixer;
 
@@ -43,12 +45,16 @@ public class AudioManager : MonoBehaviour, IGameManager
     [SerializeField, Tooltip("Audio Source used to play music")]
     private AudioSource musicAudioSource;
 
-    //this is used to crossfade from one music to another
-    private AudioSource transitionMusicSource;
-
-
+    [Header("Settings")]
     [SerializeField]
     private Music defaultMusic;
+
+    public AudioPlayer uiNavigationAudio;
+
+    public AudioPlayer uiConfirmAudio;
+
+    //this is used to crossfade from one music to another
+    private AudioSource transitionMusicSource;
 
     private Settings audioSettings = new();
 
@@ -207,7 +213,7 @@ public class AudioManager : MonoBehaviour, IGameManager
     {
         audioSource.Play();
         //wait until: audio is destroyed or audio is playing and not paused by listener
-        yield return new WaitUntil(() => IsAudioSourceDestroyed(audioSource) || (!audioSource.isPlaying && !AudioListener.pause));
+        yield return new WaitUntil(() => IsAudioSourceDestroyed(audioSource) || (!audioSource.isPlaying && !(AudioListener.pause && !audioSource.ignoreListenerPause)));
 
         //if audio is destroyed do not put this audiosource back in the stack
         if (IsAudioSourceDestroyed(audioSource))

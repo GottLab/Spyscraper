@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 1182873953019593945}
   - component: {fileID: 510836931507087817}
   - component: {fileID: 6036103999418152822}
-  - component: {fileID: 7628801014219022793}
   - component: {fileID: 129700927562984384}
+  - component: {fileID: 2415374430350533205}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -137,24 +137,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetScale: {x: 1.1, y: 1.1, z: 1.1}
   scaleSpeed: 5
---- !u!114 &7628801014219022793
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1496738719594281827}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1898dab8a3378ef4dabc5e744830d968, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioType: 3
-  volume: 1
-  pitch: 1
-  sourceTransform: {fileID: 0}
-  audioClips:
-  - {fileID: 8300000, guid: 481679bc5bdc3bd4a9ec012184cf5ed1, type: 3}
 --- !u!114 &129700927562984384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,3 +151,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_AspectMode: 1
   m_AspectRatio: 4
+--- !u!114 &2415374430350533205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1496738719594281827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fb09cc533a330b4fbb29d36197638b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnClickSound: {fileID: 0}
