@@ -1,6 +1,7 @@
 
 
 
+using System;
 using System.IO;
 using Newtonsoft.Json;
 using UnityEngine;
@@ -35,7 +36,15 @@ public sealed class SaveManager
         }
 
         string json = File.ReadAllText(path);
-        JsonConvert.PopulateObject(json, saveData);
+
+        try
+        {
+            JsonConvert.PopulateObject(json, saveData);
+        }
+        catch (Exception)
+        {
+            Debug.LogWarning($"Failed to load {saveData.Name()}");
+        }
     }
 
 

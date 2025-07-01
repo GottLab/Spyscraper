@@ -4886,7 +4886,6 @@ MonoBehaviour:
   - {fileID: 24300002, guid: e7982d3dd1bebce45b2d774b51aa3389, type: 2}
   - {fileID: -8889713920472572246, guid: e7982d3dd1bebce45b2d774b51aa3389, type: 2}
   - {fileID: -3295570096139802388, guid: e7982d3dd1bebce45b2d774b51aa3389, type: 2}
-  - {fileID: -8849740178960294283, guid: e7982d3dd1bebce45b2d774b51aa3389, type: 2}
   musicAudioSource: {fileID: 4739837978285390517}
   defaultMusic: 2
 --- !u!114 &7585545084315203970

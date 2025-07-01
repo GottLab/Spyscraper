@@ -162,7 +162,7 @@ public class AudioManager : MonoBehaviour, IGameManager
         PlayClipAtPoint(audioClip, null, volume: volume, pitch: pitch, audioType: audioType);
     }
 
-    public void PlayClipAtPoint(AudioClip audioClip, Vector3? position = null, float volume = 1.0f, float pitch = 1.0f, AudioType audioType = AudioType.Master)
+    public void PlayClipAtPoint(AudioClip audioClip, Vector3? position = null, float volume = 1.0f, float pitch = 1.0f, AudioType audioType = AudioType.Master, bool ignorePause = false)
     {
         if (audioClip == null)
         {
@@ -180,13 +180,13 @@ public class AudioManager : MonoBehaviour, IGameManager
         {
             audioSource = new GameObject().AddComponent<AudioSource>();
             audioSource.loop = false;
-            audioSource.gameObject.hideFlags = HideFlags.HideInHierarchy;
+            //audioSource.gameObject.hideFlags = HideFlags.HideInHierarchy;
         }
         if (IsAudioSourceDestroyed(audioSource))
         {
             return;
         }
-        audioSource.ignoreListenerPause = audioType == AudioType.Ui;
+        audioSource.ignoreListenerPause = ignorePause;
         audioSource.gameObject.SetActive(true);
         audioSource.outputAudioMixerGroup = GetAudioMixer(audioType);
         audioSource.spatialize = isSpatial;
@@ -206,8 +206,10 @@ public class AudioManager : MonoBehaviour, IGameManager
     IEnumerator PlayAudioSource(AudioSource audioSource)
     {
         audioSource.Play();
-        yield return new WaitForSeconds(audioSource.clip.length);
+        //wait until: audio is destroyed or audio is playing and not paused by listener
+        yield return new WaitUntil(() => IsAudioSourceDestroyed(audioSource) || (!audioSource.isPlaying && !AudioListener.pause));
 
+        //if audio is destroyed do not put this audiosource back in the stack
         if (IsAudioSourceDestroyed(audioSource))
             yield break;
             

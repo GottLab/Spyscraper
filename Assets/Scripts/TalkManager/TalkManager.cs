@@ -16,9 +16,6 @@ public class TalkManager : MonoBehaviour, IGameManager
     [SerializeField]
     private float fadeDuration = 0.7f;
 
-    [SerializeField]
-    private float automaticSkipTime = 2.0f;
-
     [Header("Sounds")]
     [SerializeField]
     private AudioPlayer confirmSound;
@@ -101,24 +98,25 @@ public class TalkManager : MonoBehaviour, IGameManager
         float totalDelay = 0;
         int totalCharacters = 0;
         //should it skip the rest of the line?
-        bool skip = false;
+        bool skipped = false;
         for (int i = 0; i < line.Length; i++)
         {
 
             DialogueModifier.ApplyModifier(line, dialogueInfo, ref i);
-            if (!skip && dialogueInfo.pauseTime > 0.0f)
-                yield return WaitSecondsOrSkip(dialogueInfo.pauseTime, () => skip = true);
+            if (!skipped && dialogueInfo.pauseTime > 0.0f)
+                yield return WaitSecondsOrSkip(dialogueInfo.pauseTime, () => skipped = true);
             dialogueInfo.pauseTime = 0.0F;
 
             float delay = 1f / charactersPerSecond;
             delay *= dialogueInfo.charactersPerSecondMultiplier;
             totalDelay += delay;
 
-            if (!skip)
-                yield return WaitSecondsOrSkip(delay, () => skip = true);
-
             if (i < line.Length)
                 OnCharacterType?.Invoke(characterDialogue, dialogueInfo, line[i]);
+
+            if (!skipped)
+                yield return WaitSecondsOrSkip(delay, () => skipped = true);
+
             totalCharacters++;
         }
 
@@ -168,9 +166,7 @@ public class TalkManager : MonoBehaviour, IGameManager
                 //only when we don't to wait a certain game event then we continue when pressing the skip button
                 if (dialogueLine.eventInfo.gameEvent == GameEvent.None)
                 {
-                    float currentTime = Time.time;
-                    //check if dialogue should continue after automaticSkipTime in seconds
-                    yield return new WaitUntil(() => IsSkipButtonPressed || Time.time - currentTime > automaticSkipTime);
+                    yield return new WaitUntil(() => IsSkipButtonPressed);
                     confirmSound?.PlayAudio();
                 }
             }
