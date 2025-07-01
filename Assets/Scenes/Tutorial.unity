@@ -6545,17 +6545,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 8594870265206480259, guid: 5282d0b2bb18a9442a61b1d90b67e0eb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1009362586}
+    - targetCorrespondingSourceObject: {fileID: 8594870265206480259, guid: 5282d0b2bb18a9442a61b1d90b67e0eb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1456275583}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8938744053290452793, guid: 5282d0b2bb18a9442a61b1d90b67e0eb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 913796193}
-    - targetCorrespondingSourceObject: {fileID: 8938744053290452793, guid: 5282d0b2bb18a9442a61b1d90b67e0eb, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 913796195}
-    - targetCorrespondingSourceObject: {fileID: 8938744053290452793, guid: 5282d0b2bb18a9442a61b1d90b67e0eb, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 913796194}
   m_SourcePrefab: {fileID: 100100000, guid: 5282d0b2bb18a9442a61b1d90b67e0eb, type: 3}
 --- !u!4 &913796191 stripped
 Transform:
@@ -6580,60 +6580,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnpoint: {fileID: 905568292}
-  DialogueWin: {fileID: 913796195}
-  DialogueLose: {fileID: 913796194}
---- !u!114 &913796194
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 913796192}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8096b59c126f1c5488fc1090c687927b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  random: 0
-  dialogueInstances:
-  - delay: 0
-    dialogue: {fileID: 11400000, guid: d48f8b8bd9e522a4e8db3c73ec1ea2f4, type: 2}
-    dialogueEvents:
-      values: []
---- !u!114 &913796195
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 913796192}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8096b59c126f1c5488fc1090c687927b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  random: 0
-  dialogueInstances:
-  - delay: 0
-    dialogue: {fileID: 11400000, guid: f989f2ee3d79480498cb237d80440053, type: 2}
-    dialogueEvents:
-      values:
-      - key: End
-        Value:
-          m_PersistentCalls:
-            m_Calls:
-            - m_Target: {fileID: 1502646655}
-              m_TargetAssemblyTypeName: DoorBehaviour, Assembly-CSharp
-              m_MethodName: OpenDoor
-              m_Mode: 1
-              m_Arguments:
-                m_ObjectArgument: {fileID: 0}
-                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-                m_IntArgument: 0
-                m_FloatArgument: 0
-                m_StringArgument: 
-                m_BoolArgument: 0
-              m_CallState: 2
+  DialogueWin: {fileID: 1009362587}
+  DialogueLose: {fileID: 1456275584}
 --- !u!1 &922065955
 GameObject:
   m_ObjectHideFlags: 0
@@ -8027,6 +7975,72 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1740982448}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!1 &1009362585
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1009362586}
+  - component: {fileID: 1009362587}
+  m_Layer: 7
+  m_Name: WinDialogue
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1009362586
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1009362585}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 913796191}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1009362587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1009362585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8096b59c126f1c5488fc1090c687927b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  random: 0
+  dialogueInstances:
+  - delay: 0
+    dialogue: {fileID: 11400000, guid: d48f8b8bd9e522a4e8db3c73ec1ea2f4, type: 2}
+    dialogueEvents:
+      values:
+      - key: End
+        Value:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 1502646655}
+              m_TargetAssemblyTypeName: DoorBehaviour, Assembly-CSharp
+              m_MethodName: OpenDoor
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
 --- !u!1 &1024224885
 GameObject:
   m_ObjectHideFlags: 0
@@ -11146,6 +11160,56 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1740982448}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1456275582
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1456275583}
+  - component: {fileID: 1456275584}
+  m_Layer: 7
+  m_Name: LoseDialogue
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1456275583
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1456275582}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 913796191}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1456275584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1456275582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8096b59c126f1c5488fc1090c687927b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  random: 0
+  dialogueInstances:
+  - delay: 0
+    dialogue: {fileID: 11400000, guid: f989f2ee3d79480498cb237d80440053, type: 2}
+    dialogueEvents:
+      values: []
 --- !u!65 &1486576757
 BoxCollider:
   m_ObjectHideFlags: 0
