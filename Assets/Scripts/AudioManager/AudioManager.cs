@@ -186,7 +186,7 @@ public class AudioManager : MonoBehaviour, IGameManager
         {
             audioSource = new GameObject().AddComponent<AudioSource>();
             audioSource.loop = false;
-            //audioSource.gameObject.hideFlags = HideFlags.HideInHierarchy;
+            audioSource.gameObject.hideFlags = HideFlags.HideInHierarchy;
         }
         if (IsAudioSourceDestroyed(audioSource))
         {
