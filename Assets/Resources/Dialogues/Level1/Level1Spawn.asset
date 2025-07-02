@@ -17,11 +17,17 @@ MonoBehaviour:
     lines:
     - What a strange building...
     - This floor feels different.
-    gameEvent: 0
+    eventInfo:
+      gameEvent: 0
+      action: 
   - character: {fileID: 11400000, guid: eee85cfdabefcc64799e31d5d23bd39d, type: 2}
     lines:
     - "Let\u2019s just say this company is a bit..."
     - '|eHAPPY|Outside the box.'
     - '|eNORMAL|Anyway...'
     - If you time it right, you should be able to slip past the guards.
-    gameEvent: 0
+    - Also, intel said that in every level you must collect three badges to continue.
+    - Don't forget this!
+    eventInfo:
+      gameEvent: 0
+      action: 

@@ -45,3 +45,10 @@ MonoBehaviour:
     eventInfo:
       gameEvent: 2
       action: 
+  - character: {fileID: 11400000, guid: eee85cfdabefcc64799e31d5d23bd39d, type: 2}
+    lines:
+    - Also don't forget you can zoom in and zoom out using the MOUSE WHEEL.
+    - It can come in handy.
+    eventInfo:
+      gameEvent: 0
+      action: 

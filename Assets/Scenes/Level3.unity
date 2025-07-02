@@ -15489,6 +15489,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 214323914954780790, guid: 713f5a54436635e4abb98f6abf6a2ab5, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 813266373341038281, guid: 713f5a54436635e4abb98f6abf6a2ab5, type: 3}
       propertyPath: m_TargetTexture
       value: 
@@ -16230,9 +16234,12 @@ MonoBehaviour:
     Altimari
 
 
+
     <b> Art Director & Level Designer </b>
 
+
     Alessandro Monetti
+
 
 
     <b>Game
