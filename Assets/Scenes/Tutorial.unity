@@ -8022,7 +8022,7 @@ MonoBehaviour:
   random: 0
   dialogueInstances:
   - delay: 0
-    dialogue: {fileID: 11400000, guid: f989f2ee3d79480498cb237d80440053, type: 2}
+    dialogue: {fileID: 11400000, guid: d48f8b8bd9e522a4e8db3c73ec1ea2f4, type: 2}
     dialogueEvents:
       values:
       - key: End
@@ -11207,7 +11207,7 @@ MonoBehaviour:
   random: 0
   dialogueInstances:
   - delay: 0
-    dialogue: {fileID: 11400000, guid: d48f8b8bd9e522a4e8db3c73ec1ea2f4, type: 2}
+    dialogue: {fileID: 11400000, guid: f989f2ee3d79480498cb237d80440053, type: 2}
     dialogueEvents:
       values: []
 --- !u!65 &1486576757

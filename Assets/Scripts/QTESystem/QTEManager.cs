@@ -45,10 +45,12 @@ public class QTEManager : MonoBehaviour
         KeyCode.Z,
         KeyCode.Space // Anche la barra spaziatrice è un'opzione comune
     };
-
-
+    
     [SerializeField]
     private float slowMoScale = 0.2f;
+
+    [SerializeField]
+    private float timeToStartQte = 1.0f;
 
     public delegate void QteElementStart(KeyCode keyCode, float time);
     public static event QteElementStart OnQteElementStart;
@@ -130,6 +132,8 @@ public class QTEManager : MonoBehaviour
         OnQteSequenceStart?.Invoke(enemy);
         mainPlayer.QteStart(enemy);
         enemy.QteStart(mainPlayer);
+
+        yield return new WaitForSeconds(timeToStartQte);
 
         bool sequenceSuccess = true;
 
