@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: c265d6fdb2414f84b9e8780dc6f07a09
+AssetOrigin:
+  serializedVersion: 1
+  productId: 313159
+  packageName: My Scene Manager
+  packageVersion: 4.0.0
+  assetPath: Packages/com.mygamedevtools.scene-loader/Runtime/Utilities/SceneManagerExtensions.cs
+  uploadId: 738473

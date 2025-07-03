@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: 10ebc5a21b6cd3444a92ee0bc7091a29
+AssetOrigin:
+  serializedVersion: 1
+  productId: 313159
+  packageName: My Scene Manager
+  packageVersion: 4.0.0
+  assetPath: Packages/com.mygamedevtools.scene-loader/Runtime/Structs/AsyncSceneOperationAddressable.cs
+  uploadId: 738473

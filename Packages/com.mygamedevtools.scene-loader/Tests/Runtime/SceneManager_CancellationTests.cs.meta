@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: 1873859967aa79a4da9d47b4632097e6
+AssetOrigin:
+  serializedVersion: 1
+  productId: 313159
+  packageName: My Scene Manager
+  packageVersion: 4.0.0
+  assetPath: Packages/com.mygamedevtools.scene-loader/Tests/Runtime/SceneManager_CancellationTests.cs
+  uploadId: 738473

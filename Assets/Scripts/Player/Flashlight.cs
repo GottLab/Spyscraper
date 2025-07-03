@@ -1,0 +1,87 @@
+using UnityEngine;
+
+
+[RequireComponent(typeof(MeshRenderer))]
+public class Flashlight : MonoBehaviour
+{
+
+
+    private Light _flashlightSpotlight;
+    private Material _FlashlightBulbMaterial;
+
+
+    private Transform originalParent;
+    private Quaternion originalRotation;
+    private Vector3 originalPosition;
+
+    [SerializeField]
+    private AudioClip turnOnAudio;
+    [SerializeField]
+    private AudioClip turnOffAudio;
+
+    void Start()
+    {
+        this.originalParent = this.transform.parent;
+        this.originalRotation = this.transform.localRotation;
+        this.originalPosition = this.transform.localPosition;
+    }
+
+    //Makes the flashlight interact with the world as a rigid body
+    //when deattach is false, it returns to the original parent
+    public void Deattach(bool deattach)
+    {   
+        if(originalParent != null)
+            this.transform.parent = deattach ? null : this.originalParent;
+
+        if (!deattach)
+        {
+            this.transform.SetLocalPositionAndRotation(this.originalPosition, this.originalRotation);
+        }
+
+        this.GetComponent<Rigidbody>().isKinematic = !deattach;
+    }
+
+    public void Turn(bool on)
+    {
+        //enable or disable spotlight
+        FlashLightSpotlight.gameObject.SetActive(on);
+        //set the emissive material to on or off
+        if (on)
+        {
+            Managers.audioManager.PlayClipAtPoint(this.turnOnAudio, this.transform.position, volume: 0.5f, audioType: AudioType.Sfx);
+            this.FlashlightBulbMaterial.EnableKeyword("_EMISSION");
+        }
+        else
+        {
+            Managers.audioManager.PlayClipAtPoint(this.turnOffAudio, this.transform.position, volume: 0.5f, audioType: AudioType.Sfx);
+            this.FlashlightBulbMaterial.DisableKeyword("_EMISSION");
+        }
+    }
+
+
+    private Light FlashLightSpotlight
+    {
+        get
+        {
+            if (_flashlightSpotlight == null)
+            {
+                _flashlightSpotlight = GetComponentInChildren<Light>();
+            }
+
+            return this._flashlightSpotlight;
+        }
+    }
+    
+    private Material FlashlightBulbMaterial
+    {
+        get {
+            if (_FlashlightBulbMaterial == null)
+            {
+                _FlashlightBulbMaterial = this.GetComponent<MeshRenderer>().materials[1];
+            }
+
+            return this._FlashlightBulbMaterial;
+        }
+    }
+
+}
