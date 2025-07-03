@@ -1631,11 +1631,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3707169177679366396, guid: 27d5c1b3b1af7eb4b90886b778e1636c, type: 3}
       propertyPath: maxSize
-      value: 6
+      value: 7.5
       objectReference: {fileID: 0}
     - target: {fileID: 3707169177679366396, guid: 27d5c1b3b1af7eb4b90886b778e1636c, type: 3}
       propertyPath: minSize
-      value: 1.3
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5256638571290221696, guid: 27d5c1b3b1af7eb4b90886b778e1636c, type: 3}
       propertyPath: Instructions.Array.data[3].Blend.Time

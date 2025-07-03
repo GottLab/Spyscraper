@@ -1521,6 +1521,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slowMoScale: 0.2
+  timeToStartQte: 0.5
 --- !u!114 &7040446355626818221
 MonoBehaviour:
   m_ObjectHideFlags: 0
