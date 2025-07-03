@@ -30,6 +30,8 @@ public class TalkManager : MonoBehaviour, IGameManager
 
     private Coroutine currentDialogueCoroutine = null;
 
+    private bool CanDialogueBeOverwritten = false;
+
 
     public delegate void DialogueFade(float fadeValue, bool fadeIn);
     public static DialogueFade OnDialogueFade;
@@ -65,28 +67,38 @@ public class TalkManager : MonoBehaviour, IGameManager
         set => this.charactersPerSecond = CharactersPerSecond;
     }
 
-    public void StartDialogue(string dialogueFile, Action<CharacterDialogue> OnCharacterDialogueEnd = null,Action OnDialogueEnd = null)
+    public bool StartDialogue(string dialogueFile, Action<CharacterDialogue> OnCharacterDialogueEnd = null,Action OnDialogueEnd = null)
     {
         Dialogue dialogue = DialogueLoader.ReadDialogue(dialogueFile);
-        this.StartDialogue(dialogue, OnCharacterDialogueEnd, OnDialogueEnd);
+        return this.StartDialogue(dialogue, OnCharacterDialogueEnd, OnDialogueEnd);
     }
-
-    public void StartDialogue(Dialogue dialogue, Action<CharacterDialogue> OnCharacterDialogueEnd = null, Action OnDialogueEnd = null)
+    //returns true if dialogue starts successfully
+    public bool StartDialogue(Dialogue dialogue, Action<CharacterDialogue> OnCharacterDialogueEnd = null, Action OnDialogueEnd = null, bool CanDialogueBeOverwritten = true)
     {
-        if (currentDialogueCoroutine != null)
+        if (dialogue == null)
         {
-            if (this.currentGameEventToWait != null)
-            {
-                GameManager.OnGameEvent -= this.currentGameEventToWait;
-            }
-            StopAllCoroutines();
+            return false;
+        }
+
+        //stop current running dialogue if it can be overwritten
+        if (this.CanDialogueBeOverwritten && currentDialogueCoroutine != null)
+        {
+            this.CanDialogueBeOverwritten = CanDialogueBeOverwritten;
             this.currentDialogueCoroutine = null;
+            //if running dialogue is waiting for a certain event unsubscribe from it
+            if (this.currentGameEventToWait != null)
+                GameManager.OnGameEvent -= this.currentGameEventToWait;
+            //stop running dialogue coroutine
+            StopAllCoroutines();
         }
-        //Dialogue dialogue = DialogueLoader.ReadDialogue(dialogueFile);
-        if (dialogue != null)
+        //play dialogue if it can be overwritten or there isn't a running dialogue 
+        if (this.CanDialogueBeOverwritten || currentDialogueCoroutine == null)
         {
+            this.CanDialogueBeOverwritten = CanDialogueBeOverwritten;
             this.currentDialogueCoroutine = StartCoroutine(StartDialogueCoroutine(dialogue, OnCharacterDialogueEnd, OnDialogueEnd));
+            return true;
         }
+        return false;
     }
 
     private IEnumerator TypeText(CharacterDialogue characterDialogue, string line, DialogueInfo dialogueInfo)
@@ -176,10 +188,10 @@ public class TalkManager : MonoBehaviour, IGameManager
             //unhook from gameEvent action when we used it
             if (currentGameEventToWait != null)
                 GameManager.OnGameEvent -= this.currentGameEventToWait;
-            
+
             OnCharacterDialogueEnd?.Invoke(dialogueLine);
 
-            
+
         }
 
 
@@ -188,6 +200,7 @@ public class TalkManager : MonoBehaviour, IGameManager
         OnDialogueEnd?.Invoke();
         yield return StartCoroutine(FadeTextBox(false));
         TalkManager.OnDialogueEnd?.Invoke();
+        this.currentDialogueCoroutine = null;
     }
 
     public float EstimateReadingTime(string text)

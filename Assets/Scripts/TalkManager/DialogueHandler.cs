@@ -22,6 +22,9 @@ public class DialogueHandler : MonoBehaviour
         public float delay;
         public Dialogue dialogue;
         public EventDictionary dialogueEvents;
+        
+        [Tooltip("If this dialogue cannot be overwritten by another dialogue")]
+        public bool CannotBeOverwritten;
     }
 
 
@@ -73,7 +76,7 @@ public class DialogueHandler : MonoBehaviour
             }
             //call end event when dialogue ends
             CallDialogueEvent(dialogueInstance, "End", required: false);
-        });
+        }, CanDialogueBeOverwritten: !dialogueInstance.CannotBeOverwritten);
     }
 
     //calls the dialogue event to make something happen when "eventName" happens

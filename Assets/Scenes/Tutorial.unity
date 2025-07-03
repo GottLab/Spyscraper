@@ -2455,6 +2455,7 @@ MonoBehaviour:
     dialogue: {fileID: 11400000, guid: 237b79357f9baee4f82f688cfce6bd37, type: 2}
     dialogueEvents:
       values: []
+    CannotBeOverwritten: 0
 --- !u!114 &396633301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6328,6 +6329,7 @@ MonoBehaviour:
                 m_StringArgument: 
                 m_BoolArgument: 0
               m_CallState: 2
+    CannotBeOverwritten: 1
 --- !u!114 &904073111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8041,6 +8043,7 @@ MonoBehaviour:
                 m_StringArgument: 
                 m_BoolArgument: 0
               m_CallState: 2
+    CannotBeOverwritten: 0
 --- !u!1 &1024224885
 GameObject:
   m_ObjectHideFlags: 0
@@ -8427,6 +8430,7 @@ MonoBehaviour:
     dialogue: {fileID: 11400000, guid: 251b61790572fd9439f96464e5d7770a, type: 2}
     dialogueEvents:
       values: []
+    CannotBeOverwritten: 0
 --- !u!114 &1076638545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10913,6 +10917,7 @@ MonoBehaviour:
                 m_StringArgument: Tutorial
                 m_BoolArgument: 0
               m_CallState: 2
+    CannotBeOverwritten: 0
 --- !u!114 &1443978233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11210,6 +11215,7 @@ MonoBehaviour:
     dialogue: {fileID: 11400000, guid: d48f8b8bd9e522a4e8db3c73ec1ea2f4, type: 2}
     dialogueEvents:
       values: []
+    CannotBeOverwritten: 0
 --- !u!65 &1486576757
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14284,6 +14290,7 @@ MonoBehaviour:
     dialogue: {fileID: 11400000, guid: 916ac1888bf488145a4fb2882ccd547d, type: 2}
     dialogueEvents:
       values: []
+    CannotBeOverwritten: 0
 --- !u!114 &1944541011
 MonoBehaviour:
   m_ObjectHideFlags: 0
